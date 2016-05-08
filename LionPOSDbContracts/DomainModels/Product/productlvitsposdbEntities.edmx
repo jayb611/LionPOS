@@ -1,0 +1,737 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="productlvitsposdbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="combo_items">
+          <Key>
+            <PropertyRef Name="sku" />
+            <PropertyRef Name="productsEntryGroupCode" />
+            <PropertyRef Name="combo_sku_item" />
+            <PropertyRef Name="combo_productsEntryGroupCode_item" />
+          </Key>
+          <Property Name="comboItemsBranchCode" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="sku" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="productsEntryGroupCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="combo_sku_item" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="combo_productsEntryGroupCode_item" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="entryDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="lastChangeDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="recordByLion" Type="bit" Nullable="false" />
+          <Property Name="entryByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="changeByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="entryByBranchCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="insertRoutePoint" Type="longtext" />
+          <Property Name="updateRoutePoint" Type="longtext" />
+          <Property Name="syncGUID" Type="longtext" />
+        </EntityType>
+        <EntityType Name="product_price_master">
+          <Key>
+            <PropertyRef Name="priceDate" />
+            <PropertyRef Name="sku" />
+            <PropertyRef Name="productsEntryGroupCode" />
+          </Key>
+          <Property Name="priceDate" Type="date" Nullable="false" />
+          <Property Name="productPriceMasterEntryBranchCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="sku" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="productsEntryGroupCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="sellingPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="altenatePrice" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="entryDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="lastChangeDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="recordByLion" Type="bit" Nullable="false" />
+          <Property Name="entryByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="changeByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="insertRoutePoint" Type="longtext" />
+          <Property Name="updateRoutePoint" Type="longtext" />
+          <Property Name="syncGUID" Type="longtext" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="sku" />
+            <PropertyRef Name="productsEntryGroupCode" />
+          </Key>
+          <Property Name="sku" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="productsEntryGroupCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="productsEntryBranchCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="taxMasterTitle" Type="varchar" MaxLength="45" />
+          <Property Name="product_class_title" Type="varchar" MaxLength="45" />
+          <Property Name="title" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="barcodeNumber" Type="varchar" MaxLength="45" />
+          <Property Name="skuParent" Type="varchar" MaxLength="45" />
+          <Property Name="productsEntryBranchCodeParent" Type="varchar" MaxLength="45" />
+          <Property Name="productsEntryGroupCodeParent" Type="varchar" MaxLength="45" />
+          <Property Name="includeInMenu" Type="bit" />
+          <Property Name="canBeSold" Type="bit" />
+          <Property Name="isCombo" Type="bit" />
+          <Property Name="canPurchase" Type="bit" />
+          <Property Name="makeDuration" Type="time" Precision="0" />
+          <Property Name="unit_of_mesurement_title" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="isCategory" Type="bit" />
+          <Property Name="productDescription" Type="longtext" />
+          <Property Name="stockWarningQty" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="availableOnEcommerce" Type="bit" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="entryDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="lastChangeDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="recordByLion" Type="bit" Nullable="false" />
+          <Property Name="entryByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="changeByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="insertRoutePoint" Type="longtext" />
+          <Property Name="updateRoutePoint" Type="longtext" />
+          <Property Name="syncGUID" Type="longtext" />
+        </EntityType>
+        <EntityType Name="products_merge">
+          <Key>
+            <PropertyRef Name="sku" />
+            <PropertyRef Name="productsEntryGroupCode" />
+            <PropertyRef Name="sku_copy" />
+            <PropertyRef Name="productsEntryGroupCode_copy" />
+          </Key>
+          <Property Name="sku" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="productsEntryGroupCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="sku_copy" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="productsEntryGroupCode_copy" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="entryDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="lastChangeDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="recordByLion" Type="bit" Nullable="false" />
+          <Property Name="entryByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="changeByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="productsMergeEntryBranchCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="insertRoutePoint" Type="longtext" />
+          <Property Name="updateRoutePoint" Type="longtext" />
+          <Property Name="syncGUID" Type="longtext" />
+        </EntityType>
+        <EntityType Name="supplier_product_mapping">
+          <Key>
+            <PropertyRef Name="suppliersEntryBranchCode" />
+            <PropertyRef Name="suppliersCode" />
+            <PropertyRef Name="suppliersEntryGroupCode" />
+            <PropertyRef Name="sku" />
+            <PropertyRef Name="productsEntryGroupCode" />
+          </Key>
+          <Property Name="supplierProductMappingEntryBranchCode" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="suppliersEntryBranchCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="suppliersCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="suppliersEntryGroupCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="sku" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="productsEntryGroupCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="entryDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="lastChangeDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="recordByLion" Type="bit" Nullable="false" />
+          <Property Name="identryByUser" Type="int" Nullable="false" />
+          <Property Name="entryByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="changeByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="insertRoutePoint" Type="longtext" />
+          <Property Name="updateRoutePoint" Type="longtext" />
+          <Property Name="syncGUID" Type="longtext" />
+        </EntityType>
+        <EntityType Name="unit_of_mesurement">
+          <Key>
+            <PropertyRef Name="unit_of_mesurement_title" />
+          </Key>
+          <Property Name="unitOfMesurementEntryBranchCode" Type="varchar" MaxLength="45" />
+          <Property Name="unit_of_mesurement_title" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="entryDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="lastChangeDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="recordByLion" Type="bit" Nullable="false" />
+          <Property Name="entryByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="changeByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="insertRoutePoint" Type="longtext" />
+          <Property Name="updateRoutePoint" Type="longtext" />
+          <Property Name="syncGUID" Type="longtext" />
+        </EntityType>
+        <Association Name="fk_product_price_master_products1">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="product_price_master" Type="Self.product_price_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Principal>
+            <Dependent Role="product_price_master">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_products_merge_products1">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="products_merge" Type="Self.products_merge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Principal>
+            <Dependent Role="products_merge">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_products_merge_products2">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="products_merge" Type="Self.products_merge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Principal>
+            <Dependent Role="products_merge">
+              <PropertyRef Name="sku_copy" />
+              <PropertyRef Name="productsEntryGroupCode_copy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_products_unit_of_mesurement1">
+          <End Role="unit_of_mesurement" Type="Self.unit_of_mesurement" Multiplicity="1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="unit_of_mesurement">
+              <PropertyRef Name="unit_of_mesurement_title" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="unit_of_mesurement_title" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_supplier_product_mapping_products1">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="supplier_product_mapping" Type="Self.supplier_product_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Principal>
+            <Dependent Role="supplier_product_mapping">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_supplier_product_mapping_products10">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="combo_items" Type="Self.combo_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Principal>
+            <Dependent Role="combo_items">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="getProductsWithDynamicClauses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="productlvitsposdb">
+          <Parameter Name="dynamicWhereClauses" Type="text" Mode="In" />
+          <Parameter Name="dynamicOrderByFields" Type="text" Mode="In" />
+          <Parameter Name="skip" Type="int" Mode="In" />
+          <Parameter Name="take" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getProductsWithDynamicClausesCountRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="productlvitsposdb">
+          <Parameter Name="dynamicWhereClauses" Type="text" Mode="In" />
+        </Function>
+        <EntityContainer Name="productlvitsposdbModelStoreContainer">
+          <EntitySet Name="combo_items" EntityType="Self.combo_items" Schema="productlvitsposdb" store:Type="Tables" />
+          <EntitySet Name="product_price_master" EntityType="Self.product_price_master" Schema="productlvitsposdb" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="productlvitsposdb" store:Type="Tables" />
+          <EntitySet Name="products_merge" EntityType="Self.products_merge" Schema="productlvitsposdb" store:Type="Tables" />
+          <EntitySet Name="supplier_product_mapping" EntityType="Self.supplier_product_mapping" Schema="productlvitsposdb" store:Type="Tables" />
+          <EntitySet Name="unit_of_mesurement" EntityType="Self.unit_of_mesurement" Schema="productlvitsposdb" store:Type="Tables" />
+          <AssociationSet Name="fk_product_price_master_products1" Association="Self.fk_product_price_master_products1">
+            <End Role="products" EntitySet="products" />
+            <End Role="product_price_master" EntitySet="product_price_master" />
+          </AssociationSet>
+          <AssociationSet Name="fk_products_merge_products1" Association="Self.fk_products_merge_products1">
+            <End Role="products" EntitySet="products" />
+            <End Role="products_merge" EntitySet="products_merge" />
+          </AssociationSet>
+          <AssociationSet Name="fk_products_merge_products2" Association="Self.fk_products_merge_products2">
+            <End Role="products" EntitySet="products" />
+            <End Role="products_merge" EntitySet="products_merge" />
+          </AssociationSet>
+          <AssociationSet Name="fk_products_unit_of_mesurement1" Association="Self.fk_products_unit_of_mesurement1">
+            <End Role="unit_of_mesurement" EntitySet="unit_of_mesurement" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="fk_supplier_product_mapping_products1" Association="Self.fk_supplier_product_mapping_products1">
+            <End Role="products" EntitySet="products" />
+            <End Role="supplier_product_mapping" EntitySet="supplier_product_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="fk_supplier_product_mapping_products10" Association="Self.fk_supplier_product_mapping_products10">
+            <End Role="products" EntitySet="products" />
+            <End Role="combo_items" EntitySet="combo_items" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="productlvitsposdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="productlvitsposdbEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="getProductsWithDynamicClauses">
+            <Parameter Name="dynamicWhereClauses" Mode="In" Type="String" />
+            <Parameter Name="dynamicOrderByFields" Mode="In" Type="String" />
+            <Parameter Name="skip" Mode="In" Type="Int32" />
+            <Parameter Name="take" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="combo_items" EntityType="productlvitsposdbModel.combo_items" />
+          <EntitySet Name="product_price_master" EntityType="productlvitsposdbModel.product_price_master" />
+          <EntitySet Name="products" EntityType="productlvitsposdbModel.product" />
+          <EntitySet Name="products_merge" EntityType="productlvitsposdbModel.products_merge" />
+          <EntitySet Name="supplier_product_mapping" EntityType="productlvitsposdbModel.supplier_product_mapping" />
+          <EntitySet Name="unit_of_mesurement" EntityType="productlvitsposdbModel.unit_of_mesurement" />
+          <AssociationSet Name="fk_supplier_product_mapping_products10" Association="productlvitsposdbModel.fk_supplier_product_mapping_products10">
+            <End Role="product" EntitySet="products" />
+            <End Role="combo_items" EntitySet="combo_items" />
+          </AssociationSet>
+          <AssociationSet Name="fk_product_price_master_products1" Association="productlvitsposdbModel.fk_product_price_master_products1">
+            <End Role="product" EntitySet="products" />
+            <End Role="product_price_master" EntitySet="product_price_master" />
+          </AssociationSet>
+          <AssociationSet Name="fk_products_merge_products1" Association="productlvitsposdbModel.fk_products_merge_products1">
+            <End Role="product" EntitySet="products" />
+            <End Role="products_merge" EntitySet="products_merge" />
+          </AssociationSet>
+          <AssociationSet Name="fk_products_merge_products2" Association="productlvitsposdbModel.fk_products_merge_products2">
+            <End Role="product" EntitySet="products" />
+            <End Role="products_merge" EntitySet="products_merge" />
+          </AssociationSet>
+          <AssociationSet Name="fk_products_unit_of_mesurement1" Association="productlvitsposdbModel.fk_products_unit_of_mesurement1">
+            <End Role="unit_of_mesurement" EntitySet="unit_of_mesurement" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="fk_supplier_product_mapping_products1" Association="productlvitsposdbModel.fk_supplier_product_mapping_products1">
+            <End Role="product" EntitySet="products" />
+            <End Role="supplier_product_mapping" EntitySet="supplier_product_mapping" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="combo_items">
+          <Key>
+            <PropertyRef Name="sku" />
+            <PropertyRef Name="productsEntryGroupCode" />
+            <PropertyRef Name="combo_sku_item" />
+            <PropertyRef Name="combo_productsEntryGroupCode_item" />
+          </Key>
+          <Property Name="comboItemsBranchCode" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="sku" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="productsEntryGroupCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="combo_sku_item" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="combo_productsEntryGroupCode_item" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="entryDate" Type="DateTime" Nullable="false" />
+          <Property Name="lastChangeDate" Type="DateTime" Nullable="false" />
+          <Property Name="recordByLion" Type="Boolean" Nullable="false" />
+          <Property Name="entryByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="changeByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="entryByBranchCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="insertRoutePoint" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="updateRoutePoint" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="syncGUID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="product" Relationship="productlvitsposdbModel.fk_supplier_product_mapping_products10" FromRole="combo_items" ToRole="product" />
+        </EntityType>
+        <EntityType Name="product_price_master">
+          <Key>
+            <PropertyRef Name="priceDate" />
+            <PropertyRef Name="sku" />
+            <PropertyRef Name="productsEntryGroupCode" />
+          </Key>
+          <Property Name="priceDate" Type="DateTime" Nullable="false" />
+          <Property Name="productPriceMasterEntryBranchCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="sku" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="productsEntryGroupCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="sellingPrice" Type="Decimal" Nullable="false" />
+          <Property Name="altenatePrice" Type="Decimal" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="entryDate" Type="DateTime" Nullable="false" />
+          <Property Name="lastChangeDate" Type="DateTime" Nullable="false" />
+          <Property Name="recordByLion" Type="Boolean" Nullable="false" />
+          <Property Name="entryByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="changeByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="insertRoutePoint" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="updateRoutePoint" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="syncGUID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="product" Relationship="productlvitsposdbModel.fk_product_price_master_products1" FromRole="product_price_master" ToRole="product" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="sku" />
+            <PropertyRef Name="productsEntryGroupCode" />
+          </Key>
+          <Property Name="sku" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="productsEntryGroupCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="productsEntryBranchCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="taxMasterTitle" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="product_class_title" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="barcodeNumber" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="skuParent" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="productsEntryBranchCodeParent" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="productsEntryGroupCodeParent" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="includeInMenu" Type="Boolean" />
+          <Property Name="canBeSold" Type="Boolean" />
+          <Property Name="isCombo" Type="Boolean" />
+          <Property Name="canPurchase" Type="Boolean" />
+          <Property Name="makeDuration" Type="Time" />
+          <Property Name="unit_of_mesurement_title" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="isCategory" Type="Boolean" />
+          <Property Name="productDescription" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="stockWarningQty" Type="Decimal" />
+          <Property Name="availableOnEcommerce" Type="Boolean" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="entryDate" Type="DateTime" Nullable="false" />
+          <Property Name="lastChangeDate" Type="DateTime" Nullable="false" />
+          <Property Name="recordByLion" Type="Boolean" Nullable="false" />
+          <Property Name="entryByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="changeByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="insertRoutePoint" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="updateRoutePoint" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="syncGUID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="combo_items" Relationship="productlvitsposdbModel.fk_supplier_product_mapping_products10" FromRole="product" ToRole="combo_items" />
+          <NavigationProperty Name="product_price_master" Relationship="productlvitsposdbModel.fk_product_price_master_products1" FromRole="product" ToRole="product_price_master" />
+          <NavigationProperty Name="products_merge" Relationship="productlvitsposdbModel.fk_products_merge_products1" FromRole="product" ToRole="products_merge" />
+          <NavigationProperty Name="products_merge1" Relationship="productlvitsposdbModel.fk_products_merge_products2" FromRole="product" ToRole="products_merge" />
+          <NavigationProperty Name="unit_of_mesurement" Relationship="productlvitsposdbModel.fk_products_unit_of_mesurement1" FromRole="product" ToRole="unit_of_mesurement" />
+          <NavigationProperty Name="supplier_product_mapping" Relationship="productlvitsposdbModel.fk_supplier_product_mapping_products1" FromRole="product" ToRole="supplier_product_mapping" />
+        </EntityType>
+        <EntityType Name="products_merge">
+          <Key>
+            <PropertyRef Name="sku" />
+            <PropertyRef Name="productsEntryGroupCode" />
+            <PropertyRef Name="sku_copy" />
+            <PropertyRef Name="productsEntryGroupCode_copy" />
+          </Key>
+          <Property Name="sku" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="productsEntryGroupCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="sku_copy" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="productsEntryGroupCode_copy" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="entryDate" Type="DateTime" Nullable="false" />
+          <Property Name="lastChangeDate" Type="DateTime" Nullable="false" />
+          <Property Name="recordByLion" Type="Boolean" Nullable="false" />
+          <Property Name="entryByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="changeByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="productsMergeEntryBranchCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="insertRoutePoint" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="updateRoutePoint" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="syncGUID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="product" Relationship="productlvitsposdbModel.fk_products_merge_products1" FromRole="products_merge" ToRole="product" />
+          <NavigationProperty Name="product1" Relationship="productlvitsposdbModel.fk_products_merge_products2" FromRole="products_merge" ToRole="product" />
+        </EntityType>
+        <EntityType Name="supplier_product_mapping">
+          <Key>
+            <PropertyRef Name="suppliersEntryBranchCode" />
+            <PropertyRef Name="suppliersCode" />
+            <PropertyRef Name="suppliersEntryGroupCode" />
+            <PropertyRef Name="sku" />
+            <PropertyRef Name="productsEntryGroupCode" />
+          </Key>
+          <Property Name="supplierProductMappingEntryBranchCode" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="suppliersEntryBranchCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="suppliersCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="suppliersEntryGroupCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="sku" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="productsEntryGroupCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="entryDate" Type="DateTime" Nullable="false" />
+          <Property Name="lastChangeDate" Type="DateTime" Nullable="false" />
+          <Property Name="recordByLion" Type="Boolean" Nullable="false" />
+          <Property Name="identryByUser" Type="Int32" Nullable="false" />
+          <Property Name="entryByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="changeByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="insertRoutePoint" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="updateRoutePoint" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="syncGUID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="product" Relationship="productlvitsposdbModel.fk_supplier_product_mapping_products1" FromRole="supplier_product_mapping" ToRole="product" />
+        </EntityType>
+        <EntityType Name="unit_of_mesurement">
+          <Key>
+            <PropertyRef Name="unit_of_mesurement_title" />
+          </Key>
+          <Property Name="unitOfMesurementEntryBranchCode" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="unit_of_mesurement_title" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="entryDate" Type="DateTime" Nullable="false" />
+          <Property Name="lastChangeDate" Type="DateTime" Nullable="false" />
+          <Property Name="recordByLion" Type="Boolean" Nullable="false" />
+          <Property Name="entryByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="changeByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="insertRoutePoint" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="updateRoutePoint" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="syncGUID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="products" Relationship="productlvitsposdbModel.fk_products_unit_of_mesurement1" FromRole="unit_of_mesurement" ToRole="product" />
+        </EntityType>
+        <Association Name="fk_supplier_product_mapping_products10">
+          <End Type="productlvitsposdbModel.product" Role="product" Multiplicity="1" />
+          <End Type="productlvitsposdbModel.combo_items" Role="combo_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Principal>
+            <Dependent Role="combo_items">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_product_price_master_products1">
+          <End Type="productlvitsposdbModel.product" Role="product" Multiplicity="1" />
+          <End Type="productlvitsposdbModel.product_price_master" Role="product_price_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Principal>
+            <Dependent Role="product_price_master">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_products_merge_products1">
+          <End Type="productlvitsposdbModel.product" Role="product" Multiplicity="1" />
+          <End Type="productlvitsposdbModel.products_merge" Role="products_merge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Principal>
+            <Dependent Role="products_merge">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_products_merge_products2">
+          <End Type="productlvitsposdbModel.product" Role="product" Multiplicity="1" />
+          <End Type="productlvitsposdbModel.products_merge" Role="products_merge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Principal>
+            <Dependent Role="products_merge">
+              <PropertyRef Name="sku_copy" />
+              <PropertyRef Name="productsEntryGroupCode_copy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_products_unit_of_mesurement1">
+          <End Type="productlvitsposdbModel.unit_of_mesurement" Role="unit_of_mesurement" Multiplicity="1" />
+          <End Type="productlvitsposdbModel.product" Role="product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="unit_of_mesurement">
+              <PropertyRef Name="unit_of_mesurement_title" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="unit_of_mesurement_title" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_supplier_product_mapping_products1">
+          <End Type="productlvitsposdbModel.product" Role="product" Multiplicity="1" />
+          <End Type="productlvitsposdbModel.supplier_product_mapping" Role="supplier_product_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Principal>
+            <Dependent Role="supplier_product_mapping">
+              <PropertyRef Name="sku" />
+              <PropertyRef Name="productsEntryGroupCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="productlvitsposdbModelStoreContainer" CdmEntityContainer="productlvitsposdbEntities">
+          <FunctionImportMapping FunctionImportName="getProductsWithDynamicClauses" FunctionName="productlvitsposdbModel.Store.getProductsWithDynamicClauses" />
+          <EntitySetMapping Name="combo_items">
+            <EntityTypeMapping TypeName="productlvitsposdbModel.combo_items">
+              <MappingFragment StoreEntitySet="combo_items">
+                <ScalarProperty Name="syncGUID" ColumnName="syncGUID" />
+                <ScalarProperty Name="updateRoutePoint" ColumnName="updateRoutePoint" />
+                <ScalarProperty Name="insertRoutePoint" ColumnName="insertRoutePoint" />
+                <ScalarProperty Name="entryByBranchCode" ColumnName="entryByBranchCode" />
+                <ScalarProperty Name="changeByUserName" ColumnName="changeByUserName" />
+                <ScalarProperty Name="entryByUserName" ColumnName="entryByUserName" />
+                <ScalarProperty Name="recordByLion" ColumnName="recordByLion" />
+                <ScalarProperty Name="lastChangeDate" ColumnName="lastChangeDate" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="combo_productsEntryGroupCode_item" ColumnName="combo_productsEntryGroupCode_item" />
+                <ScalarProperty Name="combo_sku_item" ColumnName="combo_sku_item" />
+                <ScalarProperty Name="productsEntryGroupCode" ColumnName="productsEntryGroupCode" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+                <ScalarProperty Name="comboItemsBranchCode" ColumnName="comboItemsBranchCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product_price_master">
+            <EntityTypeMapping TypeName="productlvitsposdbModel.product_price_master">
+              <MappingFragment StoreEntitySet="product_price_master">
+                <ScalarProperty Name="syncGUID" ColumnName="syncGUID" />
+                <ScalarProperty Name="updateRoutePoint" ColumnName="updateRoutePoint" />
+                <ScalarProperty Name="insertRoutePoint" ColumnName="insertRoutePoint" />
+                <ScalarProperty Name="changeByUserName" ColumnName="changeByUserName" />
+                <ScalarProperty Name="entryByUserName" ColumnName="entryByUserName" />
+                <ScalarProperty Name="recordByLion" ColumnName="recordByLion" />
+                <ScalarProperty Name="lastChangeDate" ColumnName="lastChangeDate" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="altenatePrice" ColumnName="altenatePrice" />
+                <ScalarProperty Name="sellingPrice" ColumnName="sellingPrice" />
+                <ScalarProperty Name="productsEntryGroupCode" ColumnName="productsEntryGroupCode" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+                <ScalarProperty Name="productPriceMasterEntryBranchCode" ColumnName="productPriceMasterEntryBranchCode" />
+                <ScalarProperty Name="priceDate" ColumnName="priceDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="productlvitsposdbModel.product">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="syncGUID" ColumnName="syncGUID" />
+                <ScalarProperty Name="updateRoutePoint" ColumnName="updateRoutePoint" />
+                <ScalarProperty Name="insertRoutePoint" ColumnName="insertRoutePoint" />
+                <ScalarProperty Name="changeByUserName" ColumnName="changeByUserName" />
+                <ScalarProperty Name="entryByUserName" ColumnName="entryByUserName" />
+                <ScalarProperty Name="recordByLion" ColumnName="recordByLion" />
+                <ScalarProperty Name="lastChangeDate" ColumnName="lastChangeDate" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="availableOnEcommerce" ColumnName="availableOnEcommerce" />
+                <ScalarProperty Name="stockWarningQty" ColumnName="stockWarningQty" />
+                <ScalarProperty Name="productDescription" ColumnName="productDescription" />
+                <ScalarProperty Name="isCategory" ColumnName="isCategory" />
+                <ScalarProperty Name="unit_of_mesurement_title" ColumnName="unit_of_mesurement_title" />
+                <ScalarProperty Name="makeDuration" ColumnName="makeDuration" />
+                <ScalarProperty Name="canPurchase" ColumnName="canPurchase" />
+                <ScalarProperty Name="isCombo" ColumnName="isCombo" />
+                <ScalarProperty Name="canBeSold" ColumnName="canBeSold" />
+                <ScalarProperty Name="includeInMenu" ColumnName="includeInMenu" />
+                <ScalarProperty Name="productsEntryGroupCodeParent" ColumnName="productsEntryGroupCodeParent" />
+                <ScalarProperty Name="productsEntryBranchCodeParent" ColumnName="productsEntryBranchCodeParent" />
+                <ScalarProperty Name="skuParent" ColumnName="skuParent" />
+                <ScalarProperty Name="barcodeNumber" ColumnName="barcodeNumber" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="product_class_title" ColumnName="product_class_title" />
+                <ScalarProperty Name="taxMasterTitle" ColumnName="taxMasterTitle" />
+                <ScalarProperty Name="productsEntryBranchCode" ColumnName="productsEntryBranchCode" />
+                <ScalarProperty Name="productsEntryGroupCode" ColumnName="productsEntryGroupCode" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products_merge">
+            <EntityTypeMapping TypeName="productlvitsposdbModel.products_merge">
+              <MappingFragment StoreEntitySet="products_merge">
+                <ScalarProperty Name="syncGUID" ColumnName="syncGUID" />
+                <ScalarProperty Name="updateRoutePoint" ColumnName="updateRoutePoint" />
+                <ScalarProperty Name="insertRoutePoint" ColumnName="insertRoutePoint" />
+                <ScalarProperty Name="productsMergeEntryBranchCode" ColumnName="productsMergeEntryBranchCode" />
+                <ScalarProperty Name="changeByUserName" ColumnName="changeByUserName" />
+                <ScalarProperty Name="entryByUserName" ColumnName="entryByUserName" />
+                <ScalarProperty Name="recordByLion" ColumnName="recordByLion" />
+                <ScalarProperty Name="lastChangeDate" ColumnName="lastChangeDate" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="productsEntryGroupCode_copy" ColumnName="productsEntryGroupCode_copy" />
+                <ScalarProperty Name="sku_copy" ColumnName="sku_copy" />
+                <ScalarProperty Name="productsEntryGroupCode" ColumnName="productsEntryGroupCode" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="supplier_product_mapping">
+            <EntityTypeMapping TypeName="productlvitsposdbModel.supplier_product_mapping">
+              <MappingFragment StoreEntitySet="supplier_product_mapping">
+                <ScalarProperty Name="syncGUID" ColumnName="syncGUID" />
+                <ScalarProperty Name="updateRoutePoint" ColumnName="updateRoutePoint" />
+                <ScalarProperty Name="insertRoutePoint" ColumnName="insertRoutePoint" />
+                <ScalarProperty Name="changeByUserName" ColumnName="changeByUserName" />
+                <ScalarProperty Name="entryByUserName" ColumnName="entryByUserName" />
+                <ScalarProperty Name="identryByUser" ColumnName="identryByUser" />
+                <ScalarProperty Name="recordByLion" ColumnName="recordByLion" />
+                <ScalarProperty Name="lastChangeDate" ColumnName="lastChangeDate" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="productsEntryGroupCode" ColumnName="productsEntryGroupCode" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+                <ScalarProperty Name="suppliersEntryGroupCode" ColumnName="suppliersEntryGroupCode" />
+                <ScalarProperty Name="suppliersCode" ColumnName="suppliersCode" />
+                <ScalarProperty Name="suppliersEntryBranchCode" ColumnName="suppliersEntryBranchCode" />
+                <ScalarProperty Name="supplierProductMappingEntryBranchCode" ColumnName="supplierProductMappingEntryBranchCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="unit_of_mesurement">
+            <EntityTypeMapping TypeName="productlvitsposdbModel.unit_of_mesurement">
+              <MappingFragment StoreEntitySet="unit_of_mesurement">
+                <ScalarProperty Name="syncGUID" ColumnName="syncGUID" />
+                <ScalarProperty Name="updateRoutePoint" ColumnName="updateRoutePoint" />
+                <ScalarProperty Name="insertRoutePoint" ColumnName="insertRoutePoint" />
+                <ScalarProperty Name="changeByUserName" ColumnName="changeByUserName" />
+                <ScalarProperty Name="entryByUserName" ColumnName="entryByUserName" />
+                <ScalarProperty Name="recordByLion" ColumnName="recordByLion" />
+                <ScalarProperty Name="lastChangeDate" ColumnName="lastChangeDate" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="unit_of_mesurement_title" ColumnName="unit_of_mesurement_title" />
+                <ScalarProperty Name="unitOfMesurementEntryBranchCode" ColumnName="unitOfMesurementEntryBranchCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

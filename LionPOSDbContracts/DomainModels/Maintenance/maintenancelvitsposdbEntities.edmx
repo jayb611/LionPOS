@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="maintenancelvitsposdbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="errorlogs">
+          <Key>
+            <PropertyRef Name="idlogs" />
+          </Key>
+          <Property Name="idlogs" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="description" Type="longtext" Nullable="false" />
+          <Property Name="isError" Type="bit" Nullable="false" />
+          <Property Name="exception" Type="longtext" Nullable="false" />
+          <Property Name="objectAttachment" Type="longtext" Nullable="false" />
+          <Property Name="className" Type="text" Nullable="false" />
+          <Property Name="methodName" Type="text" Nullable="false" />
+          <Property Name="lineNumber" Type="int" Nullable="false" />
+          <Property Name="fileName" Type="text" Nullable="false" />
+          <Property Name="eventJson" Type="longtext" Nullable="false" />
+          <Property Name="errorURL" Type="longtext" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="entryDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="lastChangeDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="entryByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="changeByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="recordByLion" Type="bit" Nullable="false" />
+          <Property Name="insertRoutePoint" Type="longtext" />
+          <Property Name="updateRoutePoint" Type="longtext" />
+          <Property Name="syncGUID" Type="longtext" />
+        </EntityType>
+        <EntityContainer Name="maintenancelvitsposdbModelStoreContainer">
+          <EntitySet Name="errorlogs" EntityType="Self.errorlogs" Schema="maintenancelvitsposdb" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="maintenancelvitsposdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="maintenancelvitsposdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="errorlogs" EntityType="maintenancelvitsposdbModel.errorlog" />
+        </EntityContainer>
+        <EntityType Name="errorlog">
+          <Key>
+            <PropertyRef Name="idlogs" />
+          </Key>
+          <Property Name="idlogs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="isError" Type="Boolean" Nullable="false" />
+          <Property Name="exception" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="objectAttachment" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="className" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="methodName" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="lineNumber" Type="Int32" Nullable="false" />
+          <Property Name="fileName" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="eventJson" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="errorURL" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="entryDate" Type="DateTime" Nullable="false" />
+          <Property Name="lastChangeDate" Type="DateTime" Nullable="false" />
+          <Property Name="entryByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="changeByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="recordByLion" Type="Boolean" Nullable="false" />
+          <Property Name="insertRoutePoint" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="updateRoutePoint" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="syncGUID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="maintenancelvitsposdbModelStoreContainer" CdmEntityContainer="maintenancelvitsposdbEntities">
+          <EntitySetMapping Name="errorlogs">
+            <EntityTypeMapping TypeName="maintenancelvitsposdbModel.errorlog">
+              <MappingFragment StoreEntitySet="errorlogs">
+                <ScalarProperty Name="syncGUID" ColumnName="syncGUID" />
+                <ScalarProperty Name="updateRoutePoint" ColumnName="updateRoutePoint" />
+                <ScalarProperty Name="insertRoutePoint" ColumnName="insertRoutePoint" />
+                <ScalarProperty Name="recordByLion" ColumnName="recordByLion" />
+                <ScalarProperty Name="changeByUserName" ColumnName="changeByUserName" />
+                <ScalarProperty Name="entryByUserName" ColumnName="entryByUserName" />
+                <ScalarProperty Name="lastChangeDate" ColumnName="lastChangeDate" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="errorURL" ColumnName="errorURL" />
+                <ScalarProperty Name="eventJson" ColumnName="eventJson" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="lineNumber" ColumnName="lineNumber" />
+                <ScalarProperty Name="methodName" ColumnName="methodName" />
+                <ScalarProperty Name="className" ColumnName="className" />
+                <ScalarProperty Name="objectAttachment" ColumnName="objectAttachment" />
+                <ScalarProperty Name="exception" ColumnName="exception" />
+                <ScalarProperty Name="isError" ColumnName="isError" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="idlogs" ColumnName="idlogs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

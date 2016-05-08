@@ -1,0 +1,72 @@
+﻿@model  LionPOS.Models.PaginationModel   
+<ul class="pagination">
+                                @{
+                                    int RecordsPerPage = Model.RecordsPerPage;
+                                    int PageNumber = Model.PageNumber;
+                                    int TotalPages = Model.TotalPages;
+                                    int TotalRecords = Model.TotalRecords;
+                                    string PageLink = Model.PageLink;
+                                }
+
+
+                                @if (TotalPages <= 5)
+                                {
+                                    for (int i = 1; i <= TotalPages; i++)
+                                    {
+                                    <li  @{if (PageNumber == i)
+                                           { @("class=active") }}>
+                                        <a href="@Url.Action("Search", Model.controllerName, new { RecordsPerPage=RecordsPerPage,PageNumber= PageNumber})" >@i</a>
+                                    </li>
+                                    }
+                                }
+                                else if (PageNumber <= 3 && TotalPages > 5)
+                                {
+                                    for (int i = 1; i <= 5; i++)
+                                    {
+                                    <li  @{if (PageNumber == i)
+                                           { @("class=active") }}>
+                                        <a href="@Url.Action("Search", Model.controllerName, new { RecordsPerPage=RecordsPerPage,PageNumber= PageNumber})" >@i</a>
+                                    </li>
+
+                                    }
+                                    <li class="next">
+                                        <a href="@Url.Action("Search", Model.controllerName, new { RecordsPerPage=RecordsPerPage,PageNumber= PageNumber})" >Last →</a>
+                                    </li>
+                                }
+                                else if (PageNumber > 3 && (PageNumber + 2) < TotalPages - 1)
+                                {
+                                    <li class="prev">
+                                         <a href="@Url.Action("Search", Model.controllerName, new { RecordsPerPage=RecordsPerPage,PageNumber= PageNumber})" >← First</a>
+                                    </li>
+          
+                                    for (int i = PageNumber - 2; i <= PageNumber + 2; i++)
+                                    { 
+                                    <li  @{if (PageNumber == i)
+                                           { @("class=active") }}>
+                                        <a href="@Url.Action("Search", Model.controllerName, new { RecordsPerPage=RecordsPerPage,PageNumber= PageNumber})" >@i</a>
+                                    </li>
+
+                                    }
+                                    <li class="next">
+                                        <a href="@Url.Action("Search", Model.controllerName, new { RecordsPerPage=RecordsPerPage,PageNumber= PageNumber})" >Last →</a>
+                                    </li>
+                                }
+
+                                else if (PageNumber > (TotalPages - 5))
+                                {
+                                    <li class="prev">
+                                        <a href="@Url.Action("Search", Model.controllerName, new { RecordsPerPage=RecordsPerPage,PageNumber= PageNumber})" >← First</a>
+                                    </li>
+          
+                                    for (int i = (TotalPages - 4); i <= TotalPages; i++)
+                                    { 
+                                    <li  @{if (PageNumber == i)
+                                           { @("class=active") }}>
+                                        <a href="@Url.Action("Search", Model.controllerName, new { RecordsPerPage=RecordsPerPage,PageNumber= PageNumber})" >@i</a>
+                                    </li>
+
+                                    }
+
+                                }
+
+                            </ul>

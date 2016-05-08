@@ -1,0 +1,21 @@
+﻿@model  LionPOS.Models.PaginationModel  
+
+    <ul class="pagination " style="margin:0px;padding:0px">
+        <li  @{if (Model.RecordsPerPage == 50)
+                                           { @("class=active") }}>
+            <a href="@Url.Action("Search", Model.controllerName, new { RecordsPerPage=50,PageNumber= 1})" >50</a>
+        </li>
+        <li  @{if (Model.RecordsPerPage == 100)
+                                           { @("class=active") }}>
+            <a href="@Url.Action("Search", Model.controllerName, new { RecordsPerPage=100,PageNumber= 1})" >100</a>
+        </li>
+        <li  @{if (Model.RecordsPerPage == 0)
+                                           { @("class=active") }}>
+            <a href="@Url.Action("Search", Model.controllerName, new { RecordsPerPage=0,PageNumber= 1})" >All</a>
+        </li>
+        <li>
+           <a>   records per page</a>
+        </li>
+    </ul>
+  
+

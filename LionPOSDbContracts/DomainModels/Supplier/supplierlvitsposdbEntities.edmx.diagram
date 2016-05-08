@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="336a91b46f314f8a8887e4e1456beaf0" Name="Diagram1">
+        <EntityTypeShape EntityType="supplierlvitsposdbModel.supplier_invoices" Width="1.5" PointX="5.25" PointY="29.875" />
+        <EntityTypeShape EntityType="supplierlvitsposdbModel.supplier_invoices_items" Width="1.5" PointX="7.5" PointY="33.875" />
+        <EntityTypeShape EntityType="supplierlvitsposdbModel.supplier_payments" Width="1.5" PointX="12.75" PointY="21.375" />
+        <EntityTypeShape EntityType="supplierlvitsposdbModel.supplier_purchase_orders" Width="1.5" PointX="3" PointY="32.5" />
+        <EntityTypeShape EntityType="supplierlvitsposdbModel.supplier_purchase_orders_items" Width="1.5" PointX="5.25" PointY="40.5" />
+        <EntityTypeShape EntityType="supplierlvitsposdbModel.supplier_purchase_return" Width="1.5" PointX="7.5" PointY="26.375" />
+        <EntityTypeShape EntityType="supplierlvitsposdbModel.supplier_purchase_return_items" Width="1.5" PointX="9.75" PointY="27" />
+        <EntityTypeShape EntityType="supplierlvitsposdbModel.supplier" Width="1.5" PointX="0.75" PointY="16" />
+        <EntityTypeShape EntityType="supplierlvitsposdbModel.suppliers_merge" Width="1.5" PointX="3" PointY="8.75" />
+        <AssociationConnector Association="supplierlvitsposdbModel.fk_supplier_invoices_items_supplier_invoices1" />
+        <AssociationConnector Association="supplierlvitsposdbModel.fk_supplier_invoices_supplier_purchase_orders1" />
+        <AssociationConnector Association="supplierlvitsposdbModel.fk_supplier_payments_supplier_invoices1" />
+        <AssociationConnector Association="supplierlvitsposdbModel.fk_supplier_purchase_return_supplier_invoices1" />
+        <AssociationConnector Association="supplierlvitsposdbModel.fk_supplier_payments_supplier_purchase_return1" />
+        <AssociationConnector Association="supplierlvitsposdbModel.fk_supplier_payments_suppliers1" />
+        <AssociationConnector Association="supplierlvitsposdbModel.fk_supplier_purchase_orders_items_supplier_purchase_orders1" />
+        <AssociationConnector Association="supplierlvitsposdbModel.fk_supplier_purchase_orders_suppliers1" />
+        <AssociationConnector Association="supplierlvitsposdbModel.fk_supplier_purchase_return_items_supplier_purchase_return1" />
+        <AssociationConnector Association="supplierlvitsposdbModel.fk_suppliers_merge_suppliers1" />
+        <AssociationConnector Association="supplierlvitsposdbModel.fk_suppliers_merge_suppliers2" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

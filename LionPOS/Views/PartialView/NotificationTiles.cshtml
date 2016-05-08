@@ -1,0 +1,52 @@
+﻿@model List<DomainModels.notification_manger>
+
+
+        @foreach(var a in Model)
+        {
+        <div class="notification_tile_container">
+            <div class="notification_tile_row_header">
+                <img src="~/img/noti.png"  />
+            </div>
+            <div class="notification_tile_row_center">
+                <div class="notification_title_header">
+                   @(a.title ) 
+
+                </div>
+                <div class="notification_title_body">
+                  
+                </div>
+                <div class="notification_title_foooter">
+                    <div class="sidebyside">
+                          <img src="~/img/clock-icon.png" width="20" height="20" style="padding:2px"/>
+                    </div>
+                   
+                    <div class="sidebyside"> 
+                         @{
+                            if (DateTime.Now.Subtract(a.datetime.Value).TotalMinutes <= 60)
+                            {
+                                @(Math.Round(DateTime.Now.Subtract(a.datetime.Value).TotalMinutes).ToString() + " minutes ago on " + a.datetime.Value.ToString("dd/MM/yyyy"))  
+                            }
+                            else 
+                            {
+                                @(Math.Round(DateTime.Now.Subtract(a.datetime.Value).TotalDays).ToString() + " days ago on " + a.datetime.Value.ToString("dd/MM/yyyy"))  
+                            }
+                    }
+                    </div>
+                </div>
+            </div>
+            <div class="notification_tile_row_footer">
+                <div class="notification_read" data-id="@a.idnotification_manger" data-state="@a.On_Off.ToString().ToLower()">
+                    @if(a.On_Off==true)
+                    {
+                        <img src="../img/close-icon.png" />
+                    }
+                    else
+                    {
+                        <img src="../img/noti_done.png" />
+                    }
+                </div>
+            </div>
+        </div>
+        }
+@ViewBag.Data
+   

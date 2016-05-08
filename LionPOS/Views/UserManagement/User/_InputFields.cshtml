@@ -1,0 +1,172 @@
+﻿@model  LionPOS.Models.ViewModels.UserManagement.User.userCrudOperationViewModel
+
+
+<div class="card-body" id="card-body@(Model.UserDCM.userName)">
+
+    <div class="row">
+        <div class="col-md-12">
+
+
+            @using (Ajax.BeginForm(Model.SubmitActionName, Model.controllerName, null, new AjaxOptions() { HttpMethod = "POST", OnComplete = "OnUserFormAjaxComplete", OnFailure = "OnUserFormAjaxFailure" }, new { @class = "form -horizontal bucket-form", id = "Userform" }))
+            {
+                @Html.HiddenFor(model => Model.UserDCM.userEntryBranchCode)
+                @Html.HiddenFor(model => Model.UserDCM.userEntryGroupCode)
+                @Html.HiddenFor(model => Model.UserDCM.employeeEntryBranchCode)
+                @Html.HiddenFor(model => Model.UserDCM.employeeEntryGroupCode)
+                @Html.HiddenFor(model => Model.UserDCM.lastLogin)
+                @Html.HiddenFor(model => Model.UserDCM.entryByUserName)
+                @Html.HiddenFor(model => Model.UserDCM.changeByUserName)
+                @Html.HiddenFor(model => Model.UserDCM.isDeleted)
+                @Html.HiddenFor(model => Model.UserDCM.entryDate)
+                @Html.HiddenFor(model => Model.UserDCM.isLion)
+                @Html.HiddenFor(model => Model.UserDCM.lastChangeDate)
+                @Html.HiddenFor(model => Model.UserDCM.recordByLion)
+                @Html.HiddenFor(model => Model.UserDCM.sessionID)
+                @Html.HiddenFor(model => Model.UserDCM.sessionValue)
+                @Html.HiddenFor(model => Model.UserDCM.sessionCreateTime)
+                @Html.HiddenFor(model => Model.UserDCM.sessionExpireyDateTime)
+
+                @Html.AntiForgeryToken()
+                if (Model.crudOprationType == LionPOSServiceContractModels.ConstantDictionaryContractModel.ConstantDictionaryCM.crudOprationTypes.Insert)
+                {
+                    <div class="row">
+                        <div class="col-sm-3"><label>User Name</label></div>
+                        <div class="col-sm-6 form-group">
+                            @Html.TextBoxFor(model => Model.UserDCM.userName, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+
+                        </div>
+                        <div class="col-sm-1"><label>IsActive</label></div>
+                        <div class="onoffswitch col-sm-1">
+                            <div class="switcher switcher-indigo pull-right">
+                                <input id="isActive" type="checkbox" hidden="hidden" checked="checked">
+                                <label for="isActive"></label>
+                            </div>
+                            @Html.HiddenFor(model => model.UserDCM.isActive, new { @id = "Acthidden" })
+                        </div>
+                    </div>
+                }
+                else
+                {
+
+                    @Html.HiddenFor(model => Model.UserDCM.userName)
+                    <div class="row">
+                        <div class="col-sm-3"><label>User Name</label></div>
+                        <div class="col-sm-6 form-group">
+                            <label>@Model.UserDCM.userName</label>
+                    </div>
+                    <div class="col-sm-1"><label>IsActive</label></div>
+                    <div class="onoffswitch col-sm-1">
+                        <div class="switcher switcher-indigo pull-right">
+                            <input id="isActive" type="checkbox" hidden="hidden" @((Model.UserDCM.isActive == true) ? "checked='checked'" : "")>
+                            <label for="isActive"></label>
+                        </div>
+                        @Html.HiddenFor(model => model.UserDCM.isActive, new { @id = "Acthidden" })
+                    </div>
+                </div>
+                }
+                <div class="row">
+                    <div class="col-sm-3"><label>Access Role Title</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.UserDCM.accessRoleTitle, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Status</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.DropDownListFor(model => Model.UserDCM.userStatus, Model.userStatus, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Account Status</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.DropDownListFor(model => Model.UserDCM.userAccountStatus, Model.AccountStatus, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Employee Code</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.UserDCM.employeeCode, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Branch Code</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.UserDCM.branchCode, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Password</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.UserDCM.password, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Encription Key</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.UserDCM.passwordEncryptionKey, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Last Password Reset Date</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.UserDCM.lastPasswordResetDate, "{0:yyyy-MM-dd}", new { @class = " form-control", @type = "date", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"><label>Block Expiry</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.UserDCM.blockExpiry, "{0:yyyy-MM-dd}", new { @class = " form-control", @type = "date", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row ">
+                    <div class="col-sm-3"><label>Fail Attempt</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.UserDCM.warnOnFailedLoginAfterAtttempt, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "number" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"></div>
+
+                    @if (Model.crudOprationType == LionPOSServiceContractModels.ConstantDictionaryContractModel.ConstantDictionaryCM.crudOprationTypes.Insert)
+                    {
+                        <div class="col-sm-8">
+                            <div class="col-sm-4">
+                                <button type="submit" id="btnsubmit" data-loader="btnCreateLoader" class="btn btn-primary btn-ripple "><i id="ldrFormCreateAction" class="CircleLoader" style="display:none"></i>Create</button>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <button type="button" data-remove-element-id="@Model.UserDCM.userName" class="btn btn-primary btn-ripple btn-CircleLoader ">Cancel</button>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-8">
+
+                            <div class="col-sm-4">
+                                <button type="submit" data-loader="ldrFormUpdateAction" class="btn btn-primary btn-ripple "><i id="ldrFormUpdateAction" class="CircleLoader" style="display:none ; "></i>Update </button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" id="btndelete" data-delete-keys="@(Model.UserDCM.userName)" data-delete-url="@Url.Action(Model.DeleteActionName , Model.controllerName,null,Request.Url.Scheme)" data-confirm-loader="ldrFormDeleteAction" data-username="@(Model.UserDCM.userName)" data-bodyid="card-body@(Model.UserDCM.userName)" class="btn btn-red btn-flat btn-ripple" data-toggle="modal" data-target="#filterConfirmModal"><i id="ldrFormDeleteAction" class="CircleLoader" style="display:none; "></i><i class="ion-android-delete"></i>&nbsp; Delete</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" data-remove-innerhtml-element-id="card-body@(Model.UserDCM.userName)" class="btn btn-primary btn-ripple btn-CircleLoader ">Cancel</button>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            }
+            <div id="idshowLoder@(Model.UserDCM.userName)" style="height:180px;margin:10px; display:none">
+                <div id="loader"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</div>

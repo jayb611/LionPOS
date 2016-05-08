@@ -1,0 +1,774 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="userlvitsposdbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="access_area">
+          <Key>
+            <PropertyRef Name="domain" />
+            <PropertyRef Name="controller" />
+            <PropertyRef Name="view" />
+          </Key>
+          <Property Name="domain" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="controller" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="view" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="visible" Type="bit" Nullable="false" />
+          <Property Name="remarks" Type="text" Nullable="false" />
+          <Property Name="isForHeadOffice" Type="bit" />
+          <Property Name="isForOutlet" Type="bit" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="entryDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="lastChangeDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="recordByLion" Type="bit" Nullable="false" />
+          <Property Name="entryByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="changeByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="entryBranchCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="insertRoutePoint" Type="longtext" Nullable="false" />
+          <Property Name="updateRoutePoint" Type="longtext" Nullable="false" />
+          <Property Name="syncGUID" Type="longtext" />
+        </EntityType>
+        <EntityType Name="access_role_in_access_area">
+          <Key>
+            <PropertyRef Name="domain" />
+            <PropertyRef Name="controller" />
+            <PropertyRef Name="view" />
+            <PropertyRef Name="accessRoleTitle" />
+          </Key>
+          <Property Name="domain" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="controller" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="view" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="accessRoleTitle" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="canAccess" Type="bit" Nullable="false" />
+          <Property Name="visible" Type="bit" Nullable="false" />
+          <Property Name="underMaintenance" Type="bit" Nullable="false" />
+          <Property Name="showBranchWise" Type="bit" Nullable="false" />
+          <Property Name="remarks" Type="text" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="entryDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="lastChangeDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="recordByLion" Type="bit" Nullable="false" />
+          <Property Name="entryByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="changeByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="entryBranchCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="insertRoutePoint" Type="longtext" Nullable="false" />
+          <Property Name="updateRoutePoint" Type="longtext" Nullable="false" />
+          <Property Name="syncGUID" Type="longtext" />
+        </EntityType>
+        <EntityType Name="access_role_master">
+          <Key>
+            <PropertyRef Name="accessRoleTitle" />
+          </Key>
+          <Property Name="accessRoleTitle" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="entryDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="lastChangeDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="recordByLion" Type="bit" Nullable="false" />
+          <Property Name="entryByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="changeByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="entryBranchCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="insertRoutePoint" Type="longtext" Nullable="false" />
+          <Property Name="updateRoutePoint" Type="longtext" Nullable="false" />
+          <Property Name="syncGUID" Type="longtext" />
+        </EntityType>
+        <EntityType Name="override_access_role">
+          <Key>
+            <PropertyRef Name="domain" />
+            <PropertyRef Name="controller" />
+            <PropertyRef Name="view" />
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="userEntryGroupCode" />
+            <PropertyRef Name="userEntryBranchCode" />
+          </Key>
+          <Property Name="domain" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="controller" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="view" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="userEntryGroupCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="userEntryBranchCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="canAccess" Type="bit" Nullable="false" />
+          <Property Name="visible" Type="bit" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="permanent" Type="bit" Nullable="false" />
+          <Property Name="overrideTill" Type="datetime" Precision="0" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="entryDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="lastChangeDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="recordByLion" Type="bit" Nullable="false" />
+          <Property Name="entryByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="changeByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="insertRoutePoint" Type="longtext" Nullable="false" />
+          <Property Name="updateRoutePoint" Type="longtext" Nullable="false" />
+          <Property Name="syncGUID" Type="longtext" />
+        </EntityType>
+        <EntityType Name="user_settings">
+          <Key>
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="userEntryGroupCode" />
+            <PropertyRef Name="userEntryBranchCode" />
+            <PropertyRef Name="title" />
+          </Key>
+          <Property Name="userName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="userEntryGroupCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="userEntryBranchCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="values" Type="longtext" />
+          <Property Name="description" Type="longtext" />
+          <Property Name="insertRoutePoint" Type="longtext" Nullable="false" />
+          <Property Name="updateRoutePoint" Type="longtext" Nullable="false" />
+          <Property Name="syncGUID" Type="longtext" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="userEntryGroupCode" />
+            <PropertyRef Name="userEntryBranchCode" />
+          </Key>
+          <Property Name="accessRoleTitle" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="userEntryGroupCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="userEntryBranchCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="employeeEntryBranchCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="employeeCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="employeeEntryGroupCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="branchCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="userStatus" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="userAccountStatus" Type="text" Nullable="false" />
+          <Property Name="passwordEncryptionKey" Type="longtext" />
+          <Property Name="password" Type="longtext" Nullable="false" />
+          <Property Name="lastLogin" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="lastPasswordResetDate" Type="datetime" Precision="0" />
+          <Property Name="blockExpiry" Type="datetime" Precision="0" />
+          <Property Name="warnOnFailedLoginAfterAtttempt" Type="int" Nullable="false" />
+          <Property Name="isLion" Type="bit" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="entryDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="lastChangeDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="recordByLion" Type="bit" Nullable="false" />
+          <Property Name="entryByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="changeByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="sessionID" Type="text" />
+          <Property Name="sessionValue" Type="longtext" />
+          <Property Name="sessionExpireyDateTime" Type="datetime" Precision="0" />
+          <Property Name="sessionCreateTime" Type="datetime" Precision="0" />
+          <Property Name="insertRoutePoint" Type="longtext" Nullable="false" />
+          <Property Name="updateRoutePoint" Type="longtext" Nullable="false" />
+          <Property Name="syncGUID" Type="longtext" />
+        </EntityType>
+        <Association Name="fk_access_role_in_access_area_access_area1">
+          <End Role="access_area" Type="Self.access_area" Multiplicity="1" />
+          <End Role="access_role_in_access_area" Type="Self.access_role_in_access_area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="access_area">
+              <PropertyRef Name="domain" />
+              <PropertyRef Name="controller" />
+              <PropertyRef Name="view" />
+            </Principal>
+            <Dependent Role="access_role_in_access_area">
+              <PropertyRef Name="domain" />
+              <PropertyRef Name="controller" />
+              <PropertyRef Name="view" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_access_role_in_access_area_access_role_master1">
+          <End Role="access_role_master" Type="Self.access_role_master" Multiplicity="1" />
+          <End Role="access_role_in_access_area" Type="Self.access_role_in_access_area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="access_role_master">
+              <PropertyRef Name="accessRoleTitle" />
+            </Principal>
+            <Dependent Role="access_role_in_access_area">
+              <PropertyRef Name="accessRoleTitle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_override_access_role_access_area1">
+          <End Role="access_area" Type="Self.access_area" Multiplicity="1" />
+          <End Role="override_access_role" Type="Self.override_access_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="access_area">
+              <PropertyRef Name="domain" />
+              <PropertyRef Name="controller" />
+              <PropertyRef Name="view" />
+            </Principal>
+            <Dependent Role="override_access_role">
+              <PropertyRef Name="domain" />
+              <PropertyRef Name="controller" />
+              <PropertyRef Name="view" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_override_access_role_users1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="override_access_role" Type="Self.override_access_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userName" />
+              <PropertyRef Name="userEntryGroupCode" />
+              <PropertyRef Name="userEntryBranchCode" />
+            </Principal>
+            <Dependent Role="override_access_role">
+              <PropertyRef Name="userName" />
+              <PropertyRef Name="userEntryGroupCode" />
+              <PropertyRef Name="userEntryBranchCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user_settings_users1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="user_settings" Type="Self.user_settings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userName" />
+              <PropertyRef Name="userEntryGroupCode" />
+              <PropertyRef Name="userEntryBranchCode" />
+            </Principal>
+            <Dependent Role="user_settings">
+              <PropertyRef Name="userName" />
+              <PropertyRef Name="userEntryGroupCode" />
+              <PropertyRef Name="userEntryBranchCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_access_role_master1">
+          <End Role="access_role_master" Type="Self.access_role_master" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="access_role_master">
+              <PropertyRef Name="accessRoleTitle" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="accessRoleTitle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="getUsersWithDynamicClauses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="userlvitsposdb">
+          <Parameter Name="showBranchWise" Type="bit" Mode="In" />
+          <Parameter Name="branchCode" Type="text" Mode="In" />
+          <Parameter Name="dynamicWhereClauses" Type="text" Mode="In" />
+          <Parameter Name="dynamicOrderByFields" Type="text" Mode="In" />
+          <Parameter Name="skip" Type="int" Mode="In" />
+          <Parameter Name="take" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getUsersWithDynamicClausesCountRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="userlvitsposdb">
+          <Parameter Name="showBranchWise" Type="bit" Mode="In" />
+          <Parameter Name="branchCode" Type="text" Mode="In" />
+          <Parameter Name="dynamicWhereClauses" Type="text" Mode="In" />
+        </Function>
+        <EntityContainer Name="userlvitsposdbModelStoreContainer">
+          <EntitySet Name="access_area" EntityType="Self.access_area" Schema="userlvitsposdb" store:Type="Tables" />
+          <EntitySet Name="access_role_in_access_area" EntityType="Self.access_role_in_access_area" Schema="userlvitsposdb" store:Type="Tables" />
+          <EntitySet Name="access_role_master" EntityType="Self.access_role_master" Schema="userlvitsposdb" store:Type="Tables" />
+          <EntitySet Name="override_access_role" EntityType="Self.override_access_role" Schema="userlvitsposdb" store:Type="Tables" />
+          <EntitySet Name="user_settings" EntityType="Self.user_settings" Schema="userlvitsposdb" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="userlvitsposdb" store:Type="Tables" />
+          <AssociationSet Name="fk_access_role_in_access_area_access_area1" Association="Self.fk_access_role_in_access_area_access_area1">
+            <End Role="access_area" EntitySet="access_area" />
+            <End Role="access_role_in_access_area" EntitySet="access_role_in_access_area" />
+          </AssociationSet>
+          <AssociationSet Name="fk_access_role_in_access_area_access_role_master1" Association="Self.fk_access_role_in_access_area_access_role_master1">
+            <End Role="access_role_master" EntitySet="access_role_master" />
+            <End Role="access_role_in_access_area" EntitySet="access_role_in_access_area" />
+          </AssociationSet>
+          <AssociationSet Name="fk_override_access_role_access_area1" Association="Self.fk_override_access_role_access_area1">
+            <End Role="access_area" EntitySet="access_area" />
+            <End Role="override_access_role" EntitySet="override_access_role" />
+          </AssociationSet>
+          <AssociationSet Name="fk_override_access_role_users1" Association="Self.fk_override_access_role_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="override_access_role" EntitySet="override_access_role" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user_settings_users1" Association="Self.fk_user_settings_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="user_settings" EntitySet="user_settings" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_access_role_master1" Association="Self.fk_users_access_role_master1">
+            <End Role="access_role_master" EntitySet="access_role_master" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="userlvitsposdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="userlvitsposdbEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="getUsersWithDynamicClauses">
+            <Parameter Name="showBranchWise" Mode="In" Type="Boolean" />
+            <Parameter Name="branchCode" Mode="In" Type="String" />
+            <Parameter Name="dynamicWhereClauses" Mode="In" Type="String" />
+            <Parameter Name="dynamicOrderByFields" Mode="In" Type="String" />
+            <Parameter Name="skip" Mode="In" Type="Int32" />
+            <Parameter Name="take" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="access_area" EntityType="userlvitsposdbModel.access_area" />
+          <EntitySet Name="access_role_in_access_area" EntityType="userlvitsposdbModel.access_role_in_access_area" />
+          <EntitySet Name="access_role_master" EntityType="userlvitsposdbModel.access_role_master" />
+          <EntitySet Name="override_access_role" EntityType="userlvitsposdbModel.override_access_role" />
+          <EntitySet Name="user_settings" EntityType="userlvitsposdbModel.user_settings" />
+          <EntitySet Name="users" EntityType="userlvitsposdbModel.user" />
+          <AssociationSet Name="fk_access_role_in_access_area_access_area1" Association="userlvitsposdbModel.fk_access_role_in_access_area_access_area1">
+            <End Role="access_area" EntitySet="access_area" />
+            <End Role="access_role_in_access_area" EntitySet="access_role_in_access_area" />
+          </AssociationSet>
+          <AssociationSet Name="fk_override_access_role_access_area1" Association="userlvitsposdbModel.fk_override_access_role_access_area1">
+            <End Role="access_area" EntitySet="access_area" />
+            <End Role="override_access_role" EntitySet="override_access_role" />
+          </AssociationSet>
+          <AssociationSet Name="fk_access_role_in_access_area_access_role_master1" Association="userlvitsposdbModel.fk_access_role_in_access_area_access_role_master1">
+            <End Role="access_role_master" EntitySet="access_role_master" />
+            <End Role="access_role_in_access_area" EntitySet="access_role_in_access_area" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_access_role_master1" Association="userlvitsposdbModel.fk_users_access_role_master1">
+            <End Role="access_role_master" EntitySet="access_role_master" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="fk_override_access_role_users1" Association="userlvitsposdbModel.fk_override_access_role_users1">
+            <End Role="user" EntitySet="users" />
+            <End Role="override_access_role" EntitySet="override_access_role" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user_settings_users1" Association="userlvitsposdbModel.fk_user_settings_users1">
+            <End Role="user" EntitySet="users" />
+            <End Role="user_settings" EntitySet="user_settings" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="access_area">
+          <Key>
+            <PropertyRef Name="domain" />
+            <PropertyRef Name="controller" />
+            <PropertyRef Name="view" />
+          </Key>
+          <Property Name="domain" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="controller" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="view" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="visible" Type="Boolean" Nullable="false" />
+          <Property Name="remarks" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="isForHeadOffice" Type="Boolean" />
+          <Property Name="isForOutlet" Type="Boolean" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="entryDate" Type="DateTime" Nullable="false" />
+          <Property Name="lastChangeDate" Type="DateTime" Nullable="false" />
+          <Property Name="recordByLion" Type="Boolean" Nullable="false" />
+          <Property Name="entryByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="changeByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="entryBranchCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="insertRoutePoint" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="updateRoutePoint" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="syncGUID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="access_role_in_access_area" Relationship="userlvitsposdbModel.fk_access_role_in_access_area_access_area1" FromRole="access_area" ToRole="access_role_in_access_area" />
+          <NavigationProperty Name="override_access_role" Relationship="userlvitsposdbModel.fk_override_access_role_access_area1" FromRole="access_area" ToRole="override_access_role" />
+        </EntityType>
+        <EntityType Name="access_role_in_access_area">
+          <Key>
+            <PropertyRef Name="domain" />
+            <PropertyRef Name="controller" />
+            <PropertyRef Name="view" />
+            <PropertyRef Name="accessRoleTitle" />
+          </Key>
+          <Property Name="domain" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="controller" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="view" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="accessRoleTitle" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="canAccess" Type="Boolean" Nullable="false" />
+          <Property Name="visible" Type="Boolean" Nullable="false" />
+          <Property Name="underMaintenance" Type="Boolean" Nullable="false" />
+          <Property Name="showBranchWise" Type="Boolean" Nullable="false" />
+          <Property Name="remarks" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="entryDate" Type="DateTime" Nullable="false" />
+          <Property Name="lastChangeDate" Type="DateTime" Nullable="false" />
+          <Property Name="recordByLion" Type="Boolean" Nullable="false" />
+          <Property Name="entryByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="changeByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="entryBranchCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="insertRoutePoint" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="updateRoutePoint" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="syncGUID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="access_area" Relationship="userlvitsposdbModel.fk_access_role_in_access_area_access_area1" FromRole="access_role_in_access_area" ToRole="access_area" />
+          <NavigationProperty Name="access_role_master" Relationship="userlvitsposdbModel.fk_access_role_in_access_area_access_role_master1" FromRole="access_role_in_access_area" ToRole="access_role_master" />
+        </EntityType>
+        <EntityType Name="access_role_master">
+          <Key>
+            <PropertyRef Name="accessRoleTitle" />
+          </Key>
+          <Property Name="accessRoleTitle" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="entryDate" Type="DateTime" Nullable="false" />
+          <Property Name="lastChangeDate" Type="DateTime" Nullable="false" />
+          <Property Name="recordByLion" Type="Boolean" Nullable="false" />
+          <Property Name="entryByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="changeByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="entryBranchCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="insertRoutePoint" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="updateRoutePoint" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="syncGUID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="access_role_in_access_area" Relationship="userlvitsposdbModel.fk_access_role_in_access_area_access_role_master1" FromRole="access_role_master" ToRole="access_role_in_access_area" />
+          <NavigationProperty Name="users" Relationship="userlvitsposdbModel.fk_users_access_role_master1" FromRole="access_role_master" ToRole="user" />
+        </EntityType>
+        <EntityType Name="override_access_role">
+          <Key>
+            <PropertyRef Name="domain" />
+            <PropertyRef Name="controller" />
+            <PropertyRef Name="view" />
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="userEntryGroupCode" />
+            <PropertyRef Name="userEntryBranchCode" />
+          </Key>
+          <Property Name="domain" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="controller" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="view" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="userName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="userEntryGroupCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="userEntryBranchCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="canAccess" Type="Boolean" Nullable="false" />
+          <Property Name="visible" Type="Boolean" Nullable="false" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="permanent" Type="Boolean" Nullable="false" />
+          <Property Name="overrideTill" Type="DateTime" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="entryDate" Type="DateTime" Nullable="false" />
+          <Property Name="lastChangeDate" Type="DateTime" Nullable="false" />
+          <Property Name="recordByLion" Type="Boolean" Nullable="false" />
+          <Property Name="entryByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="changeByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="insertRoutePoint" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="updateRoutePoint" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="syncGUID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="access_area" Relationship="userlvitsposdbModel.fk_override_access_role_access_area1" FromRole="override_access_role" ToRole="access_area" />
+          <NavigationProperty Name="user" Relationship="userlvitsposdbModel.fk_override_access_role_users1" FromRole="override_access_role" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user_settings">
+          <Key>
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="userEntryGroupCode" />
+            <PropertyRef Name="userEntryBranchCode" />
+            <PropertyRef Name="title" />
+          </Key>
+          <Property Name="userName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="userEntryGroupCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="userEntryBranchCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="values" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="insertRoutePoint" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="updateRoutePoint" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="syncGUID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="user" Relationship="userlvitsposdbModel.fk_user_settings_users1" FromRole="user_settings" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="userEntryGroupCode" />
+            <PropertyRef Name="userEntryBranchCode" />
+          </Key>
+          <Property Name="accessRoleTitle" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="userName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="userEntryGroupCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="userEntryBranchCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="employeeEntryBranchCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="employeeCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="employeeEntryGroupCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="branchCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="userStatus" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="userAccountStatus" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="passwordEncryptionKey" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="lastLogin" Type="DateTime" Nullable="false" />
+          <Property Name="lastPasswordResetDate" Type="DateTime" />
+          <Property Name="blockExpiry" Type="DateTime" />
+          <Property Name="warnOnFailedLoginAfterAtttempt" Type="Int32" Nullable="false" />
+          <Property Name="isLion" Type="Boolean" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="entryDate" Type="DateTime" Nullable="false" />
+          <Property Name="lastChangeDate" Type="DateTime" Nullable="false" />
+          <Property Name="recordByLion" Type="Boolean" Nullable="false" />
+          <Property Name="entryByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="changeByUserName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="sessionID" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="sessionValue" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="sessionExpireyDateTime" Type="DateTime" />
+          <Property Name="sessionCreateTime" Type="DateTime" />
+          <Property Name="insertRoutePoint" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="updateRoutePoint" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="syncGUID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="access_role_master" Relationship="userlvitsposdbModel.fk_users_access_role_master1" FromRole="user" ToRole="access_role_master" />
+          <NavigationProperty Name="override_access_role" Relationship="userlvitsposdbModel.fk_override_access_role_users1" FromRole="user" ToRole="override_access_role" />
+          <NavigationProperty Name="user_settings" Relationship="userlvitsposdbModel.fk_user_settings_users1" FromRole="user" ToRole="user_settings" />
+        </EntityType>
+        <Association Name="fk_access_role_in_access_area_access_area1">
+          <End Type="userlvitsposdbModel.access_area" Role="access_area" Multiplicity="1" />
+          <End Type="userlvitsposdbModel.access_role_in_access_area" Role="access_role_in_access_area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="access_area">
+              <PropertyRef Name="domain" />
+              <PropertyRef Name="controller" />
+              <PropertyRef Name="view" />
+            </Principal>
+            <Dependent Role="access_role_in_access_area">
+              <PropertyRef Name="domain" />
+              <PropertyRef Name="controller" />
+              <PropertyRef Name="view" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_override_access_role_access_area1">
+          <End Type="userlvitsposdbModel.access_area" Role="access_area" Multiplicity="1" />
+          <End Type="userlvitsposdbModel.override_access_role" Role="override_access_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="access_area">
+              <PropertyRef Name="domain" />
+              <PropertyRef Name="controller" />
+              <PropertyRef Name="view" />
+            </Principal>
+            <Dependent Role="override_access_role">
+              <PropertyRef Name="domain" />
+              <PropertyRef Name="controller" />
+              <PropertyRef Name="view" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_access_role_in_access_area_access_role_master1">
+          <End Type="userlvitsposdbModel.access_role_master" Role="access_role_master" Multiplicity="1" />
+          <End Type="userlvitsposdbModel.access_role_in_access_area" Role="access_role_in_access_area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="access_role_master">
+              <PropertyRef Name="accessRoleTitle" />
+            </Principal>
+            <Dependent Role="access_role_in_access_area">
+              <PropertyRef Name="accessRoleTitle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_access_role_master1">
+          <End Type="userlvitsposdbModel.access_role_master" Role="access_role_master" Multiplicity="1" />
+          <End Type="userlvitsposdbModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="access_role_master">
+              <PropertyRef Name="accessRoleTitle" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="accessRoleTitle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_override_access_role_users1">
+          <End Type="userlvitsposdbModel.user" Role="user" Multiplicity="1" />
+          <End Type="userlvitsposdbModel.override_access_role" Role="override_access_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userName" />
+              <PropertyRef Name="userEntryGroupCode" />
+              <PropertyRef Name="userEntryBranchCode" />
+            </Principal>
+            <Dependent Role="override_access_role">
+              <PropertyRef Name="userName" />
+              <PropertyRef Name="userEntryGroupCode" />
+              <PropertyRef Name="userEntryBranchCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user_settings_users1">
+          <End Type="userlvitsposdbModel.user" Role="user" Multiplicity="1" />
+          <End Type="userlvitsposdbModel.user_settings" Role="user_settings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userName" />
+              <PropertyRef Name="userEntryGroupCode" />
+              <PropertyRef Name="userEntryBranchCode" />
+            </Principal>
+            <Dependent Role="user_settings">
+              <PropertyRef Name="userName" />
+              <PropertyRef Name="userEntryGroupCode" />
+              <PropertyRef Name="userEntryBranchCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="userlvitsposdbModelStoreContainer" CdmEntityContainer="userlvitsposdbEntities">
+          <FunctionImportMapping FunctionImportName="getUsersWithDynamicClauses" FunctionName="userlvitsposdbModel.Store.getUsersWithDynamicClauses" />
+          <EntitySetMapping Name="access_area">
+            <EntityTypeMapping TypeName="userlvitsposdbModel.access_area">
+              <MappingFragment StoreEntitySet="access_area">
+                <ScalarProperty Name="syncGUID" ColumnName="syncGUID" />
+                <ScalarProperty Name="updateRoutePoint" ColumnName="updateRoutePoint" />
+                <ScalarProperty Name="insertRoutePoint" ColumnName="insertRoutePoint" />
+                <ScalarProperty Name="entryBranchCode" ColumnName="entryBranchCode" />
+                <ScalarProperty Name="changeByUserName" ColumnName="changeByUserName" />
+                <ScalarProperty Name="entryByUserName" ColumnName="entryByUserName" />
+                <ScalarProperty Name="recordByLion" ColumnName="recordByLion" />
+                <ScalarProperty Name="lastChangeDate" ColumnName="lastChangeDate" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isForOutlet" ColumnName="isForOutlet" />
+                <ScalarProperty Name="isForHeadOffice" ColumnName="isForHeadOffice" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="view" ColumnName="view" />
+                <ScalarProperty Name="controller" ColumnName="controller" />
+                <ScalarProperty Name="domain" ColumnName="domain" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="access_role_in_access_area">
+            <EntityTypeMapping TypeName="userlvitsposdbModel.access_role_in_access_area">
+              <MappingFragment StoreEntitySet="access_role_in_access_area">
+                <ScalarProperty Name="syncGUID" ColumnName="syncGUID" />
+                <ScalarProperty Name="updateRoutePoint" ColumnName="updateRoutePoint" />
+                <ScalarProperty Name="insertRoutePoint" ColumnName="insertRoutePoint" />
+                <ScalarProperty Name="entryBranchCode" ColumnName="entryBranchCode" />
+                <ScalarProperty Name="changeByUserName" ColumnName="changeByUserName" />
+                <ScalarProperty Name="entryByUserName" ColumnName="entryByUserName" />
+                <ScalarProperty Name="recordByLion" ColumnName="recordByLion" />
+                <ScalarProperty Name="lastChangeDate" ColumnName="lastChangeDate" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="showBranchWise" ColumnName="showBranchWise" />
+                <ScalarProperty Name="underMaintenance" ColumnName="underMaintenance" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="canAccess" ColumnName="canAccess" />
+                <ScalarProperty Name="accessRoleTitle" ColumnName="accessRoleTitle" />
+                <ScalarProperty Name="view" ColumnName="view" />
+                <ScalarProperty Name="controller" ColumnName="controller" />
+                <ScalarProperty Name="domain" ColumnName="domain" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="access_role_master">
+            <EntityTypeMapping TypeName="userlvitsposdbModel.access_role_master">
+              <MappingFragment StoreEntitySet="access_role_master">
+                <ScalarProperty Name="syncGUID" ColumnName="syncGUID" />
+                <ScalarProperty Name="updateRoutePoint" ColumnName="updateRoutePoint" />
+                <ScalarProperty Name="insertRoutePoint" ColumnName="insertRoutePoint" />
+                <ScalarProperty Name="entryBranchCode" ColumnName="entryBranchCode" />
+                <ScalarProperty Name="changeByUserName" ColumnName="changeByUserName" />
+                <ScalarProperty Name="entryByUserName" ColumnName="entryByUserName" />
+                <ScalarProperty Name="recordByLion" ColumnName="recordByLion" />
+                <ScalarProperty Name="lastChangeDate" ColumnName="lastChangeDate" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="accessRoleTitle" ColumnName="accessRoleTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="override_access_role">
+            <EntityTypeMapping TypeName="userlvitsposdbModel.override_access_role">
+              <MappingFragment StoreEntitySet="override_access_role">
+                <ScalarProperty Name="syncGUID" ColumnName="syncGUID" />
+                <ScalarProperty Name="updateRoutePoint" ColumnName="updateRoutePoint" />
+                <ScalarProperty Name="insertRoutePoint" ColumnName="insertRoutePoint" />
+                <ScalarProperty Name="changeByUserName" ColumnName="changeByUserName" />
+                <ScalarProperty Name="entryByUserName" ColumnName="entryByUserName" />
+                <ScalarProperty Name="recordByLion" ColumnName="recordByLion" />
+                <ScalarProperty Name="lastChangeDate" ColumnName="lastChangeDate" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="overrideTill" ColumnName="overrideTill" />
+                <ScalarProperty Name="permanent" ColumnName="permanent" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="canAccess" ColumnName="canAccess" />
+                <ScalarProperty Name="userEntryBranchCode" ColumnName="userEntryBranchCode" />
+                <ScalarProperty Name="userEntryGroupCode" ColumnName="userEntryGroupCode" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="view" ColumnName="view" />
+                <ScalarProperty Name="controller" ColumnName="controller" />
+                <ScalarProperty Name="domain" ColumnName="domain" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_settings">
+            <EntityTypeMapping TypeName="userlvitsposdbModel.user_settings">
+              <MappingFragment StoreEntitySet="user_settings">
+                <ScalarProperty Name="syncGUID" ColumnName="syncGUID" />
+                <ScalarProperty Name="updateRoutePoint" ColumnName="updateRoutePoint" />
+                <ScalarProperty Name="insertRoutePoint" ColumnName="insertRoutePoint" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="values" ColumnName="values" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="userEntryBranchCode" ColumnName="userEntryBranchCode" />
+                <ScalarProperty Name="userEntryGroupCode" ColumnName="userEntryGroupCode" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="userlvitsposdbModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="syncGUID" ColumnName="syncGUID" />
+                <ScalarProperty Name="updateRoutePoint" ColumnName="updateRoutePoint" />
+                <ScalarProperty Name="insertRoutePoint" ColumnName="insertRoutePoint" />
+                <ScalarProperty Name="sessionCreateTime" ColumnName="sessionCreateTime" />
+                <ScalarProperty Name="sessionExpireyDateTime" ColumnName="sessionExpireyDateTime" />
+                <ScalarProperty Name="sessionValue" ColumnName="sessionValue" />
+                <ScalarProperty Name="sessionID" ColumnName="sessionID" />
+                <ScalarProperty Name="changeByUserName" ColumnName="changeByUserName" />
+                <ScalarProperty Name="entryByUserName" ColumnName="entryByUserName" />
+                <ScalarProperty Name="recordByLion" ColumnName="recordByLion" />
+                <ScalarProperty Name="lastChangeDate" ColumnName="lastChangeDate" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isLion" ColumnName="isLion" />
+                <ScalarProperty Name="warnOnFailedLoginAfterAtttempt" ColumnName="warnOnFailedLoginAfterAtttempt" />
+                <ScalarProperty Name="blockExpiry" ColumnName="blockExpiry" />
+                <ScalarProperty Name="lastPasswordResetDate" ColumnName="lastPasswordResetDate" />
+                <ScalarProperty Name="lastLogin" ColumnName="lastLogin" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="passwordEncryptionKey" ColumnName="passwordEncryptionKey" />
+                <ScalarProperty Name="userAccountStatus" ColumnName="userAccountStatus" />
+                <ScalarProperty Name="userStatus" ColumnName="userStatus" />
+                <ScalarProperty Name="branchCode" ColumnName="branchCode" />
+                <ScalarProperty Name="employeeEntryGroupCode" ColumnName="employeeEntryGroupCode" />
+                <ScalarProperty Name="employeeCode" ColumnName="employeeCode" />
+                <ScalarProperty Name="employeeEntryBranchCode" ColumnName="employeeEntryBranchCode" />
+                <ScalarProperty Name="userEntryBranchCode" ColumnName="userEntryBranchCode" />
+                <ScalarProperty Name="userEntryGroupCode" ColumnName="userEntryGroupCode" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="accessRoleTitle" ColumnName="accessRoleTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

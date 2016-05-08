@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d54a7a746d2f4f758b48d818b9584000" Name="Diagram1" ZoomLevel="60">
+        <EntityTypeShape EntityType="branchlvitsposdbModel.branch" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="branchlvitsposdbModel.branches_payments" Width="1.5" PointX="3" PointY="1.625" />
+        <EntityTypeShape EntityType="branchlvitsposdbModel.employee_underbranch" Width="1.5" PointX="3" PointY="13.375" />
+        <AssociationConnector Association="branchlvitsposdbModel.fk_branches_payments_branches1" />
+        <AssociationConnector Association="branchlvitsposdbModel.fk_employee_underbranch_branches1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

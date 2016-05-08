@@ -1,0 +1,69 @@
+﻿@model List<DomainModels.notification_manger>
+
+
+@((Model.Where(a=>a.On_Off==true) != null)? Html.Raw("<span id='notification_count'>" + Model.Where(a=>a.On_Off==true).Count() + "</span>"):Html.Raw(""))
+<a href="#" id="notificationLink">Notifications</a>
+<div id="notificationContainer">
+    <div id="notificationTitle">Notifications</div>
+    <div id="notificationsBody" class="notifications">
+        @foreach(var a in Model)
+        {
+        <div class="notification_tile_container">
+            <div class="notification_tile_row_header">
+                <img src="~/img/noti.png"  />
+            </div>
+            <div class="notification_tile_row_center">
+                <div class="notification_title_header">
+                   @a.title
+                </div>
+                <div class="notification_title_body">
+                  
+                </div>
+                <div class="notification_title_foooter">
+                    <div class="sidebyside">
+                          <img src="~/img/clock-icon.png" width="20" height="20" style="padding:2px"/>
+                    </div>
+                   
+                    <div class="sidebyside"> 
+                         @{
+                            if (DateTime.Now.Subtract(a.datetime.Value).TotalMinutes <= 60)
+                            {
+                                @(Math.Round(DateTime.Now.Subtract(a.datetime.Value).TotalMinutes).ToString() + " minutes ago on " + a.datetime.Value.ToString("dd/MM/yyyy"))  
+                            }
+                            else 
+                            {
+                                @(Math.Round(DateTime.Now.Subtract(a.datetime.Value).TotalDays).ToString() + " days ago on " + a.datetime.Value.ToString("dd/MM/yyyy"))  
+                            }
+                    }
+                    </div>
+                </div>
+            </div>
+            <div class="notification_tile_row_footer">
+                <div class="notification_read" data-id="@a.idnotification_manger" data-state="@a.On_Off.ToString().ToLower()">
+                    @if(a.On_Off==true)
+                    {
+                        <img src="../img/close-icon.png" />
+                    }
+                    else
+                    {
+                        <img src="../img/noti_done.png" />
+                    }
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    <div id="notificationFooter">
+        @*<a href="@Url.Action("Index", "NotificationMaster")" class="SeeAllNotification" style="float: none;">See All Notification</a>*@
+       <a href="#" id="SeeAllNotification" class="SeeAllNotification" style="float: none;"></>See All</a>
+    </div>   
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#SeeAllNotification').on("click", function () {                    
+                    window.location = "NotificationMaster/Index/";
+                })
+            });
+        </script>
+    
+</div>

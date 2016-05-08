@@ -1,0 +1,41 @@
+﻿@model  LionPOS.Models.ViewModels.SupplierManagement.Supplier.supplierCrudOperationViewModel
+<div class="col-md-12" id="@Model.supplierDCM.suppliersCode">
+    <div class="card card-user card-user-purple">
+
+        <div class="card-heading heading-center " style="border-top:none">
+            <img src="~/Images/store.png" alt="" class="user-image">
+            <h3 class="card-title text-color-white"><a href="#@(Model.supplierDCM.suppliersCode)"  >@Model.supplierDCM.title</a></h3>
+            <div class="subhead">
+                <span class="badge actv" style=" background: @((Model.supplierDCM.isActive== true)?"Green":"Red") ; border: 2px solid #fff;border-radius : 100%;padding :2px 4px;font-size :12px;color: @((Model.supplierDCM.isActive== true)?"Green":"Red");">3</span>
+                Supplier is  Added by <a href="#"> @Model.supplierDCM.entryByUserName</a>
+</div>
+        </div><!--.card-heading-->
+       
+           @if (Model.LoadFormFields == true)
+           {
+            <br />
+             @Html.Raw(LionUtilities.MVCViewUtilitiesPkg.Helper.GetRazorViewAsString(Model, "~/Views/SupplierManagement/Supplier/_InputFields.cshtml", Model.ControllerContext));
+                
+           }
+           else
+           {
+                <!--.card-body-->
+            <div class="card-body" id="card-body@(Model.supplierDCM.suppliersCode)" style="display:none">
+            </div><!--.card-body-->
+           }
+
+
+
+        <div class="card-footer" style="padding: 15px;border-top: 1px solid #f0f0f0;">
+            <div class="selectAllCheckBoxClass" style="float:left">
+                <div class="checkboxer checkboxer-pink form-inline">
+                    <input type="checkbox" id="@(Model.supplierDCM.suppliersCode)">
+                    <label for="checkboxColor2">
+                    </label>
+                </div>
+            </div>
+            <button class="btn btn-xs btn-purple pull-right btn-ripple fa fa-retweet" data-supplierscode="@(Model.supplierDCM.suppliersCode)" data-bodyid="card-body@(Model.supplierDCM.suppliersCode)" id="btnShowDetails" style="margin-right:10px"></button>
+        </div><!--.card-footer-->
+
+    </div><!--.card-->
+</div>

@@ -1,0 +1,286 @@
+﻿@model  LionPOS.Models.ViewModels.EmployeeManagement.Employee.employeeCrudOperationViewModel
+
+
+<div class="card-body" id="card-body@(Model.employeeDCM.employeeCode)">
+
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Ajax.BeginForm(Model.SubmitActionName, Model.controllerName, null, new AjaxOptions() { HttpMethod = "POST", OnComplete = "OnEmployeeFormAjaxComplete", OnFailure = "OnEmployeeFormAjaxFailure" }, new { @class = "form -horizontal bucket-form", id = "Employeeform" }))
+            {
+                @Html.HiddenFor(model => Model.employeeDCM.employeeEntryBranchCode)
+                @Html.HiddenFor(model => Model.employeeDCM.employeeEntryGroupCode)
+                @Html.HiddenFor(model => Model.employeeDCM.changeByUserName)
+                @Html.HiddenFor(model => Model.employeeDCM.entryByUserName)
+                @Html.HiddenFor(model => Model.employeeDCM.isDeleted)
+                @Html.HiddenFor(model => Model.employeeDCM.lastChangeDate)
+                @Html.HiddenFor(model => Model.employeeDCM.recordByLion)
+
+                @Html.AntiForgeryToken()
+                if (Model.crudOprationType == LionPOSServiceContractModels.ConstantDictionaryContractModel.ConstantDictionaryCM.crudOprationTypes.Insert)
+                {
+                <div class="row">
+                    <div class="col-sm-3"><label>Employee Code</label></div>
+                    <div class="col-sm-6 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.employeeCode, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+
+                    </div>
+                    <div class="col-sm-1"><label>IsActive</label></div>
+                    <div class="onoffswitch col-sm-1">
+                        <div class="switcher switcher-indigo pull-right">
+                            <input id="isActive" type="checkbox" hidden="hidden" checked="checked">
+                            <label for="isActive"></label>
+                        </div>
+                        @Html.HiddenFor(model => model.employeeDCM.isActive, new { @id = "Acthidden" })
+                    </div>
+                </div>
+                }
+                else
+                {
+
+                @Html.HiddenFor(model => Model.employeeDCM.employeeCode)
+                <div class="row">
+                    <div class="col-sm-3"><label>Employee Code</label></div>
+                    <div class="col-sm-6 form-group">
+                        <label>@Model.employeeDCM.employeeCode</label>
+                    </div>
+                    <div class="col-sm-1"><label>IsActive</label></div>
+                    <div class="onoffswitch col-sm-1">
+                        <div class="switcher switcher-indigo pull-right">
+                            <input id="isActive" type="checkbox" hidden="hidden" @((Model.employeeDCM.isActive == true) ? "checked='checked'" : "")>
+                            <label for="isActive"></label>
+                            @Html.HiddenFor(model => model.employeeDCM.isActive, new { @id = "Acthidden" })
+                        </div>
+                    </div>
+                </div>
+                }
+                <div class="row">
+                    <div class="col-sm-3"><label>Title</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.title, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>First Name</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.firstName, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Middle Name</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.middleName, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Sure Name</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.sureName, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Id Proof</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.idproof, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Designation</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.designation, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Email Address</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.emialAddress, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "email" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>One Time Password</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.oneTimePassword, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Address</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.address, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-sm-3"><label>Gender</label></div>
+                    <div class="col-sm-3 form-group">
+                        @Html.DropDownListFor(model => Model.employeeDCM.gender, Model.Gender, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                    <div class="col-sm-2"><label>Married</label></div>
+                    <div class="col-sm-3 form-group">
+                        @Html.DropDownListFor(model => Model.employeeDCM.married, Model.Married, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Cast Category</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.DropDownListFor(model => Model.employeeDCM.castCategory, Model.CastCategory, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Date Of Birth</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.dateOfBirth, "{0:yyyy-MM-dd}", new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "date" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Date Of Aniversary</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.dateOfAniversary, "{0:yyyy-MM-dd}", new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "date" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Joining Date</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.joiningdate, "{0:yyyy-MM-dd}", new { @class = " form-control", @type = "date", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Leaving Date</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.leavingdate, "{0:yyyy-MM-dd}", new { @class = " form-control", @type = "date", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Employment Status</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.employmentStatus, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row ">
+                    <div class="col-sm-3"><label>Contact #1</label></div>
+                    <div class="col-sm-3 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.contactNo1, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "number" })
+                    </div>
+                    <div class="col-sm-2"><label>Contact Type</label></div>
+                    <div class="col-sm-3 form-group">
+                        @Html.DropDownListFor(model => Model.employeeDCM.contactType1, Model.ContactMobile, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Contact #2</label></div>
+                    <div class="col-sm-3 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.contactNo2, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "number" })
+                    </div>
+                    <div class="col-sm-2"><label>Contact Type</label></div>
+                    <div class="col-sm-3 form-group">
+                        @Html.DropDownListFor(model => Model.employeeDCM.contactType2, Model.ContactTypes, LionPOSServiceContractModels.ConstantDictionaryContractModel.ConstantDictionaryCM.DefaultSelection_string, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Current Salary</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.currentSalary, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "number" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Salary</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.salary, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>License Number</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.licenseNo, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Pancard Number</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.pancardNo, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Employee Work Shift</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.employeeWorkShift, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Bank Name</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.bankName, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Bank Account Number</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.bankAcNo, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>IFSC Code</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.ifsccode, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Key Responsible Area</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.employeeDCM.keyResponsibleArea, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"><label>Remarks</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextAreaFor(model => Model.employeeDCM.remarks, new { @class = "form-control TinyMCE remarks", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"></div>
+
+                    @if (Model.crudOprationType == LionPOSServiceContractModels.ConstantDictionaryContractModel.ConstantDictionaryCM.crudOprationTypes.Insert)
+                    {
+                        <div class="col-sm-8">
+                            <div class="col-sm-4">
+                                <button type="submit" id="btnsubmit" data-loader="btnCreateLoader" class="btn btn-primary btn-ripple "><i id="ldrFormCreateAction" class="CircleLoader" style="display:none"></i>Create</button>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <button type="button" data-remove-element-id="@Model.employeeDCM.employeeCode" class="btn btn-primary btn-ripple btn-CircleLoader ">Cancel</button>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+
+
+
+                        <div class="col-sm-8">
+
+                            <div class="col-sm-4">
+                                <button type="submit" data-loader="ldrFormUpdateAction" class="btn btn-primary btn-ripple "><i id="ldrFormUpdateAction" class="CircleLoader" style="display:none ; "></i>Update </button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" id="btndelete" data-delete-keys="@(Model.employeeDCM.employeeCode)" data-delete-url="@Url.Action(Model.DeleteActionName , Model.controllerName,null,Request.Url.Scheme)" data-confirm-loader="ldrFormDeleteAction" data-employeeCode="@(Model.employeeDCM.employeeCode)" data-bodyid="card-body@(Model.employeeDCM.employeeCode)" class="btn btn-red btn-flat btn-ripple" data-toggle="modal" data-target="#filterConfirmModal"><i id="ldrFormDeleteAction" class="CircleLoader" style="display:none; "></i><i class="ion-android-delete"></i>&nbsp; Delete</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" data-remove-innerhtml-element-id="card-body@(Model.employeeDCM.employeeCode)" class="btn btn-primary btn-ripple btn-CircleLoader ">Cancel</button>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            }
+            <div id="idshowLoder@(Model.employeeDCM.employeeCode)" style="height:180px;margin:10px; display:none">
+                <div id="loader"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</div>

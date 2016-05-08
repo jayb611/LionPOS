@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3ad036e34a42490985e454bcaaf9caad" Name="Diagram1">
+        <EntityTypeShape EntityType="productlvitsposdbModel.combo_items" Width="1.5" PointX="5.25" PointY="6.875" />
+        <EntityTypeShape EntityType="productlvitsposdbModel.product_price_master" Width="1.5" PointX="5.25" PointY="11.875" />
+        <EntityTypeShape EntityType="productlvitsposdbModel.product" Width="1.5" PointX="3" PointY="7.625" />
+        <EntityTypeShape EntityType="productlvitsposdbModel.products_merge" Width="1.5" PointX="5.25" PointY="1.75" />
+        <EntityTypeShape EntityType="productlvitsposdbModel.supplier_product_mapping" Width="1.5" PointX="5.25" PointY="16.875" />
+        <EntityTypeShape EntityType="productlvitsposdbModel.unit_of_mesurement" Width="1.5" PointX="0.75" PointY="9.875" />
+        <AssociationConnector Association="productlvitsposdbModel.fk_supplier_product_mapping_products10" />
+        <AssociationConnector Association="productlvitsposdbModel.fk_product_price_master_products1" />
+        <AssociationConnector Association="productlvitsposdbModel.fk_products_merge_products1" />
+        <AssociationConnector Association="productlvitsposdbModel.fk_products_merge_products2" />
+        <AssociationConnector Association="productlvitsposdbModel.fk_products_unit_of_mesurement1" />
+        <AssociationConnector Association="productlvitsposdbModel.fk_supplier_product_mapping_products1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

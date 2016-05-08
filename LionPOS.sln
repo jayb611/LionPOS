@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LionPOS", "LionPOS\LionPOS.csproj", "{57EE688B-AF58-4360-827B-0A00C6E28401}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BF3A26EB-11DB-44AB-A0B8-512388EFA7B8} = {BF3A26EB-11DB-44AB-A0B8-512388EFA7B8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LionPOSServiceOperationLayer", "LionPOSServiceOperationLayer\LionPOSServiceOperationLayer.csproj", "{BF3A26EB-11DB-44AB-A0B8-512388EFA7B8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A489EF4F-5C9C-4A24-A769-4BA976CA3310} = {A489EF4F-5C9C-4A24-A769-4BA976CA3310}
+		{1AD40B8E-8CBB-4479-898B-17A799133208} = {1AD40B8E-8CBB-4479-898B-17A799133208}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LionPOSServiceContractModels", "LionPOSServiceContractModels\LionPOSServiceContractModels.csproj", "{1AD40B8E-8CBB-4479-898B-17A799133208}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LionPOSDbContracts", "LionPOSDbContracts\LionPOSDbContracts.csproj", "{A489EF4F-5C9C-4A24-A769-4BA976CA3310}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LionPOSSyncServices", "LionPOSSyncServices\LionPOSSyncServices.csproj", "{AAE4CED0-1E4B-4829-95FE-303AB6DDD201}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A489EF4F-5C9C-4A24-A769-4BA976CA3310} = {A489EF4F-5C9C-4A24-A769-4BA976CA3310}
+		{1AD40B8E-8CBB-4479-898B-17A799133208} = {1AD40B8E-8CBB-4479-898B-17A799133208}
+		{BF3A26EB-11DB-44AB-A0B8-512388EFA7B8} = {BF3A26EB-11DB-44AB-A0B8-512388EFA7B8}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57EE688B-AF58-4360-827B-0A00C6E28401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57EE688B-AF58-4360-827B-0A00C6E28401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57EE688B-AF58-4360-827B-0A00C6E28401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57EE688B-AF58-4360-827B-0A00C6E28401}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF3A26EB-11DB-44AB-A0B8-512388EFA7B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF3A26EB-11DB-44AB-A0B8-512388EFA7B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF3A26EB-11DB-44AB-A0B8-512388EFA7B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF3A26EB-11DB-44AB-A0B8-512388EFA7B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AD40B8E-8CBB-4479-898B-17A799133208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AD40B8E-8CBB-4479-898B-17A799133208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AD40B8E-8CBB-4479-898B-17A799133208}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AD40B8E-8CBB-4479-898B-17A799133208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A489EF4F-5C9C-4A24-A769-4BA976CA3310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A489EF4F-5C9C-4A24-A769-4BA976CA3310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A489EF4F-5C9C-4A24-A769-4BA976CA3310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A489EF4F-5C9C-4A24-A769-4BA976CA3310}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAE4CED0-1E4B-4829-95FE-303AB6DDD201}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAE4CED0-1E4B-4829-95FE-303AB6DDD201}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAE4CED0-1E4B-4829-95FE-303AB6DDD201}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAE4CED0-1E4B-4829-95FE-303AB6DDD201}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

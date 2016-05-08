@@ -1,0 +1,41 @@
+﻿@model  LionPOS.Models.ViewModels.ProductManagement.Product.productCrudOperationViewModel
+<div class="col-md-12" id="@Model.productDCM.sku">
+    <div class="card card-user card-user-purple">
+
+        <div class="card-heading heading-center " style="border-top:none">
+            <img src="~/Images/store.png" alt="" class="user-image">
+            <h3 class="card-title text-color-white"><a href="#@(Model.productDCM.sku)">@Model.productDCM.title</a></h3>
+            <div class="subhead">
+                <span class="badge actv" style=" background: @((Model.productDCM.isActive== true)?"Green":"Red");border: 2px solid #fff;border-radius: 100%;padding: 2px 4px;font-size: 12px;color: @((Model.productDCM.isActive== true)?"Green":"Red")">3</span>
+                @*Product is <a href="#"> @((Model.productDCM.isActive == true) ? "Active" : "Inactive") in @Model.productDCM.CoveringAreas</a>*@
+            </div>
+        </div><!--.card-heading-->
+
+        @if (Model.LoadFormFields == true)
+           {
+            <br />
+            @Html.Raw(LionUtilities.MVCViewUtilitiesPkg.Helper.GetRazorViewAsString(Model, "~/Views/ProductManagement/Product/_InputFields.cshtml", Model.ControllerContext));
+
+           }
+           else
+           {
+                <!--.card-body-->
+            <div class="card-body" id="card-body@(Model.productDCM.sku)" style="display:none">
+            </div><!--.card-body-->
+           }
+
+
+
+        <div class="card-footer" style="padding: 15px;border-top: 1px solid #f0f0f0;">
+            <div class="selectAllCheckBoxClass" style="float:left">
+                <div class="checkboxer checkboxer-pink form-inline">
+                    <input type="checkbox" id="@(Model.productDCM.sku)">
+                    <label for="checkboxColor2">
+                    </label>
+                </div>
+            </div>
+            <button class="btn btn-xs btn-purple pull-right btn-ripple fa fa-retweet" data-sku="@(Model.productDCM.sku)" data-bodyid="card-body@(Model.productDCM.sku)" id="btnShowDetails" style="margin-right:10px"></button>
+        </div><!--.card-footer-->
+
+    </div><!--.card-->
+</div>

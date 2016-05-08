@@ -1,0 +1,34 @@
+﻿@model LionPOSServiceContractModels.ControllerContractModel.SupplierManagement.SupplierCCM
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-meal card-meal-indigo card-square card-hover-shadow">
+            <div class="card-heading">
+                <div class="btn-group btn-merged btn-group-sm pull-left">
+                    <button type="button" class="btn btn-orange btn-flat btn-ripple">
+                        <div class="checkboxer checkboxer-pink" style="width:24px;position:relative;float: left;">
+                            <input type="checkbox" value="" id="chkSelectAllData">
+                            <label for="check1"></label>
+                        </div>
+                    </button>
+                    <button type="button" class="btn btn-orange btn-flat btn-ripple">
+                        <select name="" id="BulkAction" style="position:relative;float:left">
+                            <option>Select an action</option>
+                            <option>Delete Selected</option>
+                            <option>Set Inactive to selected </option>
+                            <option>Set Active to selected </option>
+                        </select>
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-red btn-flat btn-ripple" id="btnMultiSubmit">Submit</button>
+                    <button type="button" class="btn btn-green btn-flat btn-ripple" id="bulkActionSubmitLoader" style="display:none"><div class="CircleLoader"></div></button>
+                </div>
+                <div class="btn-group btn-merged btn-group-sm pull-right">
+                    <button type="button" class="btn btn-green btn-flat btn-ripple" id="addNewLoaderPlaceholder" style="display:none"><div class="CircleLoader"></div></button>
+                    <button type="button" id="btnAddNew" class="btn btn-green btn-flat btn-ripple" >Add New</button>
+                    <button type="button" class="btn btn-indigo btn-flat btn-ripple" data-toggle="modal" data-target="#filter@(Model.Pagination.FilterActionName)Modal"><i class="ion-android-search"></i>&nbsp; Search</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,350 @@
+﻿@model  LionPOS.Models.ViewModels.SupplierManagement.Supplier.supplierCrudOperationViewModel
+
+
+<div class="card-body" id="card-body@(Model.supplierDCM.suppliersCode)">
+
+    <div class="row">
+        <div class="col-md-12">
+
+
+            @using (Ajax.BeginForm(Model.SubmitActionName, Model.controllerName, null, new AjaxOptions() { HttpMethod = "POST", OnComplete = "OnSupplierFormAjaxComplete", OnFailure = "OnSupplierFormAjaxFailure" }, new { @class = "form -horizontal bucket-form", id = "Supplierform" }))
+            {
+                @Html.HiddenFor(model => Model.supplierDCM.suppliersEntryBranchCode)
+                @Html.HiddenFor(model => Model.supplierDCM.suppliersEntryGroupCode)
+                @Html.HiddenFor(model => Model.supplierDCM.changeByUserName)
+                @Html.HiddenFor(model => Model.supplierDCM.entryByUserName)
+                @Html.HiddenFor(model => Model.supplierDCM.isActive)
+                @Html.HiddenFor(model => Model.supplierDCM.isDeleted)
+                @Html.HiddenFor(model => Model.supplierDCM.lastChangeDate)
+                @Html.HiddenFor(model => Model.supplierDCM.recordByLion)
+
+                @Html.AntiForgeryToken()
+                if (Model.crudOprationType == LionPOSServiceContractModels.ConstantDictionaryContractModel.ConstantDictionaryCM.crudOprationTypes.Insert)
+                {
+                    <div class="row">
+                        <div class="col-sm-3"><label>Supplier Code</label></div>
+                        <div class="col-sm-8 form-group">
+                            @Html.TextBoxFor(model => Model.supplierDCM.suppliersCode, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+
+                        </div>
+                        <div class="col-sm-1"><label>IsActive</label></div>
+                        <div class="onoffswitch col-sm-1">
+                            <div class="switcher switcher-indigo pull-right">
+                                <input id="isActive" type="checkbox" hidden="hidden" checked='checked'>
+                                <label for="isActive"></label>
+                            </div>
+                            @Html.HiddenFor(model => model.supplierDCM.isActive, new { @id = "Acthidden" })
+                        </div>
+                    </div>
+                }
+                else
+                {
+
+                    @Html.HiddenFor(model => Model.supplierDCM.suppliersCode)
+                    <div class="row">
+                        <div class="col-sm-3"><label>Supplier Code</label></div>
+                        <div class="col-sm-8 form-group">
+                            <label>@Model.supplierDCM.suppliersCode</label>
+                        </div>
+                        <div class="col-sm-1"><label>IsActive</label></div>
+                        <div class="onoffswitch col-sm-1">
+                            <div class="switcher switcher-indigo pull-right">
+                                <input id="isActive" type="checkbox" hidden="hidden" @((Model.supplierDCM.isActive == true) ? "checked='checked'" : "")>
+                                <label for="isActive"></label>
+                            </div>
+                            @Html.HiddenFor(model => model.supplierDCM.isActive, new { @id = "Acthidden" })
+                        </div>
+                    </div>
+
+
+                }
+                <div class="row">
+                    <div class="col-sm-3"><label>Title</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.title, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Short Title</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.shortTitle, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"><label>Status</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.status, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Legal Status</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.legalStatus, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"><label>Contact Person</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.contactPersonName, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Designation</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.contactPersonDesignation, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row ">
+                    <div class="col-sm-3"><label>Mobile No</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.mobileNo, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "number" })
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Telephone No</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.telephoneNo, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "number" })
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-3"><label>Registration No</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.registrationNo, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Registration Date</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.registrationDate, "{0:yyyy-MM-dd}", new { @class = " form-control", @type = "date", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-3"><label>Credit Limit Days</label></div>
+                    <div class="col-sm-3 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.creditLimitDays, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                    <div class="col-sm-2"><label>Max Credit Amount</label></div>
+                    <div class="col-sm-3 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.creditLimitAmount, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"><label>Registrered Address</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.registreredAddress, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Billing Address</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.billingAddress, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"><label>pincode</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.pincode, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "number" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"><label>City</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.city, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label>State</label>
+                    </div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.state, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Country</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.country, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-3"><label>Bank</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.bankName, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>Account No</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.bankAcNo, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3"><label>IFSC Code</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.ifsccode, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"><label>Permanent Account No</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.permanentAccountNumber, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"><label>Account Date</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.permanentAccountNumberDate, "{0:yyyy-MM-dd}", new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "date" })
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-3"><label>BST No</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.bstNo, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"><label>BST Date</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.bstDate, "{0:yyyy-MM-dd}", new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "date" })
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-sm-3"><label>Corporate ID No</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.corporateIdentityNumber, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"><label>CIN Date</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.corporateIdentityNumberDate, "{0:yyyy-MM-dd}", new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "date" })
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-3"><label>Experiance</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.overDueLockingDays, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "number" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"><label>Central SalesTax No</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.centralSalesTaxNo, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"><label>CST Date</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.centralSalesTaxDate, "{0:yyyy-MM-dd}", new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "date" })
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-3"><label>Service Tax No</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.serviceTaxNo, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"><label>VAT No</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.valueAddedTaxNo, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"><label>VAT Date</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.valueAddedTaxDate, "{0:yyyy-MM-dd}", new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "date" })
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-3"><label>Tax Payer ID</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.taxpayerIdentificationNumber, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"><label>Tax Payer ID Date</label></div>
+                    <div class="col-sm-8 form-group">
+                        @Html.TextBoxFor(model => Model.supplierDCM.taxpayerIdentificationNumberDate, "{0:yyyy-MM-dd}", new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip", @type = "date" })
+                    </div>
+                </div>
+
+
+
+
+                <div class="row">
+                    <div class="col-sm-3"></div>
+
+                    @if (Model.crudOprationType == LionPOSServiceContractModels.ConstantDictionaryContractModel.ConstantDictionaryCM.crudOprationTypes.Insert)
+                    {
+                        <div class="col-sm-8">
+                            <div class="col-sm-4">
+                                <button type="submit" id="btnsubmit" data-loader="btnCreateLoader" class="btn btn-primary btn-ripple "><i id="ldrFormCreateAction" class="CircleLoader" style="display:none"></i>Create</button>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <button type="button" data-remove-element-id="@(Model.supplierDCM.suppliersCode)" class="btn btn-primary btn-ripple btn-CircleLoader ">Cancel</button>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+
+
+
+                        <div class="col-sm-8">
+
+                            <div class="col-sm-4">
+                                <button type="submit" data-loader="ldrFormUpdateAction" class="btn btn-primary btn-ripple "><i id="ldrFormUpdateAction" class="CircleLoader" style="display:none ; "></i>Update </button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" id="btndelete" data-delete-keys="@(Model.supplierDCM.suppliersCode)" data-delete-url="@Url.Action(Model.DeleteActionName , Model.controllerName,null,Request.Url.Scheme)" data-confirm-loader="ldrFormDeleteAction" data-supplierscode="@(Model.supplierDCM.suppliersCode)" data-bodyid="card-body@(Model.supplierDCM.suppliersCode)" class="btn btn-red btn-flat btn-ripple" data-toggle="modal" data-target="#filterConfirmModal"><i id="ldrFormDeleteAction" class="CircleLoader" style="display:none; "></i><i class="ion-android-delete"></i>&nbsp; Delete</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" data-remove-innerhtml-element-id="card-body@(Model.supplierDCM.suppliersCode)" class="btn btn-primary btn-ripple btn-CircleLoader ">Cancel</button>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            }
+            <div id="idshowLoder@(Model.supplierDCM.suppliersCode)" style="height:180px;margin:10px; display:none">
+                <div id="loader"></div>
+            </div>
+        </div>
+    </div>
+</div>

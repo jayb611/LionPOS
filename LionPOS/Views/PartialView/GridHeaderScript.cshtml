@@ -1,0 +1,85 @@
+﻿<script type="text/javascript">
+    $(document).ready(function () {
+      
+    
+    //check all checkboxes
+        var @(ViewBag.PageLink)str = new String();        
+        $('.@(ViewBag.PageLink)table thead input[type="checkbox"]').change(function () {
+            $(this).parents('table').find('tbody input[type="checkbox"]').prop('checked', $(this).prop('checked'));
+        });
+
+
+    $(".@(ViewBag.PageLink)apply").click(function(event)
+    {
+        //JBShowJBDialogCustomNoClose("Paging ....", $(".JBDialogBodyProgree").html(), "");
+          @(ViewBag.PageLink)str = new String();
+            $(".@(ViewBag.PageLink)chk :checkbox:checked").each(function ()
+            {
+              
+                if ($(this).attr("value") == "1") {
+                    if (@(ViewBag.PageLink)str == "") {
+                        @(ViewBag.PageLink)str += $(this).parent().data("id");
+                    }
+                    else {
+                        @(ViewBag.PageLink)str += "," + $(this).parent().data("id");
+                    }
+                }
+            });        
+         
+        
+            var footer = "<button class='btn btn-success margin-bottom-20  @(ViewBag.PageLink)yes' type='button' role='button' >"
+                                 + " Yes</button> <button class='btn btn-success margin-bottom-20 @(ViewBag.PageLink)no' type='button' role='button' > Cancel</button>";
+        JBShowJBDialogCustomNoClose("Confirmation", "<center>Are You Sure You Want to Procceed.?</center>", footer);
+        $(this).off(event);
+            //JBCloseJBDialogCustomNoClose();
+        });
+        $(document).on("click", ".@(ViewBag.PageLink)yes", function (event)
+        {
+                JBShowJBDialogCustomNoClose("Paging ....", $(".JBDialogBodyProgree").html(), "");
+                var bulk = $(".@(ViewBag.PageLink)bulkaction").val();
+                var searc = $("#@(ViewBag.PageLink)search").val();
+               
+                $(".@(ViewBag.PageLink)chk :checkbox:checked").each(function () {
+                    if ($(this).attr("value") == "1") {
+                        if (@(ViewBag.PageLink)str == "") {
+                            @(ViewBag.PageLink)str += $(this).parent().data("id");
+                        }
+                        else {
+                            @(ViewBag.PageLink)str += "," + $(this).parent().data("id");
+                        }
+                    }
+                });                
+                $.ajax({
+                    url: '@Url.Action(ViewBag.PageLink + "BulkAction", ViewBag.Controller, null)',
+                    data: { 'RecordsPerPage': 5, 'PageNumber': 1, 'search': searc, 'removedata': @(ViewBag.PageLink)str, 'BulkAction': bulk },
+                    type: "Get",
+                    cache: false,
+                    success: function (savingStatus) {
+                        $('.@(ViewBag.PageLink)update').parent().html(savingStatus);
+                        JBCloseJBDialogCustomNoClose();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        $('.@(ViewBag.PageLink)update').text("Error encountered while saving the comments.");
+                        JBCloseJBDialogCustomNoClose();
+                    }
+                });
+            event.stopPropagation();
+           $(this).off(event);
+        });
+        $(document).on("click", ".@(ViewBag.PageLink)no", function (event) {        
+            JBCloseJBDialogCustomNoClose();
+            $(this).off(event);
+        });
+
+    });
+    $(document).ready(function () {                 
+        // For Excel Export Data
+        $(document).on("click", ".@(ViewBag.PageLink)excel", function (event)
+        {
+            $(".@(ViewBag.PageLink)th").remove();
+            window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('.@(ViewBag.PageLink)printdiv').html()));
+            event.preventDefault();
+            $(this).off(event);
+        });               
+    });
+</script>

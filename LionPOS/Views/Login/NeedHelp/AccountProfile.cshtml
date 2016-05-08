@@ -1,0 +1,90 @@
+﻿@model LionPOS.Models.ViewModels.Login.NeedHelp.AccountProfileViewModel
+@{
+    ViewBag.Title = "Recover Account Details By Phone";
+    Layout = "~/Views/Shared/NeedHelpMasterLayout.cshtml";
+}
+<section class="container-fluid">
+    <section class="container">
+        <div class="row header-bar">
+            <div>
+                <a href="#">
+                    <img src="~/Images/LogoLionVisionColoured.png" class="logo-lionvision" />
+                </a>
+                <a href="@Url.Action("Index","Login",new { branchCode = Model.branchCode })">
+                    <button class="button-login right"><span>Login</span></button>
+                </a>
+            </div>
+
+        </div>
+    </section>
+</section>
+
+<div class="container no-left-right-padding">
+    @*<div class="head-pic text-center">
+            <img src="~/Images/NeedHelpAccount.png" />
+        </div>
+    *@
+    <div class="row  content-container">
+
+        <div class="question-content">
+@using (Html.BeginForm("VerifyOTP", "NeedHelp", FormMethod.Post, new { @class="square-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model=>model.profilePicture)
+@Html.HiddenFor(model=>model.branchCode)
+@Html.HiddenFor(model=>model.name)
+@Html.HiddenFor(model=>model.emailAddress)
+@Html.HiddenFor(model=>model.contactNo)
+
+
+                <div class="row text-center">
+                    <label class="stacked-label">Is this you?</label>
+                </div>
+                <div class="row text-center">
+                    <img src="@Model.profilePicture" class="user-icon" />
+                </div>
+                <hr style="margin-top:5px;margin-bottom:5px" />
+                <div class="row text-center">
+                    <label class="stacked-label">@Model.name</label>
+                </div>
+                <hr style="margin-top:5px;margin-bottom:5px" />
+                <div class="row text-center">
+                    <label class="stacked-label"> <u>Select Recovery Option</u></label>
+                </div>
+                <hr style="margin-top:5px;margin-bottom:5px" />
+                <div class="row text-center"> 
+                   
+                    <label class="stacked-label">
+                        @Html.Raw(Model.emailAddress)
+                    </label> 
+                    @Html.RadioButton("recoveryMode",LionPOSServiceContractModels.ConstantDictionaryContractModel.ConstantDictionaryCM.AccountOTPRecoveryTypes.Email,true)
+                </div>
+                <hr style="margin-top:5px;margin-bottom:5px" />
+                <div class="row text-center">
+                    <label class="stacked-label"><span>@Model.contactNo </span></label>
+                    @Html.RadioButton("recoveryMode",LionPOSServiceContractModels.ConstantDictionaryContractModel.ConstantDictionaryCM.AccountOTPRecoveryTypes.Mobile)
+                </div>
+                <hr style="margin-top:5px;margin-bottom:5px" />
+                <div class="row text-center">
+                    <label class="stacked-label"><span></span>If this is not your Account then press back.</label>
+                    
+                </div>
+                <hr style="margin-top:5px;margin-bottom:5px" />
+                <div class="row text-center">
+                    <!-- SR 17-MAR-2016 Back Button rediraction-->
+                    <a href="@Url.Action("RecoveryOptions","NeedHelp",new { branchCode = Model.branchCode })">
+                        <button class="button-login" type="button" style="float:none"><span>BACK</span></button>
+                    </a>
+                     &nbsp;<button class="button-login" style="float:none"><span>Continue</span></button>
+                </div>
+                <div class="row text-center">
+                    <center></center>
+                </div>
+                @*<div class="row text-center">
+                        <center><button class="btn-standard"><span>i can't Access my phone</span></button></center>
+                    </div>*@
+          }
+        </div>
+
+    </div>
+</div>

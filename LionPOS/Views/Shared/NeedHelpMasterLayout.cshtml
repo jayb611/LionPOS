@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/ContentForgotPassword/ForgotPasswordStyleSheet.css" rel="stylesheet" />
+    @*<link href="~/Content/ContentForgotPassword/material.min.css" rel="stylesheet" />*@
+    @RenderSection("StyleHeader",false)
+    
+</head>
+<body class="">
+
+   
+    @RenderBody()
+    <section class="row navbar-fixed-bottom footer-bar">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-left"> <a class="navbar-brand" href="#"><img src="~/Images/LogoLionLVITSColoured100x.png" class="lvits-logo" /></a></div>
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">@*Link <span class="sr-only">(current)</span>*@</a></li>
+                        <li><a class="active" href="/about">About</a></li>
+                        <li><a href="//support.lionvisionits.com">Help</a></li>
+
+
+                        <li><a href="https://about.lionvisionits.com/careers">Jobs</a></li>
+                        <li><a href="/tos">Terms</a></li>
+                        <li><a href="/privacy">Privacy</a></li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other Links<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="https://about.lionvisionits.com/products">Apps</a></li>
+                                <li><a href="https://blog.lionvisionits.com">Blog</a></li>
+                                <li><a href="//ads.lionvisionits.com/start?ref=gl-tw-tw-lionvisionits-advertise">Advertise</a></li>
+                                <li><a href="https://business.lionvisionits.com">Businesses</a></li>
+                                <li><a href="//media.lionvisionits.com">Media</a></li>
+                                <li><a href="//dev.lionvisionits.com">Developers</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="http://status.lionvisionits.com">Status</a></li>
+                                <li><a href="/i/directory/profiles">Directory</a></li>
+                                <li><a href="//support.lionvisionits.com/articles/20170514">Cookies</a></li>
+                                <li><a href="//support.lionvisionits.com/articles/20170451">Ads info</a></li>
+                                <li><a href="//about.lionvisionits.com/press/brand-assets">Brand</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/i/directory/profiles">© 2016 Lion Vision Info Tech Solutions(LVITS)</a></li>
+
+                    </ul>
+
+                </div><!-- /.navbar-collapse -->
+
+            </div><!-- /.container-fluid -->
+        </nav>
+    </section>
+    <script src="~/Scripts/jquery-2.2.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/ScriptCustom/Login/NeedHelp/RecoveryOptionsScripts.js"></script>
+    @RenderSection("ScriptFooter",false)
+    
+</body>
+</html>
+

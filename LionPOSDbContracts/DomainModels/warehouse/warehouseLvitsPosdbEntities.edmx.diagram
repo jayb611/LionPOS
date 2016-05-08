@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7bac333fdf1e4f11bd842992b1dc5f4d" Name="Diagram1">
+        <EntityTypeShape EntityType="warehouselvitsposdbModel.delivery_challan_receive" Width="1.5" PointX="5.25" PointY="36.5" />
+        <EntityTypeShape EntityType="warehouselvitsposdbModel.delivery_challan_send" Width="1.5" PointX="5.25" PointY="29.375" />
+        <EntityTypeShape EntityType="warehouselvitsposdbModel.warehouse_stock_items" Width="1.5" PointX="5.25" PointY="19.375" />
+        <EntityTypeShape EntityType="warehouselvitsposdbModel.warehouse_stock_master" Width="1.5" PointX="3" PointY="23.875" />
+        <EntityTypeShape EntityType="warehouselvitsposdbModel.warehouse_structure" Width="1.5" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="warehouselvitsposdbModel.warehouse" Width="1.5" PointX="0.75" PointY="17.375" />
+        <EntityTypeShape EntityType="warehouselvitsposdbModel.warehouses_merge" Width="1.5" PointX="3" PointY="6.375" />
+        <EntityTypeShape EntityType="warehouselvitsposdbModel.wearhouse_under_branches" Width="1.5" PointX="3" PointY="17.125" />
+        <AssociationConnector Association="warehouselvitsposdbModel.fk_delivery_challan_receive_warehouse_stock_master1" />
+        <AssociationConnector Association="warehouselvitsposdbModel.fk_delivery_challan_send_warehouse_stock_master1" />
+        <AssociationConnector Association="warehouselvitsposdbModel.fk_warehouse_stock_items_warehouse_stock_master1" />
+        <AssociationConnector Association="warehouselvitsposdbModel.fk_warehouse_stock_items_warehouse_structure1" />
+        <AssociationConnector Association="warehouselvitsposdbModel.fk_warehouse_stock_master_warehouses1" />
+        <AssociationConnector Association="warehouselvitsposdbModel.fk_warehouse_structure_warehouses1" />
+        <AssociationConnector Association="warehouselvitsposdbModel.fk_warehouses_merge_warehouses1" />
+        <AssociationConnector Association="warehouselvitsposdbModel.fk_warehouses_merge_warehouses2" />
+        <AssociationConnector Association="warehouselvitsposdbModel.fk_wearhouse_under_branches_warehouses1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

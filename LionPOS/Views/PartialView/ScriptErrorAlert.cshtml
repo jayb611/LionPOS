@@ -1,0 +1,8 @@
+﻿ <script>
+         @if (Session["Error"] != null)
+         {
+             var tmp=Session["Error"] as string;
+             @Html.Raw("alert('"+tmp+"');");
+             Session["Error"] = null; 
+         }
+     </script>

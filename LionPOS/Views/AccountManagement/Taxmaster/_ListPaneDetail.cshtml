@@ -1,0 +1,38 @@
+﻿@model LionPOSServiceContractModels.ControllerContractModel.AccountManagement.TaxmasterCCM
+
+@for (int i = 0; i < Model.taxmasterList.Count(); i++)
+            {
+
+        <!--Grid Design -->
+
+    <div class="col-md-12" id="@Model.taxmasterList[i].taxMasterTitle">
+        <div class="card card-user card-user-purple">
+
+            <div class="card-heading heading-center " style="border-top:none">
+                <img src="~/Images/store.png" alt="" class="user-image">
+                <h3 class="card-title text-color-white"><a href="#@Model.taxmasterList[i].taxMasterTitle" @*data-href="@Model.taxmasterList[i].taxMasterTitle"*@>@Model.taxmasterList[i].taxMasterTitle</a></h3>
+                <div class="subhead">
+                    <span class="badge actv" style="background:@((Model.taxmasterList[i].isActive== true)?"Green":"Red");border:2px solid #fff;border-radius:100%;padding:2px 4px;font-size:12px;color:@((Model.taxmasterList[i].isActive== true)?"Green":"Red") ">3</span>
+                </div>
+            </div>
+
+            <div class="card-body" id="card-body@(Model.taxmasterList[i].taxMasterTitle)" style="display:none;">
+
+            </div>
+
+
+            <div class="card-footer" style="padding: 15px;border-top: 1px solid #f0f0f0;">
+                <div class="selectAllCheckBoxClass" style="float:left">
+                    <div class="checkboxer checkboxer-pink form-inline">
+                        <input type="checkbox" class="chkSelect" id="@(Model.taxmasterList[i].taxMasterTitle)">
+                        <label for="checkboxColor2">
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-xs btn-purple pull-right btn-ripple fa fa-retweet" data-taxmastertitle="@(Model.taxmasterList[i].taxMasterTitle)" data-bodyid="card-body@(Model.taxmasterList[i].taxMasterTitle)" id="btnShowDetails" style="margin-right:10px"></button>
+            </div>
+
+        </div>
+    </div>
+
+}

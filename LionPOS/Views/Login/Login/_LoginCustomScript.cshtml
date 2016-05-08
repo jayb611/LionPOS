@@ -1,0 +1,45 @@
+﻿@model bool?
+
+@*--------------------------------------------Captcha Code Starts Here -----------------------------------------------*@
+
+@if (Model == true)
+{
+    <script>
+        $(document).ready(function () {
+            function captcha() {
+                $.ajax({
+                    url: "@(LionPOSServiceContractModels.ConstantDictionaryViewModel.ConstantDictionaryVM.captchaAjaxUrl_string)",
+                    type: "POST",
+                    //cache: false,
+                    async: false,
+                    //dataType: "json",
+                    //contentType: "application/json; charset=utf-8",
+                    success: function (data, textStatus, jqXHR) {
+                        $("#Captcha").attr("src", data);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        var errorHtml = "@Html.Raw(new  LionPOSServiceContractModels.ConstantDictionaryViewModel.ConstantDictionaryVM.AlertCssModel().buildAlertString(
+                                                    LionPOSServiceContractModels.ConstantDictionaryViewModel.ConstantDictionaryVM.AlertCssModel.AlertTypesCssClass.error,
+                                                    LionPOSServiceContractModels.ConstantDictionaryViewModel.ConstantDictionaryVM.AlertCssModel.AlertColourCssClass.red ,
+                                                    "Failed to load captcha question.Please refresh page!.If that do not solve then contact us" +
+                                                     LionPOSServiceContractModels.ConstantDictionaryViewModel.ConstantDictionaryVM.SupportContactDetails_string ,
+                                                    true))";
+                        $("#alert-block").append(errorHtml);
+
+                    }
+                });
+            }
+            captcha();
+            $("#RefreshCaptcha").click(function () {
+                captcha();
+            });
+         
+        });
+
+        
+
+
+    </script>
+}
+
+    @*------------------------------------------------- Captcha Code Ends Here------------------------------------------------------*@

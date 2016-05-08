@@ -1,0 +1,322 @@
+﻿@model LionPOS.Models.ViewModels.Login.Login.LoginViewModel
+
+<!DOCTYPE html style="width:100%;height:100%">
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="shortcut icon" href="~/Images/LionVision/faviconlion.ico">
+    <link rel="apple-touch-icon" href="~/Content/assets/globals/img/icons/apple-touch-icon.png">
+    <title>Login</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/ContentLogin/site.css" rel="stylesheet" />
+    <link href="~/fonts/font-awesome.min.css" rel="stylesheet" />
+</head>
+<!-- Set Background image here -->
+<body @((!String.IsNullOrWhiteSpace(Model.RandomImageStyleURL_string)) ? Html.Raw(Model.RandomImageStyleURL_string) : Html.Raw(""))>
+
+
+
+    <div class="container no-left-right-padding">
+        <div class="alert-block" id="alert-block">
+            @if (Model.AlertList_string != null)
+            {
+                foreach (string alert in Model.AlertList_string)
+                {
+                    @Html.Raw(alert)
+
+                }
+            }
+        </div>
+        <div class="row  content-container ">
+            <section class="col-xs-12 col-sm-6 col-md-6 col-lg-8  ">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-lg-push-6 quotes text-center ">
+                        <div class="row text-center reviews">
+                            <div class="col-xs-12 text-center">
+                                <div class="advertise-surface">
+                                    <img src="~/Images/advertisePlacement.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12  col-lg-6 col-lg-pull-6 quotes text-center">
+                        <div class=" text-center">
+                            <div class="quote-surface">
+                                <blockquote>
+                                    <p class="blockquote-paragraph">
+                                        @*It is in vain to say human beings ought to be satisfied with tranquillity: they must have action; and they will make it if they cannot find it.*@
+                                        @Html.Raw(Model.quote)
+                                    </p>
+
+                                    <footer>
+                                        <div class="header">
+                                            @*<img src="~/Images/india-fantasy-wallpaper-26750-27466-hd-wallpapers.jpg" />*@
+                                            <img src="@Html.Raw(Model.quoteImage)" />
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 text-center">
+
+                                            </div>
+                                            <div class="col-sm-6 text-center ">
+                                                <div class=" text-center quote-author ">
+                                                    @*<img src="~/Images/city-wallpaper-7.jpg" class="blockquote-author-thumb" />*@
+                                                    <img src="@Html.Raw(Model.quoteLogo)" class="blockquote-author-thumb" />
+                                                </div>
+                                                <div class=" text-center" style="float:right">
+                                                    <p class="blockquote-footer-paragraph name">
+                                                        @*Charlotte Brontë*@
+                                                        @Html.Raw(Model.quoteAuthor)
+                                                        <br />
+                                                        @Html.Raw(Model.quoteAd)
+                                                    </p>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </footer>
+                                    <div class="row show-hide-quote text-center">
+                                        <i class="fa fa-bars"></i>
+                                    </div>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="col-xs-12 col-sm-6 col-md-6 col-lg-4   login">
+                <div class="row text-center">
+                    @if(Model.previousAccountsLogins!=null)
+                    {
+                        foreach(var a in Model.previousAccountsLogins)
+                        {
+                            <div class="col-xs-6  col-sm-6 col-md-4 text-center">
+                                <img src="@a.profileImage" data-isnewuser="false" data-username="@a.username" data-profilepicture="@a.profileImage" class="user-icon" />
+                            </div>
+                        }
+                    }
+                    <div class="col-xs-6 col-sm-6 col-md-4 text-center">
+                        <img src="/Images/userAdd.png" data-isnewuser="true" data-username="" data-profilepicture="/Images/userAdd.png" class="user-icon" />
+                    </div>
+                </div>
+                <div class="row " style="position:relative">
+                    <div class="col-xs-12 text-center login-container">
+                        <div class="card-background">
+                        </div>
+                        <div class="surface-login-container">
+
+                            <div class="card login-surface">
+
+                                <div class=" alt">
+                                    <div class="toggle">
+                                        <img src="" id="profilepicture" style="width:100%;height:100%;border-radius:50%" />
+                                    </div>
+                                </div>
+                                <h1 class="title ">Login</h1>
+                                <div class="close-login"></div>
+                                @using (Html.BeginForm("Login", "Login", FormMethod.Post, null))
+                                {
+                                    @Html.AntiForgeryToken()
+
+
+                                    <div class="input-container">
+                                        @Html.TextBoxFor(model => model.username, new { @id = "Username", @required = "required", autocomplete = "off" })
+                                        @*< input type="text" id="Username" name="username" required="required" autocomplete="off">*@
+                                        <label for="Username">Username</label>
+                                        <div class="bar"></div>
+                                    </div>
+                                    <div class="input-container">
+                                        @Html.PasswordFor(model => model.password, new { @id = "Password", @required = "required", autocomplete = "off" })
+                                        @*<input type="password" id="Password" name="password" required="required" autocomplete="off">*@
+                                        <label for="Password">Password</label>
+                                        <div class="bar"></div>
+                                    </div>
+                                    <label for="Select Branch" style="width:100%;font-size:24px;">Select Branch</label>
+                                    <div class="input-container">
+                                        @{
+                                            var tmp = Model.branchDCMList.Select(a => new SelectListItem() { Text = a.branchName, Value = a.branchCode, Selected = (a.branchName == "Lion") ? true : false });
+                                        }
+
+                                        @Html.DropDownListFor(model => Model.branchCode, tmp, new { @style = "width:100%;height:39px;font-size:24px;" })
+                                        <div class="bar"></div>
+                                    </div>
+                                            if (Model.CaptchaActivated_Null_bool == true)
+                                            {
+                                        <!--.form-group-->
+                                                <div class="input-container">
+                                                    <img alt="Lion Captcha" width="190" height="80" style="border: 3px solid orange" id="Captcha" />
+                                                </div>
+
+                                                <div class="input-container">
+                                                    <input type="text" name="captcha" id="captchaText" required="required">
+                                                    <label for="captchaText">Write Above Text.</label>
+                                                    <div class="bar"></div>
+                                                </div>
+                                            }
+                                            <div style="margin-left:60px;margin-right:60px">
+
+                                                <label style="font-size:15px">
+                                                    Remember me?
+                                                    @Html.CheckBoxFor(model => model.remember)
+                                                    @* <input type="checkbox" name="remember">*@
+                                                </label>
+
+                                            </div>
+                                            <div class="form-buttons clearfix">
+                                                <label class="pull-left">
+
+                                                </label>
+                                            </div>
+                                            <div class="button-container">
+                                                <button><span>Go</span></button>
+                                            </div>
+                                            <div class="footer"><a id="needHelp" href="#" data-href="@Url.Action("RecoveryOptions","NeedHelp",new { branchCode = "<change>" } ,Request.Url.Scheme)">Need Help?</a></div>
+                                            }
+                            </div>
+                        </div>
+                        @*<div class="surface-forgot-password-container">
+                                <div class="card surface-forgot-password">
+                                    <h1 class="title">
+                                        Register
+                                        <div class="close"></div>
+                                    </h1>
+                                    <form>
+                                        <div class="input-container">
+                                            <input type="text" id="Username" required="required" />
+                                            <label for="Username">Username</label>
+                                            <div class="bar"></div>
+                                        </div>
+                                        <div class="input-container">
+                                            <input type="password" id="Password" required="required" />
+                                            <label for="Password">Password</label>
+                                            <div class="bar"></div>
+                                        </div>
+                                        <div class="input-container">
+                                            <input type="password" id="Repeat Password" required="required" />
+                                            <label for="Repeat Password">Repeat Password</label>
+                                            <div class="bar"></div>
+                                        </div>
+                                        <div class="button-container">
+                                            <button><span>Next</span></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+            </section>
+
+
+
+        </div>
+    </div>
+    <section class="row navbar-fixed-bottom footer-bar">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-left">
+                    <a class="navbar-brand" href="#">
+                        <img src="~/Images/LionVision/LogoLionLVITSColoured100x.png" class="lvits-logo" />
+                    </a>
+                </div>
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+                    <ul class="nav navbar-nav">
+                        @*<li><a href="#">Link <span class="sr-only">(current)</span></a></li>*@
+                        <li><a class="active" href="/about">About</a></li>
+                        <li><a href="//support.lionvisionits.com">Help</a></li>
+
+
+                        <li><a href="https://about.lionvisionits.com/careers">Jobs</a></li>
+                        <li><a href="/tos">Terms</a></li>
+                        <li><a href="/privacy">Privacy</a></li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other Links<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="https://about.lionvisionits.com/products">Apps</a></li>
+                                <li><a href="https://blog.lionvisionits.com">Blog</a></li>
+                                <li><a href="//ads.lionvisionits.com/start?ref=gl-tw-tw-lionvisionits-advertise">Advertise</a></li>
+                                <li><a href="https://business.lionvisionits.com">Businesses</a></li>
+                                <li><a href="//media.lionvisionits.com">Media</a></li>
+                                <li><a href="//dev.lionvisionits.com">Developers</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="http://status.lionvisionits.com">Status</a></li>
+                                <li><a href="/i/directory/profiles">Directory</a></li>
+                                <li><a href="//support.lionvisionits.com/articles/20170514">Cookies</a></li>
+                                <li><a href="//support.lionvisionits.com/articles/20170451">Ads info</a></li>
+                                <li><a href="//about.lionvisionits.com/press/brand-assets">Brand</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/i/directory/profiles">© 2016 Lion Vision Info Tech Solutions(LVITS)</a></li>
+
+                    </ul>
+
+                </div><!-- /.navbar-collapse -->
+
+            </div><!-- /.container-fluid -->
+            @*<ul class="StreamsFooter-list u-cf">
+
+                    <li class="StreamsFooter-item StreamsFooter-copyright">© 2016 Lion Vision Info Tech Solutions(LVITS)</li>
+
+                </ul>*@
+        </nav>
+    </section>
+
+
+
+    <!-- used to show direct login window or to show previous account listing
+    true= to show login window
+    false= to show previous account
+        used on failed login attempt or failed captcha to enter direct password and username
+        it is used in LionPOS\Scripts\ScriptCustom\Login\Login\LoginScripts.js
+    -->
+    <script>
+        var directloginWindowExecute = @((Model.showLoginWindowDirect)?"true":"false");
+
+    </script>
+    <script src="~/Scripts/jquery-2.2.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/ScriptCustom/Login/Login/LoginScripts.js"></script>
+
+    <!-- Loads captcha view if captcha is activate after n attempt -->
+    @if (Model.CaptchaActivated_Null_bool == true)
+    {
+        @Html.Partial("~/Views/Login/Login/_LoginCustomScript.cshtml", Model.CaptchaActivated_Null_bool)
+    }
+    <script>
+          $("#needHelp").click(function(e){
+                debugger
+                window.location = $("#needHelp").data("href").replace("%3Cchange%3E",$("#branchCode option:selected").val());
+            });
+    </script>
+
+</body>
+</html>

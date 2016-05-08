@@ -1,0 +1,20 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <a href="@Url.Action("InsertSyncTest","SyncHOtoCloud",null,Request.Url.Scheme)" > Insert Sync Test</a> <br />
+        <a href="@Url.Action("UpdateSyncTest","SyncHOtoCloud",null,Request.Url.Scheme)"> Update Sync Test</a><br />
+        <a href="@Url.Action("DeleteSyncTest","SyncHOtoCloud",null,Request.Url.Scheme)"> Delete Sync Test</a>
+    </div>
+</body>
+</html>

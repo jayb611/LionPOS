@@ -1,0 +1,516 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A489EF4F-5C9C-4A24-A769-4BA976CA3310}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LionPOSDbContracts</RootNamespace>
+    <AssemblyName>LionPOSDbContracts</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Web, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DomainModels\Account\accountLvitsPosdbEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>accountLvitsPosdbEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Account\accountLvitsPosdbEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>accountLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Account\accountLvitsPosdbEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>accountLvitsPosdbEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Account\account_entry_note.cs">
+      <DependentUpon>accountLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Account\account_entry_type.cs">
+      <DependentUpon>accountLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Account\discount.cs">
+      <DependentUpon>accountLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Account\payment_accounts.cs">
+      <DependentUpon>accountLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Account\payment_accounts_merge.cs">
+      <DependentUpon>accountLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Account\product_class.cs">
+      <DependentUpon>accountLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Account\recipt.cs">
+      <DependentUpon>accountLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Account\service_charge.cs">
+      <DependentUpon>accountLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Account\tax_details.cs">
+      <DependentUpon>accountLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Account\tax_master.cs">
+      <DependentUpon>accountLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Branch\branch.cs">
+      <DependentUpon>branchLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Branch\branches_payments.cs">
+      <DependentUpon>branchLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Branch\branchLvitsPosdbEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>branchLvitsPosdbEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Branch\branchLvitsPosdbEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>branchLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Branch\branchLvitsPosdbEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>branchLvitsPosdbEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Branch\employee_underbranch.cs">
+      <DependentUpon>branchLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Configuration\configurationlvitsposdbEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>configurationlvitsposdbEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Configuration\configurationlvitsposdbEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>configurationlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Configuration\configurationlvitsposdbEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>configurationlvitsposdbEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Configuration\country.cs">
+      <DependentUpon>configurationlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Configuration\delete_logs.cs">
+      <DependentUpon>configurationlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Configuration\setting.cs">
+      <DependentUpon>configurationlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Configuration\state.cs">
+      <DependentUpon>configurationlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Employee\employee.cs">
+      <DependentUpon>employeelvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Employee\employeelvitsposdbEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>employeelvitsposdbEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Employee\employeelvitsposdbEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>employeelvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Employee\employeelvitsposdbEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>employeelvitsposdbEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Employee\employee_merge.cs">
+      <DependentUpon>employeelvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Maintenance\errorlog.cs">
+      <DependentUpon>maintenancelvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Maintenance\maintenancelvitsposdbEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>maintenancelvitsposdbEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Maintenance\maintenancelvitsposdbEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>maintenancelvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Maintenance\maintenancelvitsposdbEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>maintenancelvitsposdbEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Product\combo_items.cs">
+      <DependentUpon>productlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Product\product.cs">
+      <DependentUpon>productlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Product\productlvitsposdbEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>productlvitsposdbEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Product\productlvitsposdbEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>productlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Product\productlvitsposdbEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>productlvitsposdbEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Product\products_merge.cs">
+      <DependentUpon>productlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Product\product_price_master.cs">
+      <DependentUpon>productlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Product\supplier_product_mapping.cs">
+      <DependentUpon>productlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Product\unit_of_mesurement.cs">
+      <DependentUpon>productlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Supplier\supplier.cs">
+      <DependentUpon>supplierlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Supplier\supplierlvitsposdbEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>supplierlvitsposdbEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Supplier\supplierlvitsposdbEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>supplierlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Supplier\supplierlvitsposdbEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>supplierlvitsposdbEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Supplier\suppliers_merge.cs">
+      <DependentUpon>supplierlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Supplier\supplier_invoices.cs">
+      <DependentUpon>supplierlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Supplier\supplier_invoices_items.cs">
+      <DependentUpon>supplierlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Supplier\supplier_payments.cs">
+      <DependentUpon>supplierlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Supplier\supplier_purchase_orders.cs">
+      <DependentUpon>supplierlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Supplier\supplier_purchase_orders_items.cs">
+      <DependentUpon>supplierlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Supplier\supplier_purchase_return.cs">
+      <DependentUpon>supplierlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\Supplier\supplier_purchase_return_items.cs">
+      <DependentUpon>supplierlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\UniversDbContext.cs" />
+    <Compile Include="DomainModels\User\access_area.cs">
+      <DependentUpon>userlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\User\access_role_in_access_area.cs">
+      <DependentUpon>userlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\User\access_role_master.cs">
+      <DependentUpon>userlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\User\override_access_role.cs">
+      <DependentUpon>userlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\User\user.cs">
+      <DependentUpon>userlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\User\userlvitsposdbEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>userlvitsposdbEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\User\userlvitsposdbEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>userlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\User\userlvitsposdbEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>userlvitsposdbEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\User\user_settings.cs">
+      <DependentUpon>userlvitsposdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\warehouse\delivery_challan_receive.cs">
+      <DependentUpon>warehouseLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\warehouse\delivery_challan_send.cs">
+      <DependentUpon>warehouseLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\warehouse\warehouse.cs">
+      <DependentUpon>warehouseLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\warehouse\warehouseLvitsPosdbEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>warehouseLvitsPosdbEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\warehouse\warehouseLvitsPosdbEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>warehouseLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\warehouse\warehouseLvitsPosdbEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>warehouseLvitsPosdbEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\warehouse\warehouses_merge.cs">
+      <DependentUpon>warehouseLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\warehouse\warehouse_stock_items.cs">
+      <DependentUpon>warehouseLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\warehouse\warehouse_stock_master.cs">
+      <DependentUpon>warehouseLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\warehouse\warehouse_structure.cs">
+      <DependentUpon>warehouseLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DomainModels\warehouse\wearhouse_under_branches.cs">
+      <DependentUpon>warehouseLvitsPosdbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidationModels\userDB\access_role_in_access_areaEntityValidationModel.cs" />
+    <Compile Include="ValidationModels\userDB\userEntityValidationModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DomainModels\Account\accountLvitsPosdbEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>accountLvitsPosdbEntities.edmx</DependentUpon>
+      <LastGenOutput>accountLvitsPosdbEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\Account\accountLvitsPosdbEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>accountLvitsPosdbEntities.edmx</DependentUpon>
+      <LastGenOutput>accountLvitsPosdbEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\Branch\branchLvitsPosdbEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>branchLvitsPosdbEntities.edmx</DependentUpon>
+      <LastGenOutput>branchLvitsPosdbEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\Branch\branchLvitsPosdbEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>branchLvitsPosdbEntities.edmx</DependentUpon>
+      <LastGenOutput>branchLvitsPosdbEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\Configuration\configurationlvitsposdbEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>configurationlvitsposdbEntities.edmx</DependentUpon>
+      <LastGenOutput>configurationlvitsposdbEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\Configuration\configurationlvitsposdbEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>configurationlvitsposdbEntities.edmx</DependentUpon>
+      <LastGenOutput>configurationlvitsposdbEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\Employee\employeelvitsposdbEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>employeelvitsposdbEntities.edmx</DependentUpon>
+      <LastGenOutput>employeelvitsposdbEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\Employee\employeelvitsposdbEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>employeelvitsposdbEntities.edmx</DependentUpon>
+      <LastGenOutput>employeelvitsposdbEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\Maintenance\maintenancelvitsposdbEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>maintenancelvitsposdbEntities.edmx</DependentUpon>
+      <LastGenOutput>maintenancelvitsposdbEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\Maintenance\maintenancelvitsposdbEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>maintenancelvitsposdbEntities.edmx</DependentUpon>
+      <LastGenOutput>maintenancelvitsposdbEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\Product\productlvitsposdbEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>productlvitsposdbEntities.edmx</DependentUpon>
+      <LastGenOutput>productlvitsposdbEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\Product\productlvitsposdbEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>productlvitsposdbEntities.edmx</DependentUpon>
+      <LastGenOutput>productlvitsposdbEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\Supplier\supplierlvitsposdbEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>supplierlvitsposdbEntities.edmx</DependentUpon>
+      <LastGenOutput>supplierlvitsposdbEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\Supplier\supplierlvitsposdbEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>supplierlvitsposdbEntities.edmx</DependentUpon>
+      <LastGenOutput>supplierlvitsposdbEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\User\userlvitsposdbEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>userlvitsposdbEntities.edmx</DependentUpon>
+      <LastGenOutput>userlvitsposdbEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\User\userlvitsposdbEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>userlvitsposdbEntities.edmx</DependentUpon>
+      <LastGenOutput>userlvitsposdbEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\warehouse\warehouseLvitsPosdbEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>warehouseLvitsPosdbEntities.edmx</DependentUpon>
+      <LastGenOutput>warehouseLvitsPosdbEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DomainModels\warehouse\warehouseLvitsPosdbEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>warehouseLvitsPosdbEntities.edmx</DependentUpon>
+      <LastGenOutput>warehouseLvitsPosdbEntities.cs</LastGenOutput>
+    </Content>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="DomainModels\Branch\branchLvitsPosdbEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>branchLvitsPosdbEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="DomainModels\Account\accountLvitsPosdbEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>accountLvitsPosdbEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DomainModels\Account\accountLvitsPosdbEntities.edmx.diagram">
+      <DependentUpon>accountLvitsPosdbEntities.edmx</DependentUpon>
+    </None>
+    <None Include="DomainModels\Branch\branchLvitsPosdbEntities.edmx.diagram">
+      <DependentUpon>branchLvitsPosdbEntities.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="DomainModels\Employee\employeelvitsposdbEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>employeelvitsposdbEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="DomainModels\Configuration\configurationlvitsposdbEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>configurationlvitsposdbEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DomainModels\Configuration\configurationlvitsposdbEntities.edmx.diagram">
+      <DependentUpon>configurationlvitsposdbEntities.edmx</DependentUpon>
+    </None>
+    <None Include="DomainModels\Employee\employeelvitsposdbEntities.edmx.diagram">
+      <DependentUpon>employeelvitsposdbEntities.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="DomainModels\Maintenance\maintenancelvitsposdbEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>maintenancelvitsposdbEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DomainModels\Maintenance\maintenancelvitsposdbEntities.edmx.diagram">
+      <DependentUpon>maintenancelvitsposdbEntities.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="DomainModels\Product\productlvitsposdbEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>productlvitsposdbEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DomainModels\Product\productlvitsposdbEntities.edmx.diagram">
+      <DependentUpon>productlvitsposdbEntities.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="DomainModels\Supplier\supplierlvitsposdbEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>supplierlvitsposdbEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DomainModels\Supplier\supplierlvitsposdbEntities.edmx.diagram">
+      <DependentUpon>supplierlvitsposdbEntities.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="DomainModels\User\userlvitsposdbEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>userlvitsposdbEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DomainModels\User\userlvitsposdbEntities.edmx.diagram">
+      <DependentUpon>userlvitsposdbEntities.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="DomainModels\warehouse\warehouseLvitsPosdbEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>warehouseLvitsPosdbEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DomainModels\warehouse\warehouseLvitsPosdbEntities.edmx.diagram">
+      <DependentUpon>warehouseLvitsPosdbEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

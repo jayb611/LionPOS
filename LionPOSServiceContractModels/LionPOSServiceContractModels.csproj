@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1AD40B8E-8CBB-4479-898B-17A799133208}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LionPOSServiceContractModels</RootNamespace>
+    <AssemblyName>LionPOSServiceContractModels</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging, Version=3.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.3.0\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.3.0\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LionUtilities, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LionUtilities.1.7\lib\net452\LionUtilities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConstantDictionaryContractModel\ConstantRecordsDictionaryCM.cs" />
+    <Compile Include="ControllerContractModel\AccountManagement\TaxmasterCCM.cs" />
+    <Compile Include="ControllerContractModel\BranchManagement\BranchCCM.cs" />
+    <Compile Include="ControllerContractModel\BranchManagement\getBranchByBranchCodeCCM.cs" />
+    <Compile Include="ControllerContractModel\EmployeeManagement\EmployeeCCM.cs" />
+    <Compile Include="ControllerContractModel\Login\Login\BranchLoginListCCM.cs" />
+    <Compile Include="ControllerContractModel\Login\Login\CaptchaCCM.cs" />
+    <Compile Include="ControllerContractModel\Login\Login\GetSessionDetailsSubmitCCM.cs" />
+    <Compile Include="ControllerContractModel\Login\NeedHelp\OTPSessionCCM.cs" />
+    <Compile Include="ControllerContractModel\Login\NeedHelp\ResetPasswordSubmitCCM.cs" />
+    <Compile Include="ControllerContractModel\Login\NeedHelp\sendOTPForVerificationAccountOwnerShipSubmitCCM.cs" />
+    <Compile Include="ControllerContractModel\Login\NeedHelp\GetListOfAccountsByEamilSubmitCCM.cs" />
+    <Compile Include="ControllerContractModel\Login\NeedHelp\GetUserDetailsSubmitCCM.cs" />
+    <Compile Include="ControllerContractModel\ProductManagement\ProductCCM.cs" />
+    <Compile Include="ControllerContractModel\SupplierManagement\SupplierCCM.cs" />
+    <Compile Include="ControllerContractModel\UserManagement\UserCCM.cs" />
+    <Compile Include="ControllerContractModel\WarehouseManagement\WarehouseCCM.cs" />
+    <Compile Include="DomainContractsModel\Account\taxmasterDCM.cs" />
+    <Compile Include="DomainContractsModel\Branch\branchDCM.cs" />
+    <Compile Include="ControllerContractModel\Login\NeedHelp\NeedHelpCCM.cs" />
+    <Compile Include="DomainContractsModel\Configuration\StateDCM.cs" />
+    <Compile Include="DomainContractsModel\Configuration\CountryDCM.cs" />
+    <Compile Include="DomainContractsModel\Employee\employeeDCM.cs" />
+    <Compile Include="DomainContractsModel\Product\productDCM.cs" />
+    <Compile Include="DomainContractsModel\Product\unitofmesurementDCM.cs" />
+    <Compile Include="DomainContractsModel\Supplier\supplierDCM.cs" />
+    <Compile Include="DomainContractsModel\User\UserDCM.cs" />
+    <Compile Include="DomainContractsModel\Warehouse\warehouseDCM.cs" />
+    <Compile Include="ErrorContactModel\ErrorCM.cs" />
+    <Compile Include="logContractModel.cs" />
+    <Compile Include="BasicQueryContractModel.cs" />
+    <Compile Include="FilterFieldsContractModel.cs" />
+    <Compile Include="PaginationCM.cs" />
+    <Compile Include="SessionContractModels\access_areaSCM.cs" />
+    <Compile Include="SessionContractModels\access_role_in_access_areaSCM.cs" />
+    <Compile Include="SessionContractModels\branchSCM.cs" />
+    <Compile Include="SessionContractModels\override_access_roleSCM.cs" />
+    <Compile Include="SessionContractModels\employeeSCM.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionContractModels\SessionCM.cs" />
+    <Compile Include="SessionContractModels\settingSCM.cs" />
+    <Compile Include="SessionContractModels\userSCM.cs" />
+    <Compile Include="ConstantDictionaryContractModel\ConstantDictionaryCM.cs" />
+    <Compile Include="SessionContractModels\user_settingsSCM.cs" />
+    <Compile Include="SyncModels\SyncResultModel.cs" />
+    <Compile Include="SyncModels\SyncRequestModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
