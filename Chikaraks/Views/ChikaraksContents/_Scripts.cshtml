@@ -1,0 +1,428 @@
+﻿@model ChikaraksServiceContractModels.ControllerContractModel.ContentCCM.GetContentResultCCM
+
+<script>
+    var SQLDataTypeJosn = @Html.Raw(Model.SQLDataTypeJosn);
+</script>
+@*<script>
+        var FilterList = new Array();
+        var FilterObject =new Object();
+        FilterObject.name= "@Model.Pagination.FilterActionName";
+        FilterObject.FilterFieldModelJson = function(){ return @Html.Raw(Model.FilterFieldModelJson)};
+        FilterObject.FilterURLLink = "@Url.Action(Model.Pagination.FilterActionName, Model.Pagination.controllerName, null,Request.Url.Scheme)";
+        FilterObject.FilterFetchedFired = false;
+        FilterObject.whereClauseStream = "" ;
+        FilterObject.OrderByStream = "" ;
+        FilterObject.SaveAsDefaultFilter = false;
+        FilterObject.LoadAsDefaultFilter = true;
+        FilterList.push(FilterObject);
+
+        var InfinityList = new Array();
+        var InfinityObject =new Object();
+        InfinityObject.name= "@Model.Pagination.FilterActionName";
+        InfinityObject.scrollBarContainer = window;
+        InfinityObject.areaHeight = $(window);
+        InfinityObject.documentHeight = $("body");
+        InfinityObject.InfinitePageFetchURLink = "@Url.Action(Model.Pagination.FilterActionName,Model.Pagination.controllerName, null,Request.Url.Scheme)";
+        InfinityObject.TotalPage = @Model.Pagination.TotalPages;
+        InfinityObject.InfiniteDataFetchedFired = false;
+        InfinityObject.InfiniteDataFetchedNextPageNumber = 2;
+        InfinityList.push(InfinityObject);
+    </script>*@
+
+
+
+
+
+@*++++++++++++++Script to load Start+++++++++++++++++++*@
+
+<!-- Loaded from F:\Client\POS Master\Jay B\Source Code Master\LionPOS 09-04-2016\LionPOS 08-04-2016\LionPOS\LionPOS\Content\assets\globals\js\global-vendors.js -->
+@*<script src="~/Scripts/bootstrap.js"></script>*@
+@* JQueryValidation JS*@
+<script src="~/Scripts/jquery.validate.min.js"></script>
+@* Tool Tip JS*@
+<script src="~/Scripts/jquery-validate.bootstrap-tooltip.min.js"></script>
+@* Editor JS*@
+<script src="~/Scripts/tinymce/tinymce.min.js"></script>
+<script src="~/Scripts/FileUpload.js"></script>
+<script src="~/Scripts/jquery.lion.autocomplete.js"></script>
+@*++++++++++++++Script to load End+++++++++++++++++++*@
+<!-- check box select all code +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<script>
+    function initTinyMCE(){
+        tinymce.init({
+            selector: ".TinyMCE",
+            plugins: [
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks  fullscreen",
+                "insertdatetime media table contextmenu paste textcolor "
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor"
+        });
+    }
+    $(document).on('change', '.checkboxSwitch', function () {
+        var idswitch= $(this).data("id");
+        var checked = $("input[id="+ idswitch +"]:checked").length;
+        if (checked == 1)
+        {
+            $('#' + idswitch).val(true);
+        }
+        else
+        {
+            $('#' + idswitch).val(false);
+        }
+    });
+    var checkBoxFlag = true;
+    $(document).on("click", ".checkboxer", function (e) {
+        if (checkBoxFlag == true) {
+            checkBoxFlag = false;
+            if ($($(this).find("input")[0]).attr("id") == "chkSelectAllData") {
+                $(this).find("input")[0].click();
+                var checked = $("input[id=chkSelectAllData]:checked").length;
+                $.each($(".selectAllCheckBoxClass").find("input"), function (index, val) {
+                    if (checked == 1 && $("input[id=" + $(val).attr("id") + "]:checked").length <= 0) {
+                        $(val).click();
+                    }
+                    else if (checked == 0 && $("input[id=" + $(val).attr("id") + "]:checked").length > 0) {
+                        $(val).click();
+                    }
+                });
+
+                checkBoxFlag = true;
+            }
+            else {
+                $(this).find("input")[0].click();
+                if ($(".selectAllCheckBoxClass").find("input").length == $(".selectAllCheckBoxClass").find("input[type=checkbox]:checked").length) {
+                    if ($("input[id=chkSelectAllData]:checked").length <= 0) {
+                        $("#chkSelectAllData").click();
+                    }
+                }
+                else {
+                    if ($("input[id=chkSelectAllData]:checked").length > 0) {
+                        $("#chkSelectAllData").click();
+                    }
+                }
+                checkBoxFlag = true;
+            }
+        }
+    });
+
+    $(document).on("click","#btnAddNew",function(){
+        var thi$ = $(this);
+        var ajax_url= $(thi$).data("ajax-url");
+        var loader = $("#"+ $(thi$).data("ajax-loader"));
+        var prepend = $("#"+ $(thi$).data("prepend"));
+
+        if($(loader).css("display") == "none" )
+        {
+            $(loader).show();
+            $.ajax({
+                url: ajax_url,
+                data: {},
+                type: "GET",
+                cache: false,
+                async: true,
+                success: function (data) {
+                    if( data.errorLogId > 0)
+                    {
+                        window.location = data.errorURL;
+                    }else
+                    {
+                        $(prepend).prepend(data.view);
+                    }
+                    tinymce.remove();
+                    initTinyMCE();
+                    activateFormValidations();
+                    //activateInsertFormValidations();
+                    lionInit();
+                    $(loader).hide();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $(loader).hide();
+                }
+            });
+        }
+    });
+    $(document).on("click","#btnInsertCancel",function(){
+
+        var loader = $(this).data("remove-element-id");
+        if(loader != null && loader != undefined && loader != "")
+        {
+            $(this).closest(("#" + loader )).remove();
+        }
+        loader = $(this).data("remove-element-id");
+        if(loader != null && loader != undefined && loader != "" )
+        {
+            $("#" + loader ).remove();
+        }
+        if(loader == 0)
+        {
+            $("#" + loader ).remove();
+        }
+    });
+    $(document).on("click","#btnShowDetails",function(){
+        var thi$ = $(this)
+
+        $("#" + $(thi$).data("ajax-loader")).show();
+        var ajax_url= $(thi$).data("ajax-url");
+        var ajax_data=JSON.stringify($(thi$).data("ajax-json-data"));
+        var bodyid= $(thi$).data("body");
+        $("#" + bodyid).css("display","block");
+        $.ajax({
+            url: ajax_url,
+            data: JSON.parse(ajax_data),
+            type: "POST",
+            cache: false,
+            async: true,
+            success: function (data) {
+
+                if( data.errorLogId > 0)
+                {
+                    window.location = data.errorURL;
+                }
+                $("#" + bodyid).replaceWith(data.view);
+                tinymce.remove();
+                initTinyMCE();
+                activateFormValidations();
+                lionInit();
+                $("#" + $(thi$).data("ajax-loader")).hide();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $("#" + $(thi$).data("ajax-loader")).hide();
+                alert(thrownError);
+            }
+        });
+    });
+    $(document).on("click","#btnUpdateCancel",function(){
+        var loader = $(this).data("remove-innerhtml-element-id");
+        if(loader != null && loader != undefined && loader != "")
+        {
+            $(this).closest(("#" + loader )).html("");
+        }
+        loader = $(this).data("hide");
+        if(loader != null && loader != undefined && loader != "")
+        {
+            $("#" + loader ).hide();
+        }
+    });
+    $(document).on("click","#btndelete",function(){
+
+        $("#btnConfirm").data("ajax-json-data",JSON.stringify($(this).data("ajax-json-data")));
+        $("#btnConfirm").data("body",$(this).data("body"));
+        $("#btnConfirm").data("ajax-loader",$(this).data("ajax-loader"));
+        $("#btnConfirm").data("ajax-url",$(this).data("ajax-url"));
+    });
+    $(document).on("click","#btnConfirm",function(){
+
+        var thi$ = $(this);
+        var ajax_url= $(thi$).data("ajax-url");
+        var ajax_data=$(thi$).data("ajax-json-data");
+        var bodyid = $(thi$).data("body");
+        var loader = $(thi$).data("ajax-loader");
+        if(loader != null && loader != undefined && loader != "")
+        {
+            $("#" + loader ).show();
+        }
+        $.ajax({
+            url: ajax_url,
+            data: JSON.parse(ajax_data),
+            type: "POST",
+            cache: false,
+            async: true,
+            success: function (data) {
+                if( data.errorLogId > 0)
+                {
+                    window.location = data.errorURL;
+                }
+                $("#" + bodyid).parent().parent().remove();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $("#" + loader ).hide();
+                alert(thrownError);
+            }
+        });
+    });
+    $(document).on("click","#btnMultiSubmit", function (e) {
+
+        var thi$ = $(this);
+        var ajax_url= $(thi$).data("ajax-url");
+        var ajax_data=$(thi$).data("ajax-json-data");
+        var loader = $(thi$).data("ajax-loader");
+        $("#" + loader).show();
+        var str ="";
+        $.each($('.chkSelect:checked'),function (index,val) {
+            if(str != "")
+            {
+                str = str + ",";
+            }
+            str = str + $(val).attr("id");
+        });
+        var action = $("#BulkAction").val();
+        ajax_data = ajax_data.replace("value",'"' + action + '"');
+        ajax_data = ajax_data.replace("key",'"' + str + '"');
+        $.ajax({
+            url: ajax_url,
+            data: JSON.parse(ajax_data),
+            type: "POST",
+            cache: false,
+            async: true,
+            success: function (data) {
+                if( data.errorLogId > 0) {
+                    window.location = data.errorURL;
+                }
+                else
+                {
+                    location.reload();
+                    $("#" + loader).hide();
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $("#" + loader).hide();
+            }
+        });
+    });
+
+    //$(document).on("click", "#imgCancel", function () {
+    //    var imgvalueid= $(this).data("id");
+    //    var filevalueid= $(this).data("file");
+    //    var newimg= $(this).data("img");
+    //    var loc = $(this).attr("src");
+    //    $("#"+ imgvalueid).val(loc);
+    //    $("#" + newimg).attr("src","");
+    //    $("#" + filevalueid).val(null);
+    //    document.getElementById(filevalueid).value = null;
+    //    $("#" + filevalueid).attr("value", "");
+
+    //});
+    $(document).on("change", ".ajaxCheck", function () {
+
+        var thi$ = $(this);
+        var ajax_url= $(thi$).data("ajax-url");
+        var error_message_label=$(thi$).data("error-message-label");
+        var error_message =$(thi$).data("error-message");
+        var loader = $(thi$).data("ajax-loader");
+        var ajax_data=$(thi$).data("ajax-json-data");
+        ajax_data = ajax_data.replace("str",'"'+ $(thi$).val() + '"')
+        $(loader).show();
+        $.ajax({
+            url: ajax_url,
+            type: "POST",
+            data: JSON.parse(ajax_data),
+            cache: false,
+            async: true,
+            //dataType: "json",
+            //contentType: "application/json; charset=utf-8",
+            success: function (data, textStatus, jqXHR) {
+                if( data.errorLogId > 0) {
+                    window.location = data.errorURL;
+                }
+                if (data.result > 0) {
+                    $("#"+ error_message_label).css("display", "block");
+                    $("#"+ error_message_label).html(error_message)
+                    $("#"+ error_message_label).css("color", "red");
+                }
+                else {
+                    $("#"+ error_message_label).css("display", "none");
+                }
+                $(loader).hide();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $(loader).hide();
+                alert("Failed to check constraint.Please refresh page!.If that do not solve then contact us");
+            }
+        });
+    });
+
+    $(function () {
+        $("#sortable").sortable();
+        $("#sortable").disableSelection();
+    });
+
+
+    var stopSubmitLoader;
+    $(document).on("click","#btnsubmit",function(){
+        var loader = $(this).data("loader");
+        $("#" + loader).show();
+        stopSubmitLoader =$("#" + loader);
+    });
+
+
+    var FormID = "#MVCAjaxFormID"
+    function activateFormValidations()
+    {
+
+        $(FormID).validate({
+            rules: {
+                "AccountEntryTypeDCM.accountEntryTypeTitle": {
+                    required: true,
+                    maxlength: 45
+                },
+            },
+            submitHandler: function (form, event) {
+                var valid = true;
+                $.each($(".error-message-label"),function(index,val){
+                    if($(val).css("display") != "none")
+                    {
+                        valid = false;
+                        return false;
+                    }
+                });
+                if($(FormID).find("#AccountEntryTypeDCM.accountEntryTypeTitle").val() == "Unknown")
+                {
+                    valid = false;
+                    alert("Please Enter Title other than Unknown");
+                }
+                if (valid == false ){
+                    event.preventDefault();
+                    $(stopSubmitLoader).hide();
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            },
+            errorHandler: function (event, validator) {
+
+                $(stopSubmitLoader).hide();
+            },
+            invalidHandler: function (event, validator) {
+
+                $(stopSubmitLoader).hide();
+            }
+
+        });
+    }
+
+
+
+
+    function OnFormAjaxComplete(data) {
+
+        if (data.responseJSON.errorLogId > 0) {
+            window.location = data.responseJSON.errorURL;
+        }
+        else if (data.responseJSON.errorLogId < 0) {
+            alert(data.responseJSON.alertMessage);
+        }
+        else {
+            $(this).parent().parent().parent().css("display","none");
+            if(data.responseJSON.crudOprationType == "@Html.Raw(ChikaraksServiceContractModels.ConstantDictionaryContractModel.ConstantDictionaryCM.crudOprationTypes.Insert)")
+            {
+
+                $(this).parent().parent().parent().parent().parent().parent().prepend(data.responseJSON.view);
+                $(this).parent().parent().parent().parent().parent().remove();
+            }
+            if(data.responseJSON.crudOprationType == "@Html.Raw(ChikaraksServiceContractModels.ConstantDictionaryContractModel.ConstantDictionaryCM.crudOprationTypes.Update)")
+            {
+                $(this).parent().parent().parent().parent().parent().replaceWith(data.responseJSON.view);
+            }
+
+            location.href = $(this).closest(".card ").find(".card-title a").attr("href");
+        }
+    }
+    function OnFormAjaxFailure(ex) {
+        alert("Some Error occured : " + ex);
+    }
+
+
+</script>

@@ -1,0 +1,84 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Json Test API</title>
+</head>
+<body>
+    @*@{
+        DomainModels.mgsonsmysqldbEntities db = new DomainModels.mgsonsmysqldbEntities();
+
+    }*@
+    <div>
+        <h1>Device Reg</h1>
+
+        <h3>GET METHOD</h3>
+        <form action="~/api/GetAllDataApi" method="GET">
+            <input type="submit" value="Get Json String" />
+        </form>
+
+        <h3>POST METHOD</h3>
+        <form action="~/api/GetAllDataApi" method="post">
+            <input type="text" name="JsonString" value="" />
+            <input type="submit" />
+        </form>
+
+
+        %
+
+        <h3>GET APNS </h3>
+        <form action="~/Test/ApplePushNotification" method="get">
+
+            <input type="text" name="tokenid" value="6602f5e5384c04afc3905345492648febc0c50a2e38886b790a0bcfa099c584e" />
+            <input type="text" name="message" value="Hello!" />
+            <input type="text" name="badge" value="1" />
+            <input type="text" name="sound" value="default" />
+            <input type="submit" />
+        </form>
+
+
+        <h3>OTP Activation </h3>
+        <form action="~/api/otpactivation" method="post">
+
+            @* <input type="text" name="deviceId" value="6602f5e5384c04afc3905345492648febc0c50a2e38886b790a0bcfa099c584e" />
+                <input type="text" name="activationCode" value="act123" />
+                <input type="text" name="deviceType" value="iphone" />*@
+
+            <input type="text" name="JsonString" value="" />
+            <input type="submit" />
+        </form>
+
+
+
+
+
+        <h3>Notification </h3>
+        <form action="~/api/notification" method="get">
+            <input type="submit" />
+        </form>
+        <h3>Banner </h3>
+        <form action="~/api/banner" method="get">
+            <input type="submit" />
+        </form>
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+</body>
+</html>
+

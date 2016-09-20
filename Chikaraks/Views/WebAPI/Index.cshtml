@@ -1,0 +1,34 @@
+﻿@using ChikaraksDbContracts.DomainModels.Chikaraks
+
+@{
+    ViewBag.Title = "Json API";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+
+<h1>Device Reg</h1>
+
+<h3>GET METHOD</h3>
+<form action="~/api/getAssetsAPI" method="GET">
+    <input type="submit" value="Get Json String" />
+</form>
+
+<h3>POST METHOD</h3>
+<form action="~/api/getAssetsAPI" method="post">
+    <input type="text" name="JsonStringData" value="" />
+    <input type="submit" />
+</form>
+
+@*<h1>Contact Details</h1>
+<h3>GET METHOD</h3>
+<form action="~/api/StoreContactLibrary" method="GET">
+    <input type="submit" value="Get Json String" />
+</form>
+
+<h3>POST METHOD</h3>
+<form action="~/api/StoreContactLibrary" method="post">
+    <input type="text" name="JsonStringData" value="" />
+    <input type="submit" />
+</form>*@
+
+
+

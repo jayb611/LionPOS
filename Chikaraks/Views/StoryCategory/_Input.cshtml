@@ -1,0 +1,43 @@
+﻿@model  Chikaraks.Models.ViewModels.StoryCategory.CrudOperationStoryCategoryVM
+@{
+    int PrimaryKeys = Model.StoryCategoryDCM.idStoryCategory;
+}
+<div class="col-md-12" id="@(PrimaryKeys)">
+    <div class="card card-user card-user-purple">
+
+        <div class="card-heading heading-center " style="border-top:none;height: 58px;margin-bottom: 0px;">
+            <h3 class="card-title text-color-white"style="top: -6px;"><a href="#@(PrimaryKeys)">@(Model.StoryCategoryDCM.storyCategoryTitle)</a></h3>
+        </div><!--.card-heading-->
+
+        @if (Model.LoadFormFields == true)
+        {
+            <br />
+            @Html.Raw(LionUtilities.MVCViewUtilitiesPkg.Helper.GetRazorViewAsString(Model, "~/Views/StoryCategory/_InputFields.cshtml", Model.ControllerContext));
+
+        }
+        else
+        {
+                <!--.card-body-->
+            <div class="card-body" id="body@(PrimaryKeys)" style="display:none">
+            </div>
+                <!--.card-body-->
+        }
+
+
+
+        <div class="card-footer" style="padding: 5px;border-top: 1px solid #f0f0f0;">
+            <div class="selectAllCheckBoxClass" style="float:left">
+                <div class="checkboxer checkboxer-pink form-inline">
+                    <input type="checkbox" id="@(PrimaryKeys)">
+                    <label for="checkboxColor2">
+                    </label>
+                </div>
+            </div>
+            <button type="button" data-ajax-loader="ldr@(PrimaryKeys)" data-ajax-json-data='{ "PrimaryKeys" : "@(PrimaryKeys)" }' data-ajax-url="@Url.Action(Model.DetailsActionName, Model.controllerName,null,Request.Url.Scheme)" data-body="body@(PrimaryKeys)" id="btnShowDetails" style="margin-right:10px;float:right" class="btn btn-primary btn-ripple ">
+                <i id="ldr@(PrimaryKeys)" class="CircleLoader" style="display:none ; "></i>
+                More Details
+            </button>
+        </div><!--.card-footer-->
+
+    </div><!--.card-->
+</div>

@@ -1,0 +1,98 @@
+﻿@model ChikaraksServiceContractModels.ControllerContractModel.ContentCCM.GetContentResultCCM
+@{
+    ViewBag.Title = "Content Management";
+    ViewBag.page = "Home";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+
+@section HeaderStyle
+{
+    <style>
+        .btn-CircleLoader::after {
+            display: none;
+            background: transparent url('../../fonts/fuji-spinner-1.0.1.svg') no-repeat 0 0;
+            width: 28px;
+            height: 28px;
+            background-color: #4bae4f;
+            border-radius: 50%;
+        }
+
+        .input-wrapper {
+            display: block;
+        }
+
+        .autoText {
+            width: 88%;
+            display: inline-block;
+            padding-left: 12px;
+        }
+
+        .autoTextButtonShowAll {
+            width: 10%;
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 9px;
+        }
+
+        .autoTextBox {
+            display: block;
+            position: absolute;
+            width: 100%;
+            border: solid 1px #337ab7;
+            border-bottom: solid 4px #337ab7;
+            background: white;
+            z-index: 2;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+
+        .autoTextOptionsWrapper {
+            margin: 0px;
+            padding: 5px;
+        }
+
+        .autoTextOption {
+            padding: 5px;
+            padding: 5px;
+        }
+
+            .autoTextOption:hover {
+                padding: 5px;
+                padding: 5px;
+                cursor: pointer;
+                background-color: lightgray;
+                border: solid 3px #337ab7;
+            }
+
+        .autoTextOptionActive {
+            padding: 5px;
+            padding: 5px;
+            border: solid 3px #337ab7;
+        }
+    </style>
+
+
+
+}
+
+
+
+
+@Html.Partial("~/Views/ChikaraksContents/_ActionPane.cshtml")
+
+
+
+@Html.Partial("~/Views/ChikaraksContents/_ListPane.cshtml", Model)
+
+
+
+@Html.Partial("~/Views/ChikaraksContents/_DeleteConfirmPane.cshtml")
+
+
+
+@section FooterScripts{
+
+    @Html.Partial("~/Views/ChikaraksContents/_Scripts.cshtml", Model)
+
+}

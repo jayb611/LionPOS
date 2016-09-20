@@ -1,0 +1,207 @@
+﻿
+<!DOCTYPE HTML>
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>@ViewBag.Title</title>
+
+    <meta name="description" content="Pleasure is responsive, material admin dashboard panel" />
+    <meta name="author" content="Teamfox" />
+
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+
+
+
+    @Styles.Render("~/bundles/css")
+    @RenderSection("HeaderStyle", false)
+
+    <link href="~/Content/assets/globals/css/plugins.css" rel="stylesheet" />
+
+    <meta name="description" content="Pleasure is responsive, material admin dashboard panel" />
+    <meta name="author" content="Teamfox" />
+
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <link href="~/Content/ContentLoding/Loading.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="~/Images/lionvisionitsicon.ico">
+    <link rel="apple-touch-icon" href="~/Images/lionvisionits.png" />
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+    <div class="nav-bar-container">
+
+        <!-- BEGIN ICONS -->
+        <div class="nav-menu">
+            <div class="hamburger">
+                <span class="patty"></span>
+                <span class="patty"></span>
+                <span class="patty"></span>
+                <span class="patty"></span>
+                <span class="patty"></span>
+                <span class="patty"></span>
+            </div><!--.hamburger-->
+        </div><!--.nav-menu-->
+
+        <div class="nav-search">
+            <span class="search"></span>
+        </div><!--.nav-search-->
+
+        <div class="nav-user">
+            <div class="user">
+                <img src="../../Content/assets/globals/img/faces/tolga-ergin.jpg" alt="" />
+
+
+                <span class="badge">3</span>
+            </div><!--.user-->
+            <div class="cross">
+                <span class="line"></span>
+                <span class="line"></span>
+            </div><!--.cross-->
+        </div><!--.nav-user-->
+        <!-- END OF ICONS -->
+
+        <div class="nav-bar-border"></div><!--.nav-bar-border-->
+        <!-- BEGIN OVERLAY HELPERS -->
+        <div class="overlay">
+            <div class="starting-point">
+                <span></span>
+            </div><!--.starting-point-->
+            @*<div class="logo">PLEASURE</div>*@<!--.logo-->
+        </div><!--.overlay-->
+
+        <div class="overlay-secondary"></div><!--.overlay-secondary-->
+        <!-- END OF OVERLAY HELPERS -->
+
+    </div><!--.nav-bar-container-->
+
+    <div class="content">
+        <div class="page-header full-content">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1>
+                        <a href="#">@ViewBag.Title</a>
+                    </h1>
+                </div><!--.col-->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li><a href="@Url.Action("Index","Home")" class="active"><i class="ion-home"></i> Homepage</a></li>
+                    </ol>
+                </div><!--.col-->
+            </div><!--.row-->
+        </div><!--.page-header-->
+        @*******************Body Section Starts here*****************************@
+        @RenderSection("BodyHeader", false)
+        <div class="alert-block" id="alert-block" style="position:fixed;top:10px;width:85%">
+
+        </div>
+        @RenderBody()
+        @*******************Body Section Ends here*****************************@
+
+
+
+
+
+
+    </div><!--.content-->
+
+    <div class="layer-container">
+
+        <!-- BEGIN MENU LAYER -->
+        <div class="menu-layer">
+            <ul>
+
+                <li data-open-after="true">
+                    @Html.ActionLink("Home", "Index", "Home")
+                </li>
+
+
+                <li>
+
+                    <a href="@Url.Action("Index","Assets")"><span>Assets Management</span></a>
+
+                </li>
+                <li>
+                    <a href="@Url.Action("Index","chikarakscontents")">Content Management</a>
+
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "storycategory")">Stories</a>
+
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "WebAPI")">WebAPI</a>
+
+                </li>
+
+            </ul>
+        </div><!--.menu-layer-->
+        <!-- END OF MENU LAYER -->
+
+
+    </div><!--.layer-container-->
+    <!-- BEGIN GLOBAL AND THEME VENDORS -->
+    @*<script src="../../Content/assets/globals/js/global-vendors.js"></script>*@
+
+    <!-- END GLOBAL AND THEME VENDORS -->
+    <!-- BEGIN PLUGINS AREA -->
+    <script src="http://maps.google.com/maps/api/js?sensor=true&amp;libraries=places"></script>
+
+
+    <!-- END PLUGINS AREA -->
+    <!-- PLEASURE -->
+    <!-- BEGIN INITIALIZATION-->
+
+
+    @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+    @RenderSection("FooterScripts", false)
+
+    <script>
+        function initLayout() {
+            Pleasure.init();
+            Layout.init();
+
+            //Index.init();
+            //WidgetAudio.single();
+            //ChartsKnob.init();
+        }
+        $(document).ready(function () {
+            initLayout();
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $('#idcancel').click(function () {
+            try {
+                window.opener.location.reload(true);
+            } catch (ex) {
+            }
+            window.close();
+        });
+    </script>
+
+    <!-- END INITIALIZATION-->
+</body>
+</html>

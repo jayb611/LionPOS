@@ -1,0 +1,14 @@
+﻿@model ChikaraksServiceContractModels.ControllerContractModel.ContentCCM.GetContentResultCCM
+
+<div class="row">
+    <div class="col-md-12" id="filter@(Model.Pagination.FilterActionName)Container">
+        @Html.Partial("~/Views/ChikaraksContents/_ListPaneDetail.cshtml", Model)
+    </div>
+</div>
+
+
+<div class="fixed-action-btn text-center" style="width: 120px;height: 120px;position: fixed;margin-bottom:0px;margin-right: 0px;bottom: 0px;right: 0px;z-index: 1;display:none" id="filter@(Model.Pagination.FilterActionName)LoaderContainer">
+    <a class="btn-floating btn-large green">
+        <i id="" class="CircleLoader" style="width: 120px;height:120px;"></i>
+    </a>
+</div>

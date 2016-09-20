@@ -1,0 +1,100 @@
+﻿@model Chikaraks.Models.ViewModels.StoryCategory.GetStoryCategoryVM
+@{
+    ViewBag.Title = "Story Category";
+    ViewBag.page = "Home";
+    Layout = "~/Views/Shared/MasterPage.cshtml";
+}
+
+@section HeaderStyle
+{
+    <link href="~/Content/assets/globals/plugins/chosen/chosen.min.css" rel="stylesheet" />
+    <style>
+        #sortable {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 60%;
+        }
+
+            #sortable li {
+                margin: 0 3px 3px 3px;
+                padding: 0.4em;
+                padding-left: 1.5em;
+                font-size: 15px;
+                height: 36px;
+                text-align: left;
+                vertical-align: middle;
+                border: 1px solid #337ab7;
+                background: #337ab7;
+                border-radius: 10px;
+            }
+
+
+        .btn-CircleLoader::after {
+            display: none;
+            background: transparent url('../../fonts/fuji-spinner-1.0.1.svg') no-repeat 0 0;
+            width: 28px;
+            height: 28px;
+            background-color: #4bae4f;
+            border-radius: 50%;
+        }
+
+        .no-left-right-margin-paddin {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .form-control {
+            border: 1px solid #337ab7;
+            border-radius: 30;
+        }
+
+        .grid-row-odd {
+            background-color: #f9f9f9;
+            padding-top: 15px;
+            padding-bottom: 5px;
+            margin-bottom: 0px;
+            border-bottom: 1px solid black;
+        }
+
+        .label-form {
+            width: 100%;
+            /* background: red; */
+            margin-top: 6px;
+            margin-bottom: 2px;
+            border-bottom: 1px solid #337ab7;
+        }
+
+        .grandTotal {
+            height:40px;
+        }
+          table th{
+           min-height: 49.8px;
+        }
+    </style>
+
+
+}
+
+
+
+
+@Html.Partial("~/Views/StoryCategory/_ActionPane.cshtml", Model)
+
+
+
+@Html.Partial("~/Views/StoryCategory/_ListPane.cshtml", Model)
+
+
+
+@Html.Partial("~/Views/StoryCategory/_DeleteConfirmPane.cshtml")
+
+
+
+@section FooterScripts{
+
+    @Html.Partial("~/Views/StoryCategory/_Scripts.cshtml", Model)
+
+}

@@ -1,0 +1,55 @@
+﻿@using LionPOSServiceContractModels.DomainContractsModel.Chikaraks
+@using LionPOSServiceContractModels.ConstantDictionaryContractModel
+@model  Chikaraks.Models.ViewModels.StoryCategory.CrudOperationStoryCategoryVM
+@{
+    int PrimaryKeys = Model.StoryCategoryDCM.idStoryCategory;
+}
+
+
+@foreach (var childModel in Model.StoryCategoryDCM.story_scene_pages)
+{
+    <tr class="form-group" @Html.Raw((Model.StoryCategoryDCM.storyCategoryTitle == "dummy") ? "id=copy_row  style=display:none" : "id=\"master_row\"")>
+        <td>
+            <input type="hidden" id="idStoryCategory" name="idStoryCategory" value="@childModel.idStoryCategory" />
+            <input type="hidden" id="idStoryScenePages" name="idStoryScenePages" value="@childModel.idStoryScenePages" />
+            <input type="hidden" id="imageUrl" name="imageUrl" value="@childModel.imageUrl" />
+            <input type="hidden" id="AudioUrl" name="AudioUrl" value="@childModel.audioUrl" />
+
+            <img style="width: 100px; height: 100px;border-radius: 50px;" alt="click here" id="childModel_imgfour" class="imageFourUploadSelection" data-fileid="childModel_filefour" src="@childModel.imageUrl" />
+            <input type="file" class="filefour form-control" data-id="childModel_imageUrl" id="childModel_filefour" data-imgfour="childModel_imgfour" style="display:none">
+            <p class="help-block">Click on Box/Image to select</p>
+
+        </td>
+        <td>
+            @if (@childModel.audioUrl != null)
+            {
+                <audio controls style="width:50px; height:50px;">
+                    <source src="@childModel.audioUrl" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            }
+            else
+            {
+                <audio controls style="width:50px; height:30px;">
+                    <source src="" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            }
+        </td>
+        <td>
+            <img style="height:50px; width:50px;" id="childModel_aud" class="audioUploadSelection" data-fileid="childModel_fileaud" src="@childModel.audioUrl" />
+            <input type="file" class="fileaud form-control" data-id="childModel_homeAudio" id="childModel_fileaud" data-aud="childModel_aud" style="display:none;">
+            <p class="help-block">Click on Box to select Audio</p>
+        </td>
+        <td>
+            <input type="text" id="storeLocation" name="storeLocation" class="form-control calculateAll" data-placement="bottom" data-toggle="tooltip" value="@childModel.storeLocation" />
+        </td>
+        <td>
+            <input type="number" id="indexOrder" name="indexOrder" class="form-control calculateAll" data-placement="bottom" data-toggle="tooltip" value="@childModel.indexOrder" />
+        </td>
+        <td>
+            <button type="button" id="btnDelChild" data-loader="btnDelChild" class="btn btn-primary btn-ripple btnDelChild" style="font-size: 10px;"><i id="btnDelChild" class="CircleLoader" style="display:none"></i>Del</button>
+        </td>
+    </tr>
+}
+

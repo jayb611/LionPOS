@@ -1,0 +1,143 @@
+﻿@using ChikaraksServiceContractModels.ConstantDictionaryContractModel
+@using Chikaraks.Models.ViewModels.StoryScenePages
+@model  StoryScenePagesCrudeVM
+@{
+            int PrimaryKeys = Model.StoryScenePagesDCM.idStoryScenePages;
+}
+<div class="card-body" id="body@(PrimaryKeys)">
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Ajax.BeginForm(Model.SubmitActionName, Model.controllerName, null, new AjaxOptions() { HttpMethod = "POST", OnComplete = "OnFormAjaxComplete", OnFailure = "OnFormAjaxFailure" }, new { @class = "form -horizontal bucket-form", id = "MVCAjaxFormID" }))
+            {
+                @Html.HiddenFor(model => Model.StoryScenePagesDCM.idStoryCategory)
+                @Html.HiddenFor(model => Model.StoryScenePagesDCM.idStoryScenePages)
+                @Html.HiddenFor(model => Model.StoryScenePagesDCM.audioUrl)
+                @Html.HiddenFor(model => Model.StoryScenePagesDCM.imageUrl)
+
+                @Html.AntiForgeryToken()
+
+
+                <div class="row form-group">
+                    <div class="col-xs-12 text-center">
+                        <div class="row">
+                            <div class="col-xm-12 col-sm-3">
+                                <label>Index Order</label>
+                            </div>
+                            <div class="col-sm-3 form-group">
+                                @Html.TextBoxFor(model => Model.StoryScenePagesDCM.indexOrder, new { @class = "form-control ", @Placeholder = "Index Order", @maxlength = "45", @type = "number" })
+                            </div>
+                            <div class="col-xm-12 col-sm-3">
+                                <label>Title</label>
+                            </div>
+                            <div class="col-sm-3 form-group">
+                                @Html.TextBoxFor(model => Model.StoryScenePagesDCM.title, new { @class = "form-control ", @Placeholder = "Title", @maxlength = "45", @type = "text" })
+                            </div>
+                        </div>
+                     <hr />
+                        <div class="row form-group">
+                            
+                                <div class="row col-xm-12 col-md-3">
+                                    <label>Story Scene Image</label>
+                                </div>
+                                <div class="row col-xm-12 col-md-3">
+                                    <img style="width: 100px; height: 100px;border-radius: 50px;" alt="click here" id="StoryCategoryDCM_imgfour" class="imageUpload" data-fileid="StoryCategoryDCM_filefour" src="@Model.StoryScenePagesDCM.imageUrl" />
+                                    <input type="file" class="file form-control" data-id="StoryScenePagesDCM_imageUrl" id="StoryCategoryDCM_filefour" data-img="StoryCategoryDCM_imgfour" data-ext=".jpg|.jpeg|.png|.gif" style="display:none">
+                                    <p class="help-block">Click on Box/Image to select</p>
+                                </div>
+                            
+
+                            <div class="col-xs-12 col-md-3">
+
+                                <label>Story Scene Audio</label>
+
+                            </div>
+                            <div class="col-xs-12 col-md-3 form-group">
+                                
+                                    @if (Model.StoryScenePagesDCM.audioUrl != null)
+                                    {
+                                        <audio controls style="width:100%;">
+                                            <source src="@Model.StoryScenePagesDCM.audioUrl" type="audio/mp3" id="StoryScenePagesDCM_aud">
+                                            Your browser does not support the audio element.
+                                        </audio>
+                                    }
+                                    else
+                                    {
+                                        <audio controls style="width:100%;">
+                                            <source src="" type="audio/mp3" id="StoryScenePagesDCM_aud">
+                                            Your browser does not support the audio element.
+                                        </audio>
+                                    }
+                                <br />
+                                    @*<img src="~/Images/browse.png" data-fileid="StoryScenePagesDCM_fileaud" class="imageUpload"  />*@
+                                    <input type="file" class="file form-control" data-id="StoryScenePagesDCM_audioUrl" id="StoryScenePagesDCM_fileaud" data-img="StoryScenePagesDCM_aud" data-ext=".mp3">
+
+                                
+                            </div>
+                       
+                        </div>
+
+                     <hr />
+
+
+                        <div class="row form-group">
+                            <div class="col-xs-12 col-md-3">
+                                <label>YouTube CueID</label>
+                            </div>
+                            <div class="col-xs-12 col-md-8">
+                                @Html.TextBoxFor(model => model.StoryScenePagesDCM.youtubeUrl, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                            </div>
+                        </div>
+
+                   
+
+
+
+
+                        <div class="row ">
+                            <div class="col-xs-12 col-sm-3 text-right "></div>
+
+                            @if (Model.crudOprationType == ConstantDictionaryCM.crudOprationTypes.Insert)
+                            {
+                                <div class="col-xs-12 col-sm-8">
+                                    <div class="col-sm-4">
+                                        <button type="submit" id="btnsubmit" data-loader="ldrSubmit@(PrimaryKeys)" class="btn btn-primary btn-ripple "><i id="ldrSubmit@(PrimaryKeys)" class="CircleLoader" style="display:none"></i>Create</button>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-4">
+                                        <button type="button" id="btnInsertCancel" data-remove-element-id="@(PrimaryKeys)" class="btn btn-primary btn-ripple btn-CircleLoader ">Cancel</button>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-xs-12 col-sm-8">
+                                    <div class="col-xs-12 col-sm-4">
+                                        <button type="submit" id="btnsubmit" data-loader="ldrSubmit@(PrimaryKeys)" class="btn btn-primary btn-ripple "><i id="ldrSubmit@(PrimaryKeys)" class="CircleLoader" style="display:none ; "></i>Update </button>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <button type="button" id="btndelete" data-ajax-loader="ldrRemove@(PrimaryKeys)" data-ajax-json-data='{ "PrimaryKeys" : "@(PrimaryKeys)" }' data-ajax-url="@Url.Action(Model.DeleteActionName , Model.controllerName,null,Request.Url.Scheme)" data-body="body@(PrimaryKeys)" class="btn btn-red btn-flat btn-ripple" data-toggle="modal" data-target="#filterConfirmModal">
+                                            <i id="ldrRemove@(PrimaryKeys)" class="CircleLoader" style="display:none; "></i>
+                                            <i class="ion-android-delete"></i>&nbsp; Delete
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <button type="button" id="btnUpdateCancel" data-remove-innerhtml-element-id="body@(PrimaryKeys)" data-hide="body@(PrimaryKeys)" class="btn btn-primary btn-ripple btn-CircleLoader ">Cancel</button>
+                                    </div>
+
+                                </div>
+                            }
+                        </div>
+
+                        <div id="idshowLoder@(PrimaryKeys)" style="height:180px;margin:10px; display:none">
+                            <div id="loader"></div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            }
+        </div>
+    </div>
+</div>

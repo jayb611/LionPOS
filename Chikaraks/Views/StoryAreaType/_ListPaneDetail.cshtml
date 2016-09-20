@@ -1,0 +1,37 @@
+﻿@model LionPOSServiceContractModels.ControllerContractModel.StoryAreaTypeCCM.GetStoryAreaTypeResultCCM
+    @for (int i = 0; i < Model.StoryAreaTypeDCMList.Count(); i++)
+    {
+        int PrimaryKeys = Model.StoryAreaTypeDCMList[i].idStoryAreaType;
+
+        <!--Grid Design -->
+
+        <div class="col-md-12" id="@(PrimaryKeys)">
+            <div class="card card-user card-user-purple">
+
+                <div class="card-heading heading-center " style="border-top:none;height: 58px;margin-bottom: 0px;">
+                    <h3 class="card-title text-color-white" style="top: -6px;"><a href="#@(PrimaryKeys)">@Model.StoryAreaTypeDCMList[i].title</a></h3>
+                </div>
+
+                <div class="card-body" id="body@(PrimaryKeys)" style="display:none;">
+
+                </div>
+
+
+                <div class="card-footer" style="padding: 5px;border-top: 1px solid #f0f0f0;">
+                    <div class="selectAllCheckBoxClass" style="float:left">
+                        <div class="checkboxer checkboxer-pink form-inline">
+                            <input type="checkbox" class="chkSelect" id="@(PrimaryKeys)">
+                            <label for="checkboxColor2" style="top:9px;">
+                            </label>
+                        </div>
+                    </div>
+                    <button type="button" data-ajax-loader="ldr@(PrimaryKeys)" data-ajax-json-data='{ "PrimaryKeys" : "@(PrimaryKeys)" }' data-ajax-url="@Url.Action(Model.DetailsActionName, Model.Pagination.controllerName,null,Request.Url.Scheme)" data-body="body@(PrimaryKeys)" id="btnShowDetails" style="margin-right:10px;float:right" class="btn btn-primary btn-ripple ">
+                        <i id="ldr@(PrimaryKeys)" class="CircleLoader" style="display:none ; "></i>
+                        More Details
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    }

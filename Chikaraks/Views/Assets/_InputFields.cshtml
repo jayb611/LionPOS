@@ -1,0 +1,108 @@
+﻿@model  Chikaraks.Models.ViewModels.Assets.AssetsCrudOperationViewModel
+@using ChikaraksServiceContractModels.ConstantDictionaryContractModel
+@{
+    string PrimaryKeys = Model.AssetsDCM.idAssets + ConstantDictionaryCM.keysSeparater_string + Model.AssetsDCM.title;
+    string PrimaryKeysLink = PrimaryKeys;
+    PrimaryKeys = PrimaryKeys.Replace(" ", "");
+}
+
+<div class="card-body" id="body@(PrimaryKeys)">
+
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Ajax.BeginForm(Model.SubmitActionName, Model.controllerName, null, new AjaxOptions() { HttpMethod = "POST", OnComplete = "OnFormAjaxComplete", OnFailure = "OnFormAjaxFailure" }, new { @class = "form -horizontal bucket-form", id = "MVCAjaxFormID" }))
+            {
+                @Html.HiddenFor(model => Model.AssetsDCM.idAssets)
+                @Html.HiddenFor(model => Model.AssetsDCM.homeBackground)
+                @Html.HiddenFor(model => Model.AssetsDCM.homeAudio)
+
+                @Html.AntiForgeryToken()
+
+                <div class=" row form-group">
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-sm-3"><label>Title</label></div>
+                            <div class="col-sm-8 form-group">
+                                @Html.TextBoxFor(model => Model.AssetsDCM.title, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3"><label>Home Background</label></div>
+                            <div class="col-sm-8 form-group">
+                                <img style="width: 100px; height: 100px;border-radius: 50px;" alt="click here" id="AssetsDCM_img" class="imageUploadSelection" data-fileid="AssetsDCM_file" src="@Model.AssetsDCM.homeBackground" />
+                                <input type="file" class="file form-control" data-id="AssetsDCM_homeBackground" id="AssetsDCM_file" data-img="AssetsDCM_img" style="display:none">
+                                <p class="help-block">Click on Box/Image to select</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3"><label>Home Audio</label></div>
+                            <div class="col-sm-4 form-group">
+                                @if (Model.AssetsDCM.homeAudio != null)
+                                {
+                                    <audio controls style="height:50px;">
+                                        <source src="@Model.AssetsDCM.homeAudio" type="audio/mp3">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                }
+                                else
+                                {
+                                    <audio controls style="height:30px;">
+                                        <source src="" type="audio/mp3">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                }
+                            </div>
+                            <div class="col-sm-4 form-group">
+                                <img id="AssetsDCM_aud" class="audioUploadSelection" data-fileid="AssetsDCM_fileaud" src="@Model.AssetsDCM.homeAudio" />
+                                <input type="file" class="fileaud form-control" data-id="AssetsDCM_homeAudio" id="AssetsDCM_fileaud" data-aud="AssetsDCM_aud" style="display:none;">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3"><label>Url</label></div>
+                            <div class="col-sm-8 form-group">
+                                @Html.TextBoxFor(model => Model.AssetsDCM.url, new { @class = "form-control", data_placement = "bottom", data_toggle = "tooltip" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-3"></div>
+                    @if (Model.crudOprationType == ConstantDictionaryCM.crudOprationTypes.Insert)
+                    {
+                        <div class="col-sm-8">
+                            <div class="col-sm-4">
+                                <button type="submit" id="btnsubmit" data-loader="ldrSubmit@(PrimaryKeys)" class="btn btn-primary btn-ripple "><i id="ldrSubmit@(PrimaryKeys)" class="CircleLoader" style="display:none"></i>Create</button>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <button type="button" id="btnInsertCancel" data-remove-element-id="@(PrimaryKeys)" class="btn btn-primary btn-ripple btn-CircleLoader ">Cancel</button>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-8">
+                            <div class="col-sm-4">
+                                <button type="submit" id="btnsubmit" data-loader="ldrSubmit@(PrimaryKeys)" class="btn btn-primary btn-ripple "><i id="ldrSubmit@(PrimaryKeys)" class="CircleLoader" style="display:none ; "></i>Update </button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" id="btndelete" data-ajax-loader="ldrRemove@(PrimaryKeys)" data-ajax-json-data='{ "PrimaryKeys" : "@(PrimaryKeysLink)" }' data-ajax-url="@Url.Action(Model.DeleteActionName , Model.controllerName,null,Request.Url.Scheme)" data-body="body@(PrimaryKeys)" class="btn btn-red btn-flat btn-ripple" data-toggle="modal" data-target="#filterConfirmModal">
+                                    <i id="ldrRemove@(PrimaryKeys)" class="CircleLoader" style="display:none; "></i>
+                                    <i class="ion-android-delete"></i>&nbsp; Delete
+                                </button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" id="btnUpdateCancel" data-remove-innerhtml-element-id="body@(PrimaryKeys)" data-hide="body@(PrimaryKeys)" class="btn btn-primary btn-ripple btn-CircleLoader ">Cancel</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            <div id="idshowLoder@(PrimaryKeys)" style="height:180px;margin:10px; display:none">
+                <div id="loader"></div>
+            </div>
+        </div>
+    </div>
+</div>

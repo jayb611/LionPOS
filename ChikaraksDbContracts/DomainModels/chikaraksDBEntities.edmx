@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="chikaraksModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="assets">
+          <Key>
+            <PropertyRef Name="idAssets" />
+          </Key>
+          <Property Name="idAssets" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="homeBackground" Type="longtext" Nullable="false" />
+          <Property Name="homeAudio" Type="longtext" Nullable="false" />
+          <Property Name="url" Type="longtext" />
+        </EntityType>
+        <EntityType Name="content">
+          <Key>
+            <PropertyRef Name="idContent" />
+          </Key>
+          <Property Name="idContent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contentTag" Type="varchar" MaxLength="45" />
+          <Property Name="contentValue" Type="longtext" />
+        </EntityType>
+        <EntityType Name="errorlogs">
+          <Key>
+            <PropertyRef Name="idlogs" />
+          </Key>
+          <Property Name="idlogs" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="description" Type="longtext" Nullable="false" />
+          <Property Name="isError" Type="bit" Nullable="false" />
+          <Property Name="exception" Type="longtext" Nullable="false" />
+          <Property Name="objectAttachment" Type="longtext" Nullable="false" />
+          <Property Name="className" Type="text" Nullable="false" />
+          <Property Name="methodName" Type="text" Nullable="false" />
+          <Property Name="lineNumber" Type="int" Nullable="false" />
+          <Property Name="fileName" Type="text" Nullable="false" />
+          <Property Name="eventJson" Type="longtext" Nullable="false" />
+          <Property Name="errorURL" Type="longtext" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="entryDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="lastChangeDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="entryByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="changeByUserName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="recordBySystem" Type="bit" Nullable="false" />
+          <Property Name="insertRoutePoint" Type="longtext" />
+          <Property Name="updateRoutePoint" Type="longtext" />
+          <Property Name="syncGUID" Type="longtext" />
+        </EntityType>
+        <EntityType Name="registration">
+          <Key>
+            <PropertyRef Name="idregistration" />
+          </Key>
+          <Property Name="idregistration" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="45" />
+          <Property Name="lastName" Type="varchar" MaxLength="45" />
+          <Property Name="emailAddress" Type="varchar" MaxLength="255" />
+          <Property Name="mobileNo" Type="varchar" MaxLength="45" />
+          <Property Name="password" Type="varchar" MaxLength="45" />
+          <Property Name="otp" Type="varchar" MaxLength="45" />
+          <Property Name="udid" Type="longtext" />
+          <Property Name="deviceType" Type="varchar" MaxLength="45" />
+          <Property Name="countryCode" Type="varchar" MaxLength="45" />
+          <Property Name="gcmID" Type="longtext" />
+          <Property Name="apnsID" Type="longtext" />
+        </EntityType>
+        <EntityType Name="story_category">
+          <Key>
+            <PropertyRef Name="idStoryCategory" />
+          </Key>
+          <Property Name="idStoryCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="storyCategoryTitle" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="storyCategoryImageUrl" Type="longtext" Nullable="false" />
+          <Property Name="storyCategoryImageUrlStoreLocation" Type="longtext" />
+          <Property Name="storyType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="categoryLogoUrl" Type="longtext" />
+          <Property Name="categoryLogoUrlStoreLocation" Type="longtext" />
+          <Property Name="backgroundImageUrl" Type="longtext" />
+          <Property Name="backgroundImageUrlStoreLocation" Type="longtext" />
+        </EntityType>
+        <EntityType Name="story_scene_pages">
+          <Key>
+            <PropertyRef Name="idStoryScenePages" />
+          </Key>
+          <Property Name="idStoryScenePages" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idStoryCategory" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="45" />
+          <Property Name="imageUrl" Type="longtext" />
+          <Property Name="imageUrlStoreLocation" Type="longtext" />
+          <Property Name="audioUrl" Type="longtext" />
+          <Property Name="audioUrlStoreLocation" Type="longtext" />
+          <Property Name="youtubeUrl" Type="longtext" />
+          <Property Name="youtubeStoreLocation" Type="longtext" />
+          <Property Name="indexOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userName" />
+          </Key>
+          <Property Name="userName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="passwordEncryptionKey" Type="longtext" />
+          <Property Name="password" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="sessionID" Type="longtext" />
+          <Property Name="sessionValue" Type="longtext" />
+          <Property Name="sessionExpireyDateTime" Type="datetime" Precision="0" />
+          <Property Name="sessionCreateTime" Type="datetime" Precision="0" />
+          <Property Name="blockExpiry" Type="datetime" Precision="0" />
+          <Property Name="userAccountStatus" Type="varchar" MaxLength="45" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_story_scene_pages_story_category">
+          <End Role="story_category" Type="Self.story_category" Multiplicity="1" />
+          <End Role="story_scene_pages" Type="Self.story_scene_pages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="story_category">
+              <PropertyRef Name="idStoryCategory" />
+            </Principal>
+            <Dependent Role="story_scene_pages">
+              <PropertyRef Name="idStoryCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="chikaraksModelStoreContainer">
+          <EntitySet Name="assets" EntityType="Self.assets" Schema="chikaraks" store:Type="Tables" />
+          <EntitySet Name="content" EntityType="Self.content" Schema="chikaraks" store:Type="Tables" />
+          <EntitySet Name="errorlogs" EntityType="Self.errorlogs" Schema="chikaraks" store:Type="Tables" />
+          <EntitySet Name="registration" EntityType="Self.registration" Schema="chikaraks" store:Type="Tables" />
+          <EntitySet Name="story_category" EntityType="Self.story_category" Schema="chikaraks" store:Type="Tables" />
+          <EntitySet Name="story_scene_pages" EntityType="Self.story_scene_pages" Schema="chikaraks" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="chikaraks" store:Type="Tables" />
+          <AssociationSet Name="fk_story_scene_pages_story_category" Association="Self.fk_story_scene_pages_story_category">
+            <End Role="story_category" EntitySet="story_category" />
+            <End Role="story_scene_pages" EntitySet="story_scene_pages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="chikaraksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="asset">
+          <Key>
+            <PropertyRef Name="idAssets" />
+          </Key>
+          <Property Name="idAssets" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="homeBackground" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="homeAudio" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="content">
+          <Key>
+            <PropertyRef Name="idContent" />
+          </Key>
+          <Property Name="idContent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contentTag" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="contentValue" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="errorlog">
+          <Key>
+            <PropertyRef Name="idlogs" />
+          </Key>
+          <Property Name="idlogs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isError" Type="Boolean" Nullable="false" />
+          <Property Name="exception" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="objectAttachment" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="className" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="methodName" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lineNumber" Type="Int32" Nullable="false" />
+          <Property Name="fileName" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="eventJson" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="errorURL" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="entryDate" Type="DateTime" Nullable="false" />
+          <Property Name="lastChangeDate" Type="DateTime" Nullable="false" />
+          <Property Name="entryByUserName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="changeByUserName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="recordBySystem" Type="Boolean" Nullable="false" />
+          <Property Name="insertRoutePoint" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="updateRoutePoint" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="syncGUID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="registration">
+          <Key>
+            <PropertyRef Name="idregistration" />
+          </Key>
+          <Property Name="idregistration" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="emailAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="mobileNo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="otp" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="udid" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="deviceType" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="countryCode" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="gcmID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="apnsID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="story_category">
+          <Key>
+            <PropertyRef Name="idStoryCategory" />
+          </Key>
+          <Property Name="idStoryCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="storyCategoryTitle" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="storyCategoryImageUrl" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="storyCategoryImageUrlStoreLocation" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="storyType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="categoryLogoUrl" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="categoryLogoUrlStoreLocation" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="backgroundImageUrl" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="backgroundImageUrlStoreLocation" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="story_scene_pages" Relationship="Self.fk_story_scene_pages_story_category" FromRole="story_category" ToRole="story_scene_pages" />
+        </EntityType>
+        <EntityType Name="story_scene_pages">
+          <Key>
+            <PropertyRef Name="idStoryScenePages" />
+          </Key>
+          <Property Name="idStoryScenePages" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idStoryCategory" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="imageUrl" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="imageUrlStoreLocation" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="audioUrl" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="audioUrlStoreLocation" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="youtubeUrl" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="youtubeStoreLocation" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="indexOrder" Type="Int32" />
+          <NavigationProperty Name="story_category" Relationship="Self.fk_story_scene_pages_story_category" FromRole="story_scene_pages" ToRole="story_category" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userName" />
+          </Key>
+          <Property Name="userName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="passwordEncryptionKey" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sessionID" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="sessionValue" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="sessionExpireyDateTime" Type="DateTime" />
+          <Property Name="sessionCreateTime" Type="DateTime" />
+          <Property Name="blockExpiry" Type="DateTime" />
+          <Property Name="userAccountStatus" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_story_scene_pages_story_category">
+          <End Role="story_category" Type="Self.story_category" Multiplicity="1" />
+          <End Role="story_scene_pages" Type="Self.story_scene_pages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="story_category">
+              <PropertyRef Name="idStoryCategory" />
+            </Principal>
+            <Dependent Role="story_scene_pages">
+              <PropertyRef Name="idStoryCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="chikaraksEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="assets" EntityType="Self.asset" />
+          <EntitySet Name="contents" EntityType="Self.content" />
+          <EntitySet Name="errorlogs" EntityType="Self.errorlog" />
+          <EntitySet Name="registrations" EntityType="Self.registration" />
+          <EntitySet Name="story_category" EntityType="Self.story_category" />
+          <EntitySet Name="story_scene_pages" EntityType="Self.story_scene_pages" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="fk_story_scene_pages_story_category" Association="Self.fk_story_scene_pages_story_category">
+            <End Role="story_category" EntitySet="story_category" />
+            <End Role="story_scene_pages" EntitySet="story_scene_pages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="chikaraksModelStoreContainer" CdmEntityContainer="chikaraksEntities">
+          <EntitySetMapping Name="assets">
+            <EntityTypeMapping TypeName="chikaraksModel.asset">
+              <MappingFragment StoreEntitySet="assets">
+                <ScalarProperty Name="idAssets" ColumnName="idAssets" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="homeBackground" ColumnName="homeBackground" />
+                <ScalarProperty Name="homeAudio" ColumnName="homeAudio" />
+                <ScalarProperty Name="url" ColumnName="url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contents">
+            <EntityTypeMapping TypeName="chikaraksModel.content">
+              <MappingFragment StoreEntitySet="content">
+                <ScalarProperty Name="idContent" ColumnName="idContent" />
+                <ScalarProperty Name="contentTag" ColumnName="contentTag" />
+                <ScalarProperty Name="contentValue" ColumnName="contentValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="errorlogs">
+            <EntityTypeMapping TypeName="chikaraksModel.errorlog">
+              <MappingFragment StoreEntitySet="errorlogs">
+                <ScalarProperty Name="idlogs" ColumnName="idlogs" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="isError" ColumnName="isError" />
+                <ScalarProperty Name="exception" ColumnName="exception" />
+                <ScalarProperty Name="objectAttachment" ColumnName="objectAttachment" />
+                <ScalarProperty Name="className" ColumnName="className" />
+                <ScalarProperty Name="methodName" ColumnName="methodName" />
+                <ScalarProperty Name="lineNumber" ColumnName="lineNumber" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="eventJson" ColumnName="eventJson" />
+                <ScalarProperty Name="errorURL" ColumnName="errorURL" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="entryDate" ColumnName="entryDate" />
+                <ScalarProperty Name="lastChangeDate" ColumnName="lastChangeDate" />
+                <ScalarProperty Name="entryByUserName" ColumnName="entryByUserName" />
+                <ScalarProperty Name="changeByUserName" ColumnName="changeByUserName" />
+                <ScalarProperty Name="recordBySystem" ColumnName="recordBySystem" />
+                <ScalarProperty Name="insertRoutePoint" ColumnName="insertRoutePoint" />
+                <ScalarProperty Name="updateRoutePoint" ColumnName="updateRoutePoint" />
+                <ScalarProperty Name="syncGUID" ColumnName="syncGUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="registrations">
+            <EntityTypeMapping TypeName="chikaraksModel.registration">
+              <MappingFragment StoreEntitySet="registration">
+                <ScalarProperty Name="idregistration" ColumnName="idregistration" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+                <ScalarProperty Name="mobileNo" ColumnName="mobileNo" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="otp" ColumnName="otp" />
+                <ScalarProperty Name="udid" ColumnName="udid" />
+                <ScalarProperty Name="deviceType" ColumnName="deviceType" />
+                <ScalarProperty Name="countryCode" ColumnName="countryCode" />
+                <ScalarProperty Name="gcmID" ColumnName="gcmID" />
+                <ScalarProperty Name="apnsID" ColumnName="apnsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="story_category">
+            <EntityTypeMapping TypeName="chikaraksModel.story_category">
+              <MappingFragment StoreEntitySet="story_category">
+                <ScalarProperty Name="idStoryCategory" ColumnName="idStoryCategory" />
+                <ScalarProperty Name="storyCategoryTitle" ColumnName="storyCategoryTitle" />
+                <ScalarProperty Name="storyCategoryImageUrl" ColumnName="storyCategoryImageUrl" />
+                <ScalarProperty Name="storyCategoryImageUrlStoreLocation" ColumnName="storyCategoryImageUrlStoreLocation" />
+                <ScalarProperty Name="storyType" ColumnName="storyType" />
+                <ScalarProperty Name="categoryLogoUrl" ColumnName="categoryLogoUrl" />
+                <ScalarProperty Name="categoryLogoUrlStoreLocation" ColumnName="categoryLogoUrlStoreLocation" />
+                <ScalarProperty Name="backgroundImageUrl" ColumnName="backgroundImageUrl" />
+                <ScalarProperty Name="backgroundImageUrlStoreLocation" ColumnName="backgroundImageUrlStoreLocation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="story_scene_pages">
+            <EntityTypeMapping TypeName="chikaraksModel.story_scene_pages">
+              <MappingFragment StoreEntitySet="story_scene_pages">
+                <ScalarProperty Name="idStoryScenePages" ColumnName="idStoryScenePages" />
+                <ScalarProperty Name="idStoryCategory" ColumnName="idStoryCategory" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+                <ScalarProperty Name="imageUrlStoreLocation" ColumnName="imageUrlStoreLocation" />
+                <ScalarProperty Name="audioUrl" ColumnName="audioUrl" />
+                <ScalarProperty Name="audioUrlStoreLocation" ColumnName="audioUrlStoreLocation" />
+                <ScalarProperty Name="youtubeUrl" ColumnName="youtubeUrl" />
+                <ScalarProperty Name="youtubeStoreLocation" ColumnName="youtubeStoreLocation" />
+                <ScalarProperty Name="indexOrder" ColumnName="indexOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="chikaraksModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="passwordEncryptionKey" ColumnName="passwordEncryptionKey" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="sessionID" ColumnName="sessionID" />
+                <ScalarProperty Name="sessionValue" ColumnName="sessionValue" />
+                <ScalarProperty Name="sessionExpireyDateTime" ColumnName="sessionExpireyDateTime" />
+                <ScalarProperty Name="sessionCreateTime" ColumnName="sessionCreateTime" />
+                <ScalarProperty Name="blockExpiry" ColumnName="blockExpiry" />
+                <ScalarProperty Name="userAccountStatus" ColumnName="userAccountStatus" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
